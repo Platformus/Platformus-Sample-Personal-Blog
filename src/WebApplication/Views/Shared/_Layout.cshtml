@@ -1,0 +1,42 @@
+﻿@* Copyright © 2017 Dmitry Sikorsky. All rights reserved. *@
+@* Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information. *@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="description" content="@Html.Raw(this.ViewBag.MetaDescription as string)" />
+  <meta name="keywords" content="@Html.Raw(this.ViewBag.MetaKeywords as string)" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+  <title>@Html.Raw(this.ViewBag.Title as string)</title>
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans:400&subset=latin,cyrillic" type="text/css" rel="stylesheet" />
+  <link href="~/css/platformus.min.css" rel="stylesheet" />
+</head>
+<body>
+  <div class="header">
+    <div class="header__menu-toggle" onclick="toggleMaster();"></div>
+  </div>
+  <div class="master-detail">
+    <div class="master-detail__master">
+      <div class="master-detail__container">
+        <a class="logo" href="/">
+          <img class="logo__image" src="~/files/photo.jpg" alt="You" />
+        </a>
+        @await Component.InvokeAsync("Menu", new { code = "Main", additionalCssClass = "master-detail__menu" })
+        @await Component.InvokeAsync("Cultures", new { additionalCssClass = "master-detail__cultures" })
+      </div>
+      <div class="master-detail__copyright copyright">
+        &copy; You, @DateTime.Now.Year
+      </div>
+    </div>
+    <div class="master-detail__detail">
+      <div class="master-detail__container">
+        @RenderBody()
+      </div>
+    </div>
+  </div>
+  <script src="//ajax.aspnetcdn.com/ajax/jquery/jquery-1.11.3.min.js"></script>
+  <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
+  <script src="//ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js"></script>
+  <script src="~/js/platformus.min.js"></script>
+</body>
+</html>

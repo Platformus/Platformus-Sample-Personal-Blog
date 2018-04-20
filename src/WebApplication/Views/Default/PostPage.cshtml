@@ -1,0 +1,37 @@
+﻿@* Copyright © 2018 Dmitry Sikorsky. All rights reserved. *@
+@* Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information. *@
+@model dynamic
+@{
+  this.ViewBag.Title = this.Model.Page.Title;
+  this.ViewBag.MetaKeywords = this.Model.Page.MetaKeywords;
+  this.ViewBag.MetaDescription = this.Model.Page.MetaDescription;
+}
+
+<div class="post-page post">
+  <h1>
+    @Model.Page.Name
+  </h1>
+  <div class="post-page__tags post__tags tags">
+    @foreach (var tag in this.Model.Tags)
+    {
+      <span class="tags__tag tag">#@tag.Text</span>
+    }
+  </div>
+  <div class="post__cover">
+    <img class="post__cover-image" src="@Model.Page.Cover" alt="@Model.Page.Name" />
+  </div>
+  @Html.Raw(this.Model.Page.Content)
+  <div class="post__created">
+    @Model.Page.Created
+  </div>
+  <h2>
+    Comments
+  </h2>
+  <div class="post-page__comments comments">
+    @foreach (var comment in this.Model.Comments)
+    {
+      @Html.Partial("_Comment", comment as object)
+    }
+  </div>
+  @await Component.InvokeAsync("Form", new { code = "WriteComment" })
+</div>

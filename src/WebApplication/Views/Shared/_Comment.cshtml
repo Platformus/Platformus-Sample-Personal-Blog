@@ -1,0 +1,11 @@
+﻿@* Copyright © 2018 Dmitry Sikorsky. All rights reserved. *@
+@* Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information. *@
+@model dynamic
+<div class="comments__comment comment">
+  <div class="comment__text">
+    @Model.Text
+  </div>
+  <div class="comment__author-and-created">
+    @Model.Author, @Model.Created
+  </div>
+</div>
