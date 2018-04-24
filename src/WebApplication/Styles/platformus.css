@@ -60,7 +60,7 @@ a:hover {
   border-radius: 0.25rem;
   font: normal 1rem 'PT Sans', sans-serif;
   line-height: 1.5;
-  padding: 0 0.5rem;
+  padding: 0.5rem;
 }
 
 /* Text Area */
@@ -70,7 +70,7 @@ a:hover {
   border-radius: 0.25rem;
   font: normal 1rem 'PT Sans', sans-serif;
   line-height: 1.5;
-  padding: 0 0.5rem;
+  padding: 0.5rem;
 }
 
 /* Button */
@@ -83,7 +83,7 @@ a:hover {
   font: normal 1rem 'PT Sans', sans-serif;
   line-height: 1.5;
   display: inline-block;
-  padding: 0 0.5rem;
+  padding: 0.5rem;
 }
 
 .button:hover {
