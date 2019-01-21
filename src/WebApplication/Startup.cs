@@ -40,7 +40,6 @@ namespace WebApplication
       {
         applicationBuilder.UseDeveloperExceptionPage();
         applicationBuilder.UseDatabaseErrorPage();
-        applicationBuilder.UseBrowserLink();
       }
 
       applicationBuilder.UsePlatformus();

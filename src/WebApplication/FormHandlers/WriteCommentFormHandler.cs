@@ -10,7 +10,7 @@ using Platformus.Domain;
 using Platformus.Domain.Data.Abstractions;
 using Platformus.Domain.Data.Entities;
 using Platformus.Forms.FormHandlers;
-using Platformus.Globalization;
+using Platformus.Globalization.Services.Abstractions;
 using WebApplication.Models;
 
 namespace WebApplication.FormHandlers
