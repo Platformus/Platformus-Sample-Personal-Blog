@@ -1,23 +1,22 @@
-# Platformus 1.0.0-beta5 Sample Personal Blog
+# Platformus 2.0.0 Sample Personal Blog
 
 [![Join the chat at https://gitter.im/Platformus/Platformus](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Platformus/Platformus?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 ## Introduction
 
-[Platformus](https://github.com/Platformus/Platformus) is free, open source and cross-platform CMS
-based on ASP.NET Core and [ExtCore framework](https://github.com/ExtCore/ExtCore). It is built using
-the best and the most modern tools and languages (Visual Studio 2017, C#, TypeScript, SCSS etc).
-Join our team!
+[Platformus](https://github.com/Platformus/Platformus) is free, open source, and cross-platform developer-friendly CMS
+based on ASP.NET Core, [ExtCore framework](https://github.com/ExtCore/ExtCore),
+and [Magicalizer](https://github.com/Magicalizer/Magicalizer).
 
-### Some Screenshots
+### Sample Screenshots
 
-![Home page](http://platformus.net/samples/personal_blog/1.png)
+![Home page](home_page.png)
 *Home page*
 
-![Blog page](http://platformus.net/samples/personal_blog/2.png)
+![Blog page](blog_page.png)
 *Blog page*
 
-![Post page](http://platformus.net/samples/personal_blog/3.png)
+![Post page](post_page.png)
 *Post page*
 
 ## Links

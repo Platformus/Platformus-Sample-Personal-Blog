@@ -5,12 +5,12 @@
   <h2>
     <a href="/@System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName@Model.Url">@Model.Name</a>
   </h2>
-  <div class="post__tags tags">
+  @*<div class="post__tags tags">
     @foreach (var tag in this.Model.Tags)
     {
       <span class="tags__tag tag">#@tag.Text</span>
     }
-  </div>
+  </div>*@
   <div class="post__cover">
     <a href="/@System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName@Model.Url">
       <img class="post__cover-image" src="@Model.Cover" alt="@Model.Name" />

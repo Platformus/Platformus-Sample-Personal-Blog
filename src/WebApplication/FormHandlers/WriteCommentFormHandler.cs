@@ -1,50 +1,86 @@
 ﻿// Copyright © 2018 Dmitry Sikorsky. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
-using System;
-using System.Globalization;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using Magicalizer.Data.Repositories.Abstractions;
+using Magicalizer.Filters.Abstractions;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Platformus;
-using Platformus.Domain;
-using Platformus.Domain.Data.Abstractions;
-using Platformus.Domain.Data.Entities;
-using Platformus.Forms.FormHandlers;
-using Platformus.Globalization.Services.Abstractions;
-using WebApplication.Models;
+using Platformus.Core.Data.Entities;
+using Platformus.Core.Extensions;
+using Platformus.Core.Filters;
+using Platformus.Core.Frontend;
+using Platformus.Core.Parameters;
+using Platformus.Website.Data.Entities;
+using Platformus.Website.Filters;
+using Platformus.Website.FormHandlers;
 
 namespace WebApplication.FormHandlers
 {
-  public class WriteCommentFormHandler : FormHandlerBase
+  public class WriteCommentFormHandler : IFormHandler
   {
-    protected override IActionResult Handle()
+    public IEnumerable<ParameterGroup> ParameterGroups => new ParameterGroup[] { };
+
+    public string Description => string.Empty;
+
+    // TODO: this code is ugly and must be rewritten using the strongly-typed mapper (when it is done)
+    public async Task<IActionResult> HandleAsync(HttpContext httpContext, string origin, Form form, IDictionary<Field, string> valuesByFields, IDictionary<string, byte[]> attachmentsByFilenames)
     {
-      Comment comment = new Comment();
+      Class @class = (await httpContext.GetStorage().GetRepository<int, Class, ClassFilter>().GetAllAsync(
+        new ClassFilter() { Code = "Comment" },
+        inclusions: new Inclusion<Class>(c => c.Members)
+      )).FirstOrDefault();
 
-      comment.Author = this.GetValueByFieldCode("Name");
-      comment.Text = this.GetValueByFieldCode("Comment");
-      comment.Created = DateTime.Now;
+      Object commentObject = new Object();
 
-      int commentId = new StronglyTypedObjectMapper(this.requestHandler).Create(comment).Id;
-      string referer = this.requestHandler.HttpContext.Request.Headers["Referer"];
-      string url = referer.Substring(referer.IndexOf($"/{CultureInfo.CurrentUICulture.TwoLetterISOLanguageName}/") + 3);
-      SerializedObject blogPostPage = this.requestHandler.Storage.GetRepository<ISerializedObjectRepository>().WithCultureIdAndUrlPropertyStringValue(
-        this.requestHandler.GetService<ICultureManager>().GetCurrentCulture().Id, url
-      );
+      commentObject.ClassId = @class.Id;
+      httpContext.GetStorage().GetRepository<int, Object, ObjectFilter>().Create(commentObject);
+      await httpContext.GetStorage().SaveAsync();
+
+      Property authorProperty = new Property();
+
+      authorProperty.ObjectId = commentObject.Id;
+      authorProperty.MemberId = @class.Members.First(m => m.Code == "Author").Id;
+      authorProperty.StringValue = new Dictionary() { Localizations = new[] { new Localization() { CultureId = "__", Value = this.GetValueByFieldCode(valuesByFields, "Name") } } };
+      httpContext.GetStorage().GetRepository<int, Property, PropertyFilter>().Create(authorProperty);
+
+      Property textProperty = new Property();
+
+      textProperty.ObjectId = commentObject.Id;
+      textProperty.MemberId = @class.Members.First(m => m.Code == "Text").Id;
+      textProperty.StringValue = new Dictionary() { Localizations = new[] { new Localization() { CultureId = "__", Value = this.GetValueByFieldCode(valuesByFields, "Comment") } } };
+      httpContext.GetStorage().GetRepository<int, Property, PropertyFilter>().Create(textProperty);
+
+      Property createdProperty = new Property();
+
+      createdProperty.ObjectId = commentObject.Id;
+      createdProperty.MemberId = @class.Members.First(m => m.Code == "Created").Id;
+      createdProperty.DateTimeValue = System.DateTime.Now;
+      httpContext.GetStorage().GetRepository<int, Property, PropertyFilter>().Create(createdProperty);
+
+      Object postPageObject = (await httpContext.GetStorage().GetRepository<int, Object, ObjectFilter>().GetAllAsync(
+        new ObjectFilter() { StringValue = new LocalizationFilter() { Value = new StringFilter() { Equals = origin } } },
+        inclusions: new Inclusion<Object>[]
+        {
+          new Inclusion<Object>(o => o.Class.Members)
+        }
+      )).FirstOrDefault();
 
       Relation relation = new Relation();
 
-      relation.MemberId = this.requestHandler.Storage.GetRepository<IMemberRepository>().WithClassIdAndCode(blogPostPage.ClassId, "Comments").Id;
-      relation.PrimaryId = commentId;
-      relation.ForeignId = blogPostPage.ObjectId;
-      this.requestHandler.Storage.GetRepository<IRelationRepository>().Create(relation);
-      this.requestHandler.Storage.Save();
-      return (this.requestHandler as Controller).Redirect(referer);
+      relation.MemberId = postPageObject.Class.Members.First(m => m.Code == "Comments").Id;
+      relation.PrimaryId = commentObject.Id;
+      relation.ForeignId = postPageObject.Id;
+      httpContext.GetStorage().GetRepository<int, Relation, RelationFilter>().Create(relation);
+      await httpContext.GetStorage().SaveAsync();
+      return new RedirectResult(GlobalizedUrlFormatter.Format(httpContext, origin));
     }
 
-    private string GetValueByFieldCode(string code)
+    private string GetValueByFieldCode(IDictionary<Field, string> valuesByFields, string code)
     {
-      return this.valuesByFields.FirstOrDefault(x => string.Equals(x.Key.Code, code, StringComparison.OrdinalIgnoreCase)).Value;
+      return valuesByFields.FirstOrDefault(x => x.Key.Code == code).Value;
     }
   }
 }

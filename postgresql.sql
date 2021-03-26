@@ -2,212 +2,32 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 10.1
--- Dumped by pg_dump version 10.1
+-- Dumped from database version 13.2
+-- Dumped by pg_dump version 13.2
 
--- Started on 2019-01-21 17:00:50
+-- Started on 2021-03-26 17:26:41
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
 SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
 SET check_function_bodies = false;
+SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
---
--- TOC entry 1 (class 3079 OID 12924)
--- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
---
-
-CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
-
-
---
--- TOC entry 3423 (class 0 OID 0)
--- Dependencies: 1
--- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
---
-
-COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
-
-
-SET search_path = public, pg_catalog;
-
 SET default_tablespace = '';
 
-SET default_with_oids = false;
+SET default_table_access_method = heap;
 
 --
--- TOC entry 269 (class 1259 OID 31772)
--- Name: Attributes; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE "Attributes" (
-    "Id" integer NOT NULL,
-    "FeatureId" integer NOT NULL,
-    "ValueId" integer NOT NULL,
-    "Position" integer
-);
-
-
-ALTER TABLE "Attributes" OWNER TO postgres;
-
---
--- TOC entry 268 (class 1259 OID 31770)
--- Name: Attributes_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE "Attributes_Id_seq"
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE "Attributes_Id_seq" OWNER TO postgres;
-
---
--- TOC entry 3424 (class 0 OID 0)
--- Dependencies: 268
--- Name: Attributes_Id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE "Attributes_Id_seq" OWNED BY "Attributes"."Id";
-
-
---
--- TOC entry 284 (class 1259 OID 31936)
--- Name: Carts; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE "Carts" (
-    "Id" integer NOT NULL,
-    "OrderId" integer,
-    "ClientSideId" text NOT NULL,
-    "Created" timestamp without time zone NOT NULL
-);
-
-
-ALTER TABLE "Carts" OWNER TO postgres;
-
---
--- TOC entry 283 (class 1259 OID 31934)
--- Name: Carts_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE "Carts_Id_seq"
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE "Carts_Id_seq" OWNER TO postgres;
-
---
--- TOC entry 3425 (class 0 OID 0)
--- Dependencies: 283
--- Name: Carts_Id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE "Carts_Id_seq" OWNED BY "Carts"."Id";
-
-
---
--- TOC entry 263 (class 1259 OID 31717)
--- Name: Catalogs; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE "Catalogs" (
-    "Id" integer NOT NULL,
-    "CatalogId" integer,
-    "Url" text NOT NULL,
-    "NameId" integer NOT NULL,
-    "CSharpClassName" text NOT NULL,
-    "Parameters" text,
-    "Position" integer
-);
-
-
-ALTER TABLE "Catalogs" OWNER TO postgres;
-
---
--- TOC entry 262 (class 1259 OID 31715)
--- Name: Catalogs_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE "Catalogs_Id_seq"
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE "Catalogs_Id_seq" OWNER TO postgres;
-
---
--- TOC entry 3426 (class 0 OID 0)
--- Dependencies: 262
--- Name: Catalogs_Id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE "Catalogs_Id_seq" OWNED BY "Catalogs"."Id";
-
-
---
--- TOC entry 265 (class 1259 OID 31738)
--- Name: Categories; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE "Categories" (
-    "Id" integer NOT NULL,
-    "CategoryId" integer,
-    "NameId" integer NOT NULL,
-    "Position" integer
-);
-
-
-ALTER TABLE "Categories" OWNER TO postgres;
-
---
--- TOC entry 264 (class 1259 OID 31736)
--- Name: Categories_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE "Categories_Id_seq"
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE "Categories_Id_seq" OWNER TO postgres;
-
---
--- TOC entry 3427 (class 0 OID 0)
--- Dependencies: 264
--- Name: Categories_Id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE "Categories_Id_seq" OWNED BY "Categories"."Id";
-
-
---
--- TOC entry 224 (class 1259 OID 31327)
+-- TOC entry 227 (class 1259 OID 18636)
 -- Name: Classes; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE "Classes" (
+CREATE TABLE public."Classes" (
     "Id" integer NOT NULL,
     "ClassId" integer,
     "Code" text NOT NULL,
@@ -217,14 +37,14 @@ CREATE TABLE "Classes" (
 );
 
 
-ALTER TABLE "Classes" OWNER TO postgres;
+ALTER TABLE public."Classes" OWNER TO postgres;
 
 --
--- TOC entry 223 (class 1259 OID 31325)
+-- TOC entry 226 (class 1259 OID 18634)
 -- Name: Classes_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE "Classes_Id_seq"
+CREATE SEQUENCE public."Classes_Id_seq"
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -233,23 +53,23 @@ CREATE SEQUENCE "Classes_Id_seq"
     CACHE 1;
 
 
-ALTER TABLE "Classes_Id_seq" OWNER TO postgres;
+ALTER TABLE public."Classes_Id_seq" OWNER TO postgres;
 
 --
--- TOC entry 3428 (class 0 OID 0)
--- Dependencies: 223
+-- TOC entry 3393 (class 0 OID 0)
+-- Dependencies: 226
 -- Name: Classes_Id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE "Classes_Id_seq" OWNED BY "Classes"."Id";
+ALTER SEQUENCE public."Classes_Id_seq" OWNED BY public."Classes"."Id";
 
 
 --
--- TOC entry 258 (class 1259 OID 31667)
+-- TOC entry 259 (class 1259 OID 18940)
 -- Name: CompletedFields; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE "CompletedFields" (
+CREATE TABLE public."CompletedFields" (
     "Id" integer NOT NULL,
     "CompletedFormId" integer NOT NULL,
     "FieldId" integer NOT NULL,
@@ -257,14 +77,14 @@ CREATE TABLE "CompletedFields" (
 );
 
 
-ALTER TABLE "CompletedFields" OWNER TO postgres;
+ALTER TABLE public."CompletedFields" OWNER TO postgres;
 
 --
--- TOC entry 257 (class 1259 OID 31665)
+-- TOC entry 258 (class 1259 OID 18938)
 -- Name: CompletedFields_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE "CompletedFields_Id_seq"
+CREATE SEQUENCE public."CompletedFields_Id_seq"
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -273,37 +93,37 @@ CREATE SEQUENCE "CompletedFields_Id_seq"
     CACHE 1;
 
 
-ALTER TABLE "CompletedFields_Id_seq" OWNER TO postgres;
+ALTER TABLE public."CompletedFields_Id_seq" OWNER TO postgres;
 
 --
--- TOC entry 3429 (class 0 OID 0)
--- Dependencies: 257
+-- TOC entry 3394 (class 0 OID 0)
+-- Dependencies: 258
 -- Name: CompletedFields_Id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE "CompletedFields_Id_seq" OWNED BY "CompletedFields"."Id";
+ALTER SEQUENCE public."CompletedFields_Id_seq" OWNED BY public."CompletedFields"."Id";
 
 
 --
--- TOC entry 256 (class 1259 OID 31654)
+-- TOC entry 257 (class 1259 OID 18927)
 -- Name: CompletedForms; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE "CompletedForms" (
+CREATE TABLE public."CompletedForms" (
     "Id" integer NOT NULL,
     "FormId" integer NOT NULL,
     "Created" timestamp without time zone NOT NULL
 );
 
 
-ALTER TABLE "CompletedForms" OWNER TO postgres;
+ALTER TABLE public."CompletedForms" OWNER TO postgres;
 
 --
--- TOC entry 255 (class 1259 OID 31652)
+-- TOC entry 256 (class 1259 OID 18925)
 -- Name: CompletedForms_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE "CompletedForms_Id_seq"
+CREATE SEQUENCE public."CompletedForms_Id_seq"
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -312,37 +132,37 @@ CREATE SEQUENCE "CompletedForms_Id_seq"
     CACHE 1;
 
 
-ALTER TABLE "CompletedForms_Id_seq" OWNER TO postgres;
+ALTER TABLE public."CompletedForms_Id_seq" OWNER TO postgres;
 
 --
--- TOC entry 3430 (class 0 OID 0)
--- Dependencies: 255
+-- TOC entry 3395 (class 0 OID 0)
+-- Dependencies: 256
 -- Name: CompletedForms_Id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE "CompletedForms_Id_seq" OWNED BY "CompletedForms"."Id";
+ALTER SEQUENCE public."CompletedForms_Id_seq" OWNED BY public."CompletedForms"."Id";
 
 
 --
--- TOC entry 209 (class 1259 OID 31218)
+-- TOC entry 213 (class 1259 OID 18530)
 -- Name: Configurations; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE "Configurations" (
+CREATE TABLE public."Configurations" (
     "Id" integer NOT NULL,
     "Code" text NOT NULL,
     "Name" text NOT NULL
 );
 
 
-ALTER TABLE "Configurations" OWNER TO postgres;
+ALTER TABLE public."Configurations" OWNER TO postgres;
 
 --
--- TOC entry 208 (class 1259 OID 31216)
+-- TOC entry 212 (class 1259 OID 18528)
 -- Name: Configurations_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE "Configurations_Id_seq"
+CREATE SEQUENCE public."Configurations_Id_seq"
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -351,23 +171,23 @@ CREATE SEQUENCE "Configurations_Id_seq"
     CACHE 1;
 
 
-ALTER TABLE "Configurations_Id_seq" OWNER TO postgres;
+ALTER TABLE public."Configurations_Id_seq" OWNER TO postgres;
 
 --
--- TOC entry 3431 (class 0 OID 0)
--- Dependencies: 208
+-- TOC entry 3396 (class 0 OID 0)
+-- Dependencies: 212
 -- Name: Configurations_Id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE "Configurations_Id_seq" OWNED BY "Configurations"."Id";
+ALTER SEQUENCE public."Configurations_Id_seq" OWNED BY public."Configurations"."Id";
 
 
 --
--- TOC entry 199 (class 1259 OID 31134)
+-- TOC entry 203 (class 1259 OID 18446)
 -- Name: CredentialTypes; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE "CredentialTypes" (
+CREATE TABLE public."CredentialTypes" (
     "Id" integer NOT NULL,
     "Code" text NOT NULL,
     "Name" text NOT NULL,
@@ -375,14 +195,14 @@ CREATE TABLE "CredentialTypes" (
 );
 
 
-ALTER TABLE "CredentialTypes" OWNER TO postgres;
+ALTER TABLE public."CredentialTypes" OWNER TO postgres;
 
 --
--- TOC entry 198 (class 1259 OID 31132)
+-- TOC entry 202 (class 1259 OID 18444)
 -- Name: CredentialTypes_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE "CredentialTypes_Id_seq"
+CREATE SEQUENCE public."CredentialTypes_Id_seq"
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -391,23 +211,23 @@ CREATE SEQUENCE "CredentialTypes_Id_seq"
     CACHE 1;
 
 
-ALTER TABLE "CredentialTypes_Id_seq" OWNER TO postgres;
+ALTER TABLE public."CredentialTypes_Id_seq" OWNER TO postgres;
 
 --
--- TOC entry 3432 (class 0 OID 0)
--- Dependencies: 198
+-- TOC entry 3397 (class 0 OID 0)
+-- Dependencies: 202
 -- Name: CredentialTypes_Id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE "CredentialTypes_Id_seq" OWNED BY "CredentialTypes"."Id";
+ALTER SEQUENCE public."CredentialTypes_Id_seq" OWNED BY public."CredentialTypes"."Id";
 
 
 --
--- TOC entry 201 (class 1259 OID 31145)
+-- TOC entry 205 (class 1259 OID 18457)
 -- Name: Credentials; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE "Credentials" (
+CREATE TABLE public."Credentials" (
     "Id" integer NOT NULL,
     "UserId" integer NOT NULL,
     "CredentialTypeId" integer NOT NULL,
@@ -417,14 +237,14 @@ CREATE TABLE "Credentials" (
 );
 
 
-ALTER TABLE "Credentials" OWNER TO postgres;
+ALTER TABLE public."Credentials" OWNER TO postgres;
 
 --
--- TOC entry 200 (class 1259 OID 31143)
+-- TOC entry 204 (class 1259 OID 18455)
 -- Name: Credentials_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE "Credentials_Id_seq"
+CREATE SEQUENCE public."Credentials_Id_seq"
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -433,25 +253,24 @@ CREATE SEQUENCE "Credentials_Id_seq"
     CACHE 1;
 
 
-ALTER TABLE "Credentials_Id_seq" OWNER TO postgres;
+ALTER TABLE public."Credentials_Id_seq" OWNER TO postgres;
 
 --
--- TOC entry 3433 (class 0 OID 0)
--- Dependencies: 200
+-- TOC entry 3398 (class 0 OID 0)
+-- Dependencies: 204
 -- Name: Credentials_Id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE "Credentials_Id_seq" OWNED BY "Credentials"."Id";
+ALTER SEQUENCE public."Credentials_Id_seq" OWNED BY public."Credentials"."Id";
 
 
 --
--- TOC entry 213 (class 1259 OID 31245)
+-- TOC entry 216 (class 1259 OID 18555)
 -- Name: Cultures; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE "Cultures" (
-    "Id" integer NOT NULL,
-    "Code" text NOT NULL,
+CREATE TABLE public."Cultures" (
+    "Id" text NOT NULL,
     "Name" text NOT NULL,
     "IsNeutral" boolean NOT NULL,
     "IsFrontendDefault" boolean NOT NULL,
@@ -459,39 +278,14 @@ CREATE TABLE "Cultures" (
 );
 
 
-ALTER TABLE "Cultures" OWNER TO postgres;
+ALTER TABLE public."Cultures" OWNER TO postgres;
 
 --
--- TOC entry 212 (class 1259 OID 31243)
--- Name: Cultures_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE "Cultures_Id_seq"
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE "Cultures_Id_seq" OWNER TO postgres;
-
---
--- TOC entry 3434 (class 0 OID 0)
--- Dependencies: 212
--- Name: Cultures_Id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE "Cultures_Id_seq" OWNED BY "Cultures"."Id";
-
-
---
--- TOC entry 222 (class 1259 OID 31311)
+-- TOC entry 225 (class 1259 OID 18620)
 -- Name: DataSources; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE "DataSources" (
+CREATE TABLE public."DataSources" (
     "Id" integer NOT NULL,
     "EndpointId" integer NOT NULL,
     "Code" text NOT NULL,
@@ -500,14 +294,14 @@ CREATE TABLE "DataSources" (
 );
 
 
-ALTER TABLE "DataSources" OWNER TO postgres;
+ALTER TABLE public."DataSources" OWNER TO postgres;
 
 --
--- TOC entry 221 (class 1259 OID 31309)
+-- TOC entry 224 (class 1259 OID 18618)
 -- Name: DataSources_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE "DataSources_Id_seq"
+CREATE SEQUENCE public."DataSources_Id_seq"
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -516,23 +310,23 @@ CREATE SEQUENCE "DataSources_Id_seq"
     CACHE 1;
 
 
-ALTER TABLE "DataSources_Id_seq" OWNER TO postgres;
+ALTER TABLE public."DataSources_Id_seq" OWNER TO postgres;
 
 --
--- TOC entry 3435 (class 0 OID 0)
--- Dependencies: 221
+-- TOC entry 3399 (class 0 OID 0)
+-- Dependencies: 224
 -- Name: DataSources_Id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE "DataSources_Id_seq" OWNED BY "DataSources"."Id";
+ALTER SEQUENCE public."DataSources_Id_seq" OWNED BY public."DataSources"."Id";
 
 
 --
--- TOC entry 234 (class 1259 OID 31417)
+-- TOC entry 237 (class 1259 OID 18726)
 -- Name: DataTypeParameterValues; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE "DataTypeParameterValues" (
+CREATE TABLE public."DataTypeParameterValues" (
     "Id" integer NOT NULL,
     "DataTypeParameterId" integer NOT NULL,
     "MemberId" integer NOT NULL,
@@ -540,14 +334,14 @@ CREATE TABLE "DataTypeParameterValues" (
 );
 
 
-ALTER TABLE "DataTypeParameterValues" OWNER TO postgres;
+ALTER TABLE public."DataTypeParameterValues" OWNER TO postgres;
 
 --
--- TOC entry 233 (class 1259 OID 31415)
+-- TOC entry 236 (class 1259 OID 18724)
 -- Name: DataTypeParameterValues_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE "DataTypeParameterValues_Id_seq"
+CREATE SEQUENCE public."DataTypeParameterValues_Id_seq"
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -556,23 +350,23 @@ CREATE SEQUENCE "DataTypeParameterValues_Id_seq"
     CACHE 1;
 
 
-ALTER TABLE "DataTypeParameterValues_Id_seq" OWNER TO postgres;
+ALTER TABLE public."DataTypeParameterValues_Id_seq" OWNER TO postgres;
 
 --
--- TOC entry 3436 (class 0 OID 0)
--- Dependencies: 233
+-- TOC entry 3400 (class 0 OID 0)
+-- Dependencies: 236
 -- Name: DataTypeParameterValues_Id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE "DataTypeParameterValues_Id_seq" OWNED BY "DataTypeParameterValues"."Id";
+ALTER SEQUENCE public."DataTypeParameterValues_Id_seq" OWNED BY public."DataTypeParameterValues"."Id";
 
 
 --
--- TOC entry 230 (class 1259 OID 31370)
+-- TOC entry 233 (class 1259 OID 18679)
 -- Name: DataTypeParameters; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE "DataTypeParameters" (
+CREATE TABLE public."DataTypeParameters" (
     "Id" integer NOT NULL,
     "DataTypeId" integer NOT NULL,
     "JavaScriptEditorClassName" text NOT NULL,
@@ -581,14 +375,14 @@ CREATE TABLE "DataTypeParameters" (
 );
 
 
-ALTER TABLE "DataTypeParameters" OWNER TO postgres;
+ALTER TABLE public."DataTypeParameters" OWNER TO postgres;
 
 --
--- TOC entry 229 (class 1259 OID 31368)
+-- TOC entry 232 (class 1259 OID 18677)
 -- Name: DataTypeParameters_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE "DataTypeParameters_Id_seq"
+CREATE SEQUENCE public."DataTypeParameters_Id_seq"
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -597,23 +391,23 @@ CREATE SEQUENCE "DataTypeParameters_Id_seq"
     CACHE 1;
 
 
-ALTER TABLE "DataTypeParameters_Id_seq" OWNER TO postgres;
+ALTER TABLE public."DataTypeParameters_Id_seq" OWNER TO postgres;
 
 --
--- TOC entry 3437 (class 0 OID 0)
--- Dependencies: 229
+-- TOC entry 3401 (class 0 OID 0)
+-- Dependencies: 232
 -- Name: DataTypeParameters_Id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE "DataTypeParameters_Id_seq" OWNED BY "DataTypeParameters"."Id";
+ALTER SEQUENCE public."DataTypeParameters_Id_seq" OWNED BY public."DataTypeParameters"."Id";
 
 
 --
--- TOC entry 228 (class 1259 OID 31359)
+-- TOC entry 231 (class 1259 OID 18668)
 -- Name: DataTypes; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE "DataTypes" (
+CREATE TABLE public."DataTypes" (
     "Id" integer NOT NULL,
     "StorageDataType" text NOT NULL,
     "JavaScriptEditorClassName" text NOT NULL,
@@ -622,14 +416,14 @@ CREATE TABLE "DataTypes" (
 );
 
 
-ALTER TABLE "DataTypes" OWNER TO postgres;
+ALTER TABLE public."DataTypes" OWNER TO postgres;
 
 --
--- TOC entry 227 (class 1259 OID 31357)
+-- TOC entry 230 (class 1259 OID 18666)
 -- Name: DataTypes_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE "DataTypes_Id_seq"
+CREATE SEQUENCE public."DataTypes_Id_seq"
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -638,75 +432,35 @@ CREATE SEQUENCE "DataTypes_Id_seq"
     CACHE 1;
 
 
-ALTER TABLE "DataTypes_Id_seq" OWNER TO postgres;
+ALTER TABLE public."DataTypes_Id_seq" OWNER TO postgres;
 
 --
--- TOC entry 3438 (class 0 OID 0)
--- Dependencies: 227
+-- TOC entry 3402 (class 0 OID 0)
+-- Dependencies: 230
 -- Name: DataTypes_Id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE "DataTypes_Id_seq" OWNED BY "DataTypes"."Id";
+ALTER SEQUENCE public."DataTypes_Id_seq" OWNED BY public."DataTypes"."Id";
 
 
 --
--- TOC entry 280 (class 1259 OID 31894)
--- Name: DeliveryMethods; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE "DeliveryMethods" (
-    "Id" integer NOT NULL,
-    "Code" text NOT NULL,
-    "NameId" integer NOT NULL,
-    "Position" integer
-);
-
-
-ALTER TABLE "DeliveryMethods" OWNER TO postgres;
-
---
--- TOC entry 279 (class 1259 OID 31892)
--- Name: DeliveryMethods_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE "DeliveryMethods_Id_seq"
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE "DeliveryMethods_Id_seq" OWNER TO postgres;
-
---
--- TOC entry 3439 (class 0 OID 0)
--- Dependencies: 279
--- Name: DeliveryMethods_Id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE "DeliveryMethods_Id_seq" OWNED BY "DeliveryMethods"."Id";
-
-
---
--- TOC entry 215 (class 1259 OID 31256)
+-- TOC entry 218 (class 1259 OID 18565)
 -- Name: Dictionaries; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE "Dictionaries" (
+CREATE TABLE public."Dictionaries" (
     "Id" integer NOT NULL
 );
 
 
-ALTER TABLE "Dictionaries" OWNER TO postgres;
+ALTER TABLE public."Dictionaries" OWNER TO postgres;
 
 --
--- TOC entry 214 (class 1259 OID 31254)
+-- TOC entry 217 (class 1259 OID 18563)
 -- Name: Dictionaries_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE "Dictionaries_Id_seq"
+CREATE SEQUENCE public."Dictionaries_Id_seq"
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -715,55 +469,56 @@ CREATE SEQUENCE "Dictionaries_Id_seq"
     CACHE 1;
 
 
-ALTER TABLE "Dictionaries_Id_seq" OWNER TO postgres;
+ALTER TABLE public."Dictionaries_Id_seq" OWNER TO postgres;
 
 --
--- TOC entry 3440 (class 0 OID 0)
--- Dependencies: 214
+-- TOC entry 3403 (class 0 OID 0)
+-- Dependencies: 217
 -- Name: Dictionaries_Id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE "Dictionaries_Id_seq" OWNED BY "Dictionaries"."Id";
+ALTER SEQUENCE public."Dictionaries_Id_seq" OWNED BY public."Dictionaries"."Id";
 
 
 --
--- TOC entry 220 (class 1259 OID 31294)
+-- TOC entry 223 (class 1259 OID 18603)
 -- Name: EndpointPermissions; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE "EndpointPermissions" (
+CREATE TABLE public."EndpointPermissions" (
     "EndpointId" integer NOT NULL,
     "PermissionId" integer NOT NULL
 );
 
 
-ALTER TABLE "EndpointPermissions" OWNER TO postgres;
+ALTER TABLE public."EndpointPermissions" OWNER TO postgres;
 
 --
--- TOC entry 219 (class 1259 OID 31285)
+-- TOC entry 222 (class 1259 OID 18594)
 -- Name: Endpoints; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE "Endpoints" (
+CREATE TABLE public."Endpoints" (
     "Id" integer NOT NULL,
     "Name" text NOT NULL,
     "UrlTemplate" text,
     "Position" integer,
     "DisallowAnonymous" boolean NOT NULL,
     "SignInUrl" text,
+    "ResponseCacheCSharpClassName" text,
     "CSharpClassName" text NOT NULL,
     "Parameters" text
 );
 
 
-ALTER TABLE "Endpoints" OWNER TO postgres;
+ALTER TABLE public."Endpoints" OWNER TO postgres;
 
 --
--- TOC entry 218 (class 1259 OID 31283)
+-- TOC entry 221 (class 1259 OID 18592)
 -- Name: Endpoints_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE "Endpoints_Id_seq"
+CREATE SEQUENCE public."Endpoints_Id_seq"
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -772,63 +527,23 @@ CREATE SEQUENCE "Endpoints_Id_seq"
     CACHE 1;
 
 
-ALTER TABLE "Endpoints_Id_seq" OWNER TO postgres;
+ALTER TABLE public."Endpoints_Id_seq" OWNER TO postgres;
 
 --
--- TOC entry 3441 (class 0 OID 0)
--- Dependencies: 218
+-- TOC entry 3404 (class 0 OID 0)
+-- Dependencies: 221
 -- Name: Endpoints_Id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE "Endpoints_Id_seq" OWNED BY "Endpoints"."Id";
+ALTER SEQUENCE public."Endpoints_Id_seq" OWNED BY public."Endpoints"."Id";
 
 
 --
--- TOC entry 267 (class 1259 OID 31756)
--- Name: Features; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE "Features" (
-    "Id" integer NOT NULL,
-    "Code" text NOT NULL,
-    "NameId" integer NOT NULL,
-    "Position" integer
-);
-
-
-ALTER TABLE "Features" OWNER TO postgres;
-
---
--- TOC entry 266 (class 1259 OID 31754)
--- Name: Features_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE "Features_Id_seq"
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE "Features_Id_seq" OWNER TO postgres;
-
---
--- TOC entry 3442 (class 0 OID 0)
--- Dependencies: 266
--- Name: Features_Id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE "Features_Id_seq" OWNED BY "Features"."Id";
-
-
---
--- TOC entry 254 (class 1259 OID 31636)
+-- TOC entry 255 (class 1259 OID 18909)
 -- Name: FieldOptions; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE "FieldOptions" (
+CREATE TABLE public."FieldOptions" (
     "Id" integer NOT NULL,
     "FieldId" integer NOT NULL,
     "ValueId" integer NOT NULL,
@@ -836,14 +551,14 @@ CREATE TABLE "FieldOptions" (
 );
 
 
-ALTER TABLE "FieldOptions" OWNER TO postgres;
+ALTER TABLE public."FieldOptions" OWNER TO postgres;
 
 --
--- TOC entry 253 (class 1259 OID 31634)
+-- TOC entry 254 (class 1259 OID 18907)
 -- Name: FieldOptions_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE "FieldOptions_Id_seq"
+CREATE SEQUENCE public."FieldOptions_Id_seq"
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -852,38 +567,39 @@ CREATE SEQUENCE "FieldOptions_Id_seq"
     CACHE 1;
 
 
-ALTER TABLE "FieldOptions_Id_seq" OWNER TO postgres;
+ALTER TABLE public."FieldOptions_Id_seq" OWNER TO postgres;
 
 --
--- TOC entry 3443 (class 0 OID 0)
--- Dependencies: 253
+-- TOC entry 3405 (class 0 OID 0)
+-- Dependencies: 254
 -- Name: FieldOptions_Id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE "FieldOptions_Id_seq" OWNED BY "FieldOptions"."Id";
+ALTER SEQUENCE public."FieldOptions_Id_seq" OWNED BY public."FieldOptions"."Id";
 
 
 --
--- TOC entry 250 (class 1259 OID 31599)
+-- TOC entry 251 (class 1259 OID 18872)
 -- Name: FieldTypes; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE "FieldTypes" (
+CREATE TABLE public."FieldTypes" (
     "Id" integer NOT NULL,
     "Code" text NOT NULL,
     "Name" text NOT NULL,
-    "Position" integer
+    "Position" integer,
+    "ValidatorCSharpClassName" text
 );
 
 
-ALTER TABLE "FieldTypes" OWNER TO postgres;
+ALTER TABLE public."FieldTypes" OWNER TO postgres;
 
 --
--- TOC entry 249 (class 1259 OID 31597)
+-- TOC entry 250 (class 1259 OID 18870)
 -- Name: FieldTypes_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE "FieldTypes_Id_seq"
+CREATE SEQUENCE public."FieldTypes_Id_seq"
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -892,23 +608,23 @@ CREATE SEQUENCE "FieldTypes_Id_seq"
     CACHE 1;
 
 
-ALTER TABLE "FieldTypes_Id_seq" OWNER TO postgres;
+ALTER TABLE public."FieldTypes_Id_seq" OWNER TO postgres;
 
 --
--- TOC entry 3444 (class 0 OID 0)
--- Dependencies: 249
+-- TOC entry 3406 (class 0 OID 0)
+-- Dependencies: 250
 -- Name: FieldTypes_Id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE "FieldTypes_Id_seq" OWNED BY "FieldTypes"."Id";
+ALTER SEQUENCE public."FieldTypes_Id_seq" OWNED BY public."FieldTypes"."Id";
 
 
 --
--- TOC entry 252 (class 1259 OID 31610)
+-- TOC entry 253 (class 1259 OID 18883)
 -- Name: Fields; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE "Fields" (
+CREATE TABLE public."Fields" (
     "Id" integer NOT NULL,
     "FormId" integer NOT NULL,
     "FieldTypeId" integer NOT NULL,
@@ -920,14 +636,14 @@ CREATE TABLE "Fields" (
 );
 
 
-ALTER TABLE "Fields" OWNER TO postgres;
+ALTER TABLE public."Fields" OWNER TO postgres;
 
 --
--- TOC entry 251 (class 1259 OID 31608)
+-- TOC entry 252 (class 1259 OID 18881)
 -- Name: Fields_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE "Fields_Id_seq"
+CREATE SEQUENCE public."Fields_Id_seq"
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -936,37 +652,37 @@ CREATE SEQUENCE "Fields_Id_seq"
     CACHE 1;
 
 
-ALTER TABLE "Fields_Id_seq" OWNER TO postgres;
+ALTER TABLE public."Fields_Id_seq" OWNER TO postgres;
 
 --
--- TOC entry 3445 (class 0 OID 0)
--- Dependencies: 251
+-- TOC entry 3407 (class 0 OID 0)
+-- Dependencies: 252
 -- Name: Fields_Id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE "Fields_Id_seq" OWNED BY "Fields"."Id";
+ALTER SEQUENCE public."Fields_Id_seq" OWNED BY public."Fields"."Id";
 
 
 --
--- TOC entry 261 (class 1259 OID 31706)
+-- TOC entry 261 (class 1259 OID 18961)
 -- Name: Files; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE "Files" (
+CREATE TABLE public."Files" (
     "Id" integer NOT NULL,
     "Name" text NOT NULL,
     "Size" bigint NOT NULL
 );
 
 
-ALTER TABLE "Files" OWNER TO postgres;
+ALTER TABLE public."Files" OWNER TO postgres;
 
 --
--- TOC entry 260 (class 1259 OID 31704)
+-- TOC entry 260 (class 1259 OID 18959)
 -- Name: Files_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE "Files_Id_seq"
+CREATE SEQUENCE public."Files_Id_seq"
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -975,23 +691,23 @@ CREATE SEQUENCE "Files_Id_seq"
     CACHE 1;
 
 
-ALTER TABLE "Files_Id_seq" OWNER TO postgres;
+ALTER TABLE public."Files_Id_seq" OWNER TO postgres;
 
 --
--- TOC entry 3446 (class 0 OID 0)
+-- TOC entry 3408 (class 0 OID 0)
 -- Dependencies: 260
 -- Name: Files_Id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE "Files_Id_seq" OWNED BY "Files"."Id";
+ALTER SEQUENCE public."Files_Id_seq" OWNED BY public."Files"."Id";
 
 
 --
--- TOC entry 248 (class 1259 OID 31578)
+-- TOC entry 249 (class 1259 OID 18851)
 -- Name: Forms; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE "Forms" (
+CREATE TABLE public."Forms" (
     "Id" integer NOT NULL,
     "Code" text NOT NULL,
     "NameId" integer NOT NULL,
@@ -1002,14 +718,14 @@ CREATE TABLE "Forms" (
 );
 
 
-ALTER TABLE "Forms" OWNER TO postgres;
+ALTER TABLE public."Forms" OWNER TO postgres;
 
 --
--- TOC entry 247 (class 1259 OID 31576)
+-- TOC entry 248 (class 1259 OID 18849)
 -- Name: Forms_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE "Forms_Id_seq"
+CREATE SEQUENCE public."Forms_Id_seq"
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -1018,38 +734,38 @@ CREATE SEQUENCE "Forms_Id_seq"
     CACHE 1;
 
 
-ALTER TABLE "Forms_Id_seq" OWNER TO postgres;
+ALTER TABLE public."Forms_Id_seq" OWNER TO postgres;
 
 --
--- TOC entry 3447 (class 0 OID 0)
--- Dependencies: 247
+-- TOC entry 3409 (class 0 OID 0)
+-- Dependencies: 248
 -- Name: Forms_Id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE "Forms_Id_seq" OWNED BY "Forms"."Id";
+ALTER SEQUENCE public."Forms_Id_seq" OWNED BY public."Forms"."Id";
 
 
 --
--- TOC entry 217 (class 1259 OID 31264)
+-- TOC entry 220 (class 1259 OID 18573)
 -- Name: Localizations; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE "Localizations" (
+CREATE TABLE public."Localizations" (
     "Id" integer NOT NULL,
     "DictionaryId" integer NOT NULL,
-    "CultureId" integer NOT NULL,
+    "CultureId" text NOT NULL,
     "Value" text
 );
 
 
-ALTER TABLE "Localizations" OWNER TO postgres;
+ALTER TABLE public."Localizations" OWNER TO postgres;
 
 --
--- TOC entry 216 (class 1259 OID 31262)
+-- TOC entry 219 (class 1259 OID 18571)
 -- Name: Localizations_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE "Localizations_Id_seq"
+CREATE SEQUENCE public."Localizations_Id_seq"
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -1058,23 +774,23 @@ CREATE SEQUENCE "Localizations_Id_seq"
     CACHE 1;
 
 
-ALTER TABLE "Localizations_Id_seq" OWNER TO postgres;
+ALTER TABLE public."Localizations_Id_seq" OWNER TO postgres;
 
 --
--- TOC entry 3448 (class 0 OID 0)
--- Dependencies: 216
+-- TOC entry 3410 (class 0 OID 0)
+-- Dependencies: 219
 -- Name: Localizations_Id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE "Localizations_Id_seq" OWNED BY "Localizations"."Id";
+ALTER SEQUENCE public."Localizations_Id_seq" OWNED BY public."Localizations"."Id";
 
 
 --
--- TOC entry 232 (class 1259 OID 31386)
+-- TOC entry 235 (class 1259 OID 18695)
 -- Name: Members; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE "Members" (
+CREATE TABLE public."Members" (
     "Id" integer NOT NULL,
     "ClassId" integer NOT NULL,
     "TabId" integer,
@@ -1091,14 +807,14 @@ CREATE TABLE "Members" (
 );
 
 
-ALTER TABLE "Members" OWNER TO postgres;
+ALTER TABLE public."Members" OWNER TO postgres;
 
 --
--- TOC entry 231 (class 1259 OID 31384)
+-- TOC entry 234 (class 1259 OID 18693)
 -- Name: Members_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE "Members_Id_seq"
+CREATE SEQUENCE public."Members_Id_seq"
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -1107,23 +823,23 @@ CREATE SEQUENCE "Members_Id_seq"
     CACHE 1;
 
 
-ALTER TABLE "Members_Id_seq" OWNER TO postgres;
+ALTER TABLE public."Members_Id_seq" OWNER TO postgres;
 
 --
--- TOC entry 3449 (class 0 OID 0)
--- Dependencies: 231
+-- TOC entry 3411 (class 0 OID 0)
+-- Dependencies: 234
 -- Name: Members_Id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE "Members_Id_seq" OWNED BY "Members"."Id";
+ALTER SEQUENCE public."Members_Id_seq" OWNED BY public."Members"."Id";
 
 
 --
--- TOC entry 245 (class 1259 OID 31534)
+-- TOC entry 247 (class 1259 OID 18825)
 -- Name: MenuItems; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE "MenuItems" (
+CREATE TABLE public."MenuItems" (
     "Id" integer NOT NULL,
     "MenuId" integer,
     "MenuItemId" integer,
@@ -1133,14 +849,14 @@ CREATE TABLE "MenuItems" (
 );
 
 
-ALTER TABLE "MenuItems" OWNER TO postgres;
+ALTER TABLE public."MenuItems" OWNER TO postgres;
 
 --
--- TOC entry 244 (class 1259 OID 31532)
+-- TOC entry 246 (class 1259 OID 18823)
 -- Name: MenuItems_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE "MenuItems_Id_seq"
+CREATE SEQUENCE public."MenuItems_Id_seq"
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -1149,37 +865,37 @@ CREATE SEQUENCE "MenuItems_Id_seq"
     CACHE 1;
 
 
-ALTER TABLE "MenuItems_Id_seq" OWNER TO postgres;
+ALTER TABLE public."MenuItems_Id_seq" OWNER TO postgres;
 
 --
--- TOC entry 3450 (class 0 OID 0)
--- Dependencies: 244
+-- TOC entry 3412 (class 0 OID 0)
+-- Dependencies: 246
 -- Name: MenuItems_Id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE "MenuItems_Id_seq" OWNED BY "MenuItems"."Id";
+ALTER SEQUENCE public."MenuItems_Id_seq" OWNED BY public."MenuItems"."Id";
 
 
 --
--- TOC entry 243 (class 1259 OID 31523)
+-- TOC entry 245 (class 1259 OID 18809)
 -- Name: Menus; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE "Menus" (
+CREATE TABLE public."Menus" (
     "Id" integer NOT NULL,
     "Code" text NOT NULL,
     "NameId" integer NOT NULL
 );
 
 
-ALTER TABLE "Menus" OWNER TO postgres;
+ALTER TABLE public."Menus" OWNER TO postgres;
 
 --
--- TOC entry 242 (class 1259 OID 31521)
+-- TOC entry 244 (class 1259 OID 18807)
 -- Name: Menus_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE "Menus_Id_seq"
+CREATE SEQUENCE public."Menus_Id_seq"
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -1188,36 +904,36 @@ CREATE SEQUENCE "Menus_Id_seq"
     CACHE 1;
 
 
-ALTER TABLE "Menus_Id_seq" OWNER TO postgres;
+ALTER TABLE public."Menus_Id_seq" OWNER TO postgres;
 
 --
--- TOC entry 3451 (class 0 OID 0)
--- Dependencies: 242
+-- TOC entry 3413 (class 0 OID 0)
+-- Dependencies: 244
 -- Name: Menus_Id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE "Menus_Id_seq" OWNED BY "Menus"."Id";
+ALTER SEQUENCE public."Menus_Id_seq" OWNED BY public."Menus"."Id";
 
 
 --
--- TOC entry 236 (class 1259 OID 31438)
+-- TOC entry 239 (class 1259 OID 18747)
 -- Name: Objects; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE "Objects" (
+CREATE TABLE public."Objects" (
     "Id" integer NOT NULL,
     "ClassId" integer NOT NULL
 );
 
 
-ALTER TABLE "Objects" OWNER TO postgres;
+ALTER TABLE public."Objects" OWNER TO postgres;
 
 --
--- TOC entry 235 (class 1259 OID 31436)
+-- TOC entry 238 (class 1259 OID 18745)
 -- Name: Objects_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE "Objects_Id_seq"
+CREATE SEQUENCE public."Objects_Id_seq"
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -1226,150 +942,23 @@ CREATE SEQUENCE "Objects_Id_seq"
     CACHE 1;
 
 
-ALTER TABLE "Objects_Id_seq" OWNER TO postgres;
+ALTER TABLE public."Objects_Id_seq" OWNER TO postgres;
 
 --
--- TOC entry 3452 (class 0 OID 0)
--- Dependencies: 235
+-- TOC entry 3414 (class 0 OID 0)
+-- Dependencies: 238
 -- Name: Objects_Id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE "Objects_Id_seq" OWNED BY "Objects"."Id";
+ALTER SEQUENCE public."Objects_Id_seq" OWNED BY public."Objects"."Id";
 
 
 --
--- TOC entry 276 (class 1259 OID 31862)
--- Name: OrderStates; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE "OrderStates" (
-    "Id" integer NOT NULL,
-    "Code" text NOT NULL,
-    "NameId" integer NOT NULL,
-    "Position" integer
-);
-
-
-ALTER TABLE "OrderStates" OWNER TO postgres;
-
---
--- TOC entry 275 (class 1259 OID 31860)
--- Name: OrderStates_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE "OrderStates_Id_seq"
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE "OrderStates_Id_seq" OWNER TO postgres;
-
---
--- TOC entry 3453 (class 0 OID 0)
--- Dependencies: 275
--- Name: OrderStates_Id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE "OrderStates_Id_seq" OWNED BY "OrderStates"."Id";
-
-
---
--- TOC entry 282 (class 1259 OID 31910)
--- Name: Orders; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE "Orders" (
-    "Id" integer NOT NULL,
-    "OrderStateId" integer NOT NULL,
-    "PaymentMethodId" integer NOT NULL,
-    "DeliveryMethodId" integer NOT NULL,
-    "CustomerFirstName" text NOT NULL,
-    "CustomerLastName" text,
-    "CustomerPhone" text NOT NULL,
-    "CustomerEmail" text,
-    "CustomerAddress" text,
-    "Note" text,
-    "Created" timestamp without time zone NOT NULL
-);
-
-
-ALTER TABLE "Orders" OWNER TO postgres;
-
---
--- TOC entry 281 (class 1259 OID 31908)
--- Name: Orders_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE "Orders_Id_seq"
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE "Orders_Id_seq" OWNER TO postgres;
-
---
--- TOC entry 3454 (class 0 OID 0)
--- Dependencies: 281
--- Name: Orders_Id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE "Orders_Id_seq" OWNED BY "Orders"."Id";
-
-
---
--- TOC entry 278 (class 1259 OID 31878)
--- Name: PaymentMethods; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE "PaymentMethods" (
-    "Id" integer NOT NULL,
-    "Code" text NOT NULL,
-    "NameId" integer NOT NULL,
-    "Position" integer
-);
-
-
-ALTER TABLE "PaymentMethods" OWNER TO postgres;
-
---
--- TOC entry 277 (class 1259 OID 31876)
--- Name: PaymentMethods_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE "PaymentMethods_Id_seq"
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE "PaymentMethods_Id_seq" OWNER TO postgres;
-
---
--- TOC entry 3455 (class 0 OID 0)
--- Dependencies: 277
--- Name: PaymentMethods_Id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE "PaymentMethods_Id_seq" OWNED BY "PaymentMethods"."Id";
-
-
---
--- TOC entry 206 (class 1259 OID 31192)
+-- TOC entry 210 (class 1259 OID 18504)
 -- Name: Permissions; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE "Permissions" (
+CREATE TABLE public."Permissions" (
     "Id" integer NOT NULL,
     "Code" text NOT NULL,
     "Name" text NOT NULL,
@@ -1377,14 +966,14 @@ CREATE TABLE "Permissions" (
 );
 
 
-ALTER TABLE "Permissions" OWNER TO postgres;
+ALTER TABLE public."Permissions" OWNER TO postgres;
 
 --
--- TOC entry 205 (class 1259 OID 31190)
+-- TOC entry 209 (class 1259 OID 18502)
 -- Name: Permissions_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE "Permissions_Id_seq"
+CREATE SEQUENCE public."Permissions_Id_seq"
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -1393,162 +982,23 @@ CREATE SEQUENCE "Permissions_Id_seq"
     CACHE 1;
 
 
-ALTER TABLE "Permissions_Id_seq" OWNER TO postgres;
+ALTER TABLE public."Permissions_Id_seq" OWNER TO postgres;
 
 --
--- TOC entry 3456 (class 0 OID 0)
--- Dependencies: 205
+-- TOC entry 3415 (class 0 OID 0)
+-- Dependencies: 209
 -- Name: Permissions_Id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE "Permissions_Id_seq" OWNED BY "Permissions"."Id";
+ALTER SEQUENCE public."Permissions_Id_seq" OWNED BY public."Permissions"."Id";
 
 
 --
--- TOC entry 274 (class 1259 OID 31846)
--- Name: Photos; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE "Photos" (
-    "Id" integer NOT NULL,
-    "ProductId" integer NOT NULL,
-    "Filename" text NOT NULL,
-    "IsCover" boolean NOT NULL,
-    "Position" integer
-);
-
-
-ALTER TABLE "Photos" OWNER TO postgres;
-
---
--- TOC entry 273 (class 1259 OID 31844)
--- Name: Photos_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE "Photos_Id_seq"
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE "Photos_Id_seq" OWNER TO postgres;
-
---
--- TOC entry 3457 (class 0 OID 0)
--- Dependencies: 273
--- Name: Photos_Id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE "Photos_Id_seq" OWNED BY "Photos"."Id";
-
-
---
--- TOC entry 286 (class 1259 OID 31952)
--- Name: Positions; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE "Positions" (
-    "Id" integer NOT NULL,
-    "CartId" integer NOT NULL,
-    "ProductId" integer NOT NULL
-);
-
-
-ALTER TABLE "Positions" OWNER TO postgres;
-
---
--- TOC entry 285 (class 1259 OID 31950)
--- Name: Positions_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE "Positions_Id_seq"
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE "Positions_Id_seq" OWNER TO postgres;
-
---
--- TOC entry 3458 (class 0 OID 0)
--- Dependencies: 285
--- Name: Positions_Id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE "Positions_Id_seq" OWNED BY "Positions"."Id";
-
-
---
--- TOC entry 272 (class 1259 OID 31829)
--- Name: ProductAttributes; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE "ProductAttributes" (
-    "ProductId" integer NOT NULL,
-    "AttributeId" integer NOT NULL
-);
-
-
-ALTER TABLE "ProductAttributes" OWNER TO postgres;
-
---
--- TOC entry 271 (class 1259 OID 31790)
--- Name: Products; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE "Products" (
-    "Id" integer NOT NULL,
-    "CategoryId" integer NOT NULL,
-    "Url" text NOT NULL,
-    "Code" text NOT NULL,
-    "NameId" integer NOT NULL,
-    "DescriptionId" integer NOT NULL,
-    "Price" numeric NOT NULL,
-    "TitleId" integer NOT NULL,
-    "MetaDescriptionId" integer NOT NULL,
-    "MetaKeywordsId" integer NOT NULL
-);
-
-
-ALTER TABLE "Products" OWNER TO postgres;
-
---
--- TOC entry 270 (class 1259 OID 31788)
--- Name: Products_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE "Products_Id_seq"
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE "Products_Id_seq" OWNER TO postgres;
-
---
--- TOC entry 3459 (class 0 OID 0)
--- Dependencies: 270
--- Name: Products_Id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE "Products_Id_seq" OWNED BY "Products"."Id";
-
-
---
--- TOC entry 238 (class 1259 OID 31451)
+-- TOC entry 241 (class 1259 OID 18760)
 -- Name: Properties; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE "Properties" (
+CREATE TABLE public."Properties" (
     "Id" integer NOT NULL,
     "ObjectId" integer NOT NULL,
     "MemberId" integer NOT NULL,
@@ -1559,14 +1009,14 @@ CREATE TABLE "Properties" (
 );
 
 
-ALTER TABLE "Properties" OWNER TO postgres;
+ALTER TABLE public."Properties" OWNER TO postgres;
 
 --
--- TOC entry 237 (class 1259 OID 31449)
+-- TOC entry 240 (class 1259 OID 18758)
 -- Name: Properties_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE "Properties_Id_seq"
+CREATE SEQUENCE public."Properties_Id_seq"
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -1575,23 +1025,23 @@ CREATE SEQUENCE "Properties_Id_seq"
     CACHE 1;
 
 
-ALTER TABLE "Properties_Id_seq" OWNER TO postgres;
+ALTER TABLE public."Properties_Id_seq" OWNER TO postgres;
 
 --
--- TOC entry 3460 (class 0 OID 0)
--- Dependencies: 237
+-- TOC entry 3416 (class 0 OID 0)
+-- Dependencies: 240
 -- Name: Properties_Id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE "Properties_Id_seq" OWNED BY "Properties"."Id";
+ALTER SEQUENCE public."Properties_Id_seq" OWNED BY public."Properties"."Id";
 
 
 --
--- TOC entry 240 (class 1259 OID 31477)
+-- TOC entry 243 (class 1259 OID 18786)
 -- Name: Relations; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE "Relations" (
+CREATE TABLE public."Relations" (
     "Id" integer NOT NULL,
     "MemberId" integer NOT NULL,
     "PrimaryId" integer NOT NULL,
@@ -1599,14 +1049,14 @@ CREATE TABLE "Relations" (
 );
 
 
-ALTER TABLE "Relations" OWNER TO postgres;
+ALTER TABLE public."Relations" OWNER TO postgres;
 
 --
--- TOC entry 239 (class 1259 OID 31475)
+-- TOC entry 242 (class 1259 OID 18784)
 -- Name: Relations_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE "Relations_Id_seq"
+CREATE SEQUENCE public."Relations_Id_seq"
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -1615,36 +1065,36 @@ CREATE SEQUENCE "Relations_Id_seq"
     CACHE 1;
 
 
-ALTER TABLE "Relations_Id_seq" OWNER TO postgres;
+ALTER TABLE public."Relations_Id_seq" OWNER TO postgres;
 
 --
--- TOC entry 3461 (class 0 OID 0)
--- Dependencies: 239
+-- TOC entry 3417 (class 0 OID 0)
+-- Dependencies: 242
 -- Name: Relations_Id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE "Relations_Id_seq" OWNED BY "Relations"."Id";
+ALTER SEQUENCE public."Relations_Id_seq" OWNED BY public."Relations"."Id";
 
 
 --
--- TOC entry 207 (class 1259 OID 31201)
+-- TOC entry 211 (class 1259 OID 18513)
 -- Name: RolePermissions; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE "RolePermissions" (
+CREATE TABLE public."RolePermissions" (
     "RoleId" integer NOT NULL,
     "PermissionId" integer NOT NULL
 );
 
 
-ALTER TABLE "RolePermissions" OWNER TO postgres;
+ALTER TABLE public."RolePermissions" OWNER TO postgres;
 
 --
--- TOC entry 203 (class 1259 OID 31166)
+-- TOC entry 207 (class 1259 OID 18478)
 -- Name: Roles; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE "Roles" (
+CREATE TABLE public."Roles" (
     "Id" integer NOT NULL,
     "Code" text NOT NULL,
     "Name" text NOT NULL,
@@ -1652,14 +1102,14 @@ CREATE TABLE "Roles" (
 );
 
 
-ALTER TABLE "Roles" OWNER TO postgres;
+ALTER TABLE public."Roles" OWNER TO postgres;
 
 --
--- TOC entry 202 (class 1259 OID 31164)
+-- TOC entry 206 (class 1259 OID 18476)
 -- Name: Roles_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE "Roles_Id_seq"
+CREATE SEQUENCE public."Roles_Id_seq"
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -1668,95 +1118,23 @@ CREATE SEQUENCE "Roles_Id_seq"
     CACHE 1;
 
 
-ALTER TABLE "Roles_Id_seq" OWNER TO postgres;
+ALTER TABLE public."Roles_Id_seq" OWNER TO postgres;
 
 --
--- TOC entry 3462 (class 0 OID 0)
--- Dependencies: 202
+-- TOC entry 3418 (class 0 OID 0)
+-- Dependencies: 206
 -- Name: Roles_Id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE "Roles_Id_seq" OWNED BY "Roles"."Id";
+ALTER SEQUENCE public."Roles_Id_seq" OWNED BY public."Roles"."Id";
 
 
 --
--- TOC entry 259 (class 1259 OID 31686)
--- Name: SerializedForms; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE "SerializedForms" (
-    "CultureId" integer NOT NULL,
-    "FormId" integer NOT NULL,
-    "Code" text NOT NULL,
-    "Name" text NOT NULL,
-    "SubmitButtonTitle" text NOT NULL,
-    "SerializedFields" text
-);
-
-
-ALTER TABLE "SerializedForms" OWNER TO postgres;
-
---
--- TOC entry 246 (class 1259 OID 31558)
--- Name: SerializedMenus; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE "SerializedMenus" (
-    "CultureId" integer NOT NULL,
-    "MenuId" integer NOT NULL,
-    "Code" text NOT NULL,
-    "SerializedMenuItems" text
-);
-
-
-ALTER TABLE "SerializedMenus" OWNER TO postgres;
-
---
--- TOC entry 241 (class 1259 OID 31498)
--- Name: SerializedObjects; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE "SerializedObjects" (
-    "CultureId" integer NOT NULL,
-    "ObjectId" integer NOT NULL,
-    "ClassId" integer NOT NULL,
-    "UrlPropertyStringValue" text,
-    "SerializedProperties" text
-);
-
-
-ALTER TABLE "SerializedObjects" OWNER TO postgres;
-
---
--- TOC entry 287 (class 1259 OID 31968)
--- Name: SerializedProducts; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE "SerializedProducts" (
-    "CultureId" integer NOT NULL,
-    "ProductId" integer NOT NULL,
-    "CategoryId" integer NOT NULL,
-    "Url" text NOT NULL,
-    "Code" text NOT NULL,
-    "Name" text NOT NULL,
-    "Description" text,
-    "Price" numeric NOT NULL,
-    "Title" text,
-    "MetaDescription" text,
-    "MetaKeywords" text,
-    "SerializedAttributes" text,
-    "SerializedPhotos" text
-);
-
-
-ALTER TABLE "SerializedProducts" OWNER TO postgres;
-
---
--- TOC entry 226 (class 1259 OID 31343)
+-- TOC entry 229 (class 1259 OID 18652)
 -- Name: Tabs; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE "Tabs" (
+CREATE TABLE public."Tabs" (
     "Id" integer NOT NULL,
     "ClassId" integer NOT NULL,
     "Name" text NOT NULL,
@@ -1764,14 +1142,14 @@ CREATE TABLE "Tabs" (
 );
 
 
-ALTER TABLE "Tabs" OWNER TO postgres;
+ALTER TABLE public."Tabs" OWNER TO postgres;
 
 --
--- TOC entry 225 (class 1259 OID 31341)
+-- TOC entry 228 (class 1259 OID 18650)
 -- Name: Tabs_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE "Tabs_Id_seq"
+CREATE SEQUENCE public."Tabs_Id_seq"
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -1780,50 +1158,50 @@ CREATE SEQUENCE "Tabs_Id_seq"
     CACHE 1;
 
 
-ALTER TABLE "Tabs_Id_seq" OWNER TO postgres;
+ALTER TABLE public."Tabs_Id_seq" OWNER TO postgres;
 
 --
--- TOC entry 3463 (class 0 OID 0)
--- Dependencies: 225
+-- TOC entry 3419 (class 0 OID 0)
+-- Dependencies: 228
 -- Name: Tabs_Id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE "Tabs_Id_seq" OWNED BY "Tabs"."Id";
+ALTER SEQUENCE public."Tabs_Id_seq" OWNED BY public."Tabs"."Id";
 
 
 --
--- TOC entry 204 (class 1259 OID 31175)
+-- TOC entry 208 (class 1259 OID 18487)
 -- Name: UserRoles; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE "UserRoles" (
+CREATE TABLE public."UserRoles" (
     "UserId" integer NOT NULL,
     "RoleId" integer NOT NULL
 );
 
 
-ALTER TABLE "UserRoles" OWNER TO postgres;
+ALTER TABLE public."UserRoles" OWNER TO postgres;
 
 --
--- TOC entry 197 (class 1259 OID 31123)
+-- TOC entry 201 (class 1259 OID 18435)
 -- Name: Users; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE "Users" (
+CREATE TABLE public."Users" (
     "Id" integer NOT NULL,
     "Name" text NOT NULL,
     "Created" timestamp without time zone NOT NULL
 );
 
 
-ALTER TABLE "Users" OWNER TO postgres;
+ALTER TABLE public."Users" OWNER TO postgres;
 
 --
--- TOC entry 196 (class 1259 OID 31121)
+-- TOC entry 200 (class 1259 OID 18433)
 -- Name: Users_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE "Users_Id_seq"
+CREATE SEQUENCE public."Users_Id_seq"
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -1832,23 +1210,23 @@ CREATE SEQUENCE "Users_Id_seq"
     CACHE 1;
 
 
-ALTER TABLE "Users_Id_seq" OWNER TO postgres;
+ALTER TABLE public."Users_Id_seq" OWNER TO postgres;
 
 --
--- TOC entry 3464 (class 0 OID 0)
--- Dependencies: 196
+-- TOC entry 3420 (class 0 OID 0)
+-- Dependencies: 200
 -- Name: Users_Id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE "Users_Id_seq" OWNED BY "Users"."Id";
+ALTER SEQUENCE public."Users_Id_seq" OWNED BY public."Users"."Id";
 
 
 --
--- TOC entry 211 (class 1259 OID 31229)
+-- TOC entry 215 (class 1259 OID 18541)
 -- Name: Variables; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE "Variables" (
+CREATE TABLE public."Variables" (
     "Id" integer NOT NULL,
     "ConfigurationId" integer NOT NULL,
     "Code" text NOT NULL,
@@ -1858,14 +1236,14 @@ CREATE TABLE "Variables" (
 );
 
 
-ALTER TABLE "Variables" OWNER TO postgres;
+ALTER TABLE public."Variables" OWNER TO postgres;
 
 --
--- TOC entry 210 (class 1259 OID 31227)
+-- TOC entry 214 (class 1259 OID 18539)
 -- Name: Variables_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE "Variables_Id_seq"
+CREATE SEQUENCE public."Variables_Id_seq"
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -1874,689 +1252,538 @@ CREATE SEQUENCE "Variables_Id_seq"
     CACHE 1;
 
 
-ALTER TABLE "Variables_Id_seq" OWNER TO postgres;
+ALTER TABLE public."Variables_Id_seq" OWNER TO postgres;
 
 --
--- TOC entry 3465 (class 0 OID 0)
--- Dependencies: 210
+-- TOC entry 3421 (class 0 OID 0)
+-- Dependencies: 214
 -- Name: Variables_Id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE "Variables_Id_seq" OWNED BY "Variables"."Id";
+ALTER SEQUENCE public."Variables_Id_seq" OWNED BY public."Variables"."Id";
 
 
 --
--- TOC entry 3019 (class 2604 OID 31775)
--- Name: Attributes Id; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "Attributes" ALTER COLUMN "Id" SET DEFAULT nextval('"Attributes_Id_seq"'::regclass);
-
-
---
--- TOC entry 3026 (class 2604 OID 31939)
--- Name: Carts Id; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "Carts" ALTER COLUMN "Id" SET DEFAULT nextval('"Carts_Id_seq"'::regclass);
-
-
---
--- TOC entry 3016 (class 2604 OID 31720)
--- Name: Catalogs Id; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "Catalogs" ALTER COLUMN "Id" SET DEFAULT nextval('"Catalogs_Id_seq"'::regclass);
-
-
---
--- TOC entry 3017 (class 2604 OID 31741)
--- Name: Categories Id; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "Categories" ALTER COLUMN "Id" SET DEFAULT nextval('"Categories_Id_seq"'::regclass);
-
-
---
--- TOC entry 2998 (class 2604 OID 31330)
+-- TOC entry 3070 (class 2604 OID 18639)
 -- Name: Classes Id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "Classes" ALTER COLUMN "Id" SET DEFAULT nextval('"Classes_Id_seq"'::regclass);
+ALTER TABLE ONLY public."Classes" ALTER COLUMN "Id" SET DEFAULT nextval('public."Classes_Id_seq"'::regclass);
 
 
 --
--- TOC entry 3014 (class 2604 OID 31670)
+-- TOC entry 3086 (class 2604 OID 18943)
 -- Name: CompletedFields Id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "CompletedFields" ALTER COLUMN "Id" SET DEFAULT nextval('"CompletedFields_Id_seq"'::regclass);
+ALTER TABLE ONLY public."CompletedFields" ALTER COLUMN "Id" SET DEFAULT nextval('public."CompletedFields_Id_seq"'::regclass);
 
 
 --
--- TOC entry 3013 (class 2604 OID 31657)
+-- TOC entry 3085 (class 2604 OID 18930)
 -- Name: CompletedForms Id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "CompletedForms" ALTER COLUMN "Id" SET DEFAULT nextval('"CompletedForms_Id_seq"'::regclass);
+ALTER TABLE ONLY public."CompletedForms" ALTER COLUMN "Id" SET DEFAULT nextval('public."CompletedForms_Id_seq"'::regclass);
 
 
 --
--- TOC entry 2991 (class 2604 OID 31221)
+-- TOC entry 3064 (class 2604 OID 18533)
 -- Name: Configurations Id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "Configurations" ALTER COLUMN "Id" SET DEFAULT nextval('"Configurations_Id_seq"'::regclass);
+ALTER TABLE ONLY public."Configurations" ALTER COLUMN "Id" SET DEFAULT nextval('public."Configurations_Id_seq"'::regclass);
 
 
 --
--- TOC entry 2987 (class 2604 OID 31137)
+-- TOC entry 3060 (class 2604 OID 18449)
 -- Name: CredentialTypes Id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "CredentialTypes" ALTER COLUMN "Id" SET DEFAULT nextval('"CredentialTypes_Id_seq"'::regclass);
+ALTER TABLE ONLY public."CredentialTypes" ALTER COLUMN "Id" SET DEFAULT nextval('public."CredentialTypes_Id_seq"'::regclass);
 
 
 --
--- TOC entry 2988 (class 2604 OID 31148)
+-- TOC entry 3061 (class 2604 OID 18460)
 -- Name: Credentials Id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "Credentials" ALTER COLUMN "Id" SET DEFAULT nextval('"Credentials_Id_seq"'::regclass);
+ALTER TABLE ONLY public."Credentials" ALTER COLUMN "Id" SET DEFAULT nextval('public."Credentials_Id_seq"'::regclass);
 
 
 --
--- TOC entry 2993 (class 2604 OID 31248)
--- Name: Cultures Id; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "Cultures" ALTER COLUMN "Id" SET DEFAULT nextval('"Cultures_Id_seq"'::regclass);
-
-
---
--- TOC entry 2997 (class 2604 OID 31314)
+-- TOC entry 3069 (class 2604 OID 18623)
 -- Name: DataSources Id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "DataSources" ALTER COLUMN "Id" SET DEFAULT nextval('"DataSources_Id_seq"'::regclass);
+ALTER TABLE ONLY public."DataSources" ALTER COLUMN "Id" SET DEFAULT nextval('public."DataSources_Id_seq"'::regclass);
 
 
 --
--- TOC entry 3003 (class 2604 OID 31420)
+-- TOC entry 3075 (class 2604 OID 18729)
 -- Name: DataTypeParameterValues Id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "DataTypeParameterValues" ALTER COLUMN "Id" SET DEFAULT nextval('"DataTypeParameterValues_Id_seq"'::regclass);
+ALTER TABLE ONLY public."DataTypeParameterValues" ALTER COLUMN "Id" SET DEFAULT nextval('public."DataTypeParameterValues_Id_seq"'::regclass);
 
 
 --
--- TOC entry 3001 (class 2604 OID 31373)
+-- TOC entry 3073 (class 2604 OID 18682)
 -- Name: DataTypeParameters Id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "DataTypeParameters" ALTER COLUMN "Id" SET DEFAULT nextval('"DataTypeParameters_Id_seq"'::regclass);
+ALTER TABLE ONLY public."DataTypeParameters" ALTER COLUMN "Id" SET DEFAULT nextval('public."DataTypeParameters_Id_seq"'::regclass);
 
 
 --
--- TOC entry 3000 (class 2604 OID 31362)
+-- TOC entry 3072 (class 2604 OID 18671)
 -- Name: DataTypes Id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "DataTypes" ALTER COLUMN "Id" SET DEFAULT nextval('"DataTypes_Id_seq"'::regclass);
+ALTER TABLE ONLY public."DataTypes" ALTER COLUMN "Id" SET DEFAULT nextval('public."DataTypes_Id_seq"'::regclass);
 
 
 --
--- TOC entry 3024 (class 2604 OID 31897)
--- Name: DeliveryMethods Id; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "DeliveryMethods" ALTER COLUMN "Id" SET DEFAULT nextval('"DeliveryMethods_Id_seq"'::regclass);
-
-
---
--- TOC entry 2994 (class 2604 OID 31259)
+-- TOC entry 3066 (class 2604 OID 18568)
 -- Name: Dictionaries Id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "Dictionaries" ALTER COLUMN "Id" SET DEFAULT nextval('"Dictionaries_Id_seq"'::regclass);
+ALTER TABLE ONLY public."Dictionaries" ALTER COLUMN "Id" SET DEFAULT nextval('public."Dictionaries_Id_seq"'::regclass);
 
 
 --
--- TOC entry 2996 (class 2604 OID 31288)
+-- TOC entry 3068 (class 2604 OID 18597)
 -- Name: Endpoints Id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "Endpoints" ALTER COLUMN "Id" SET DEFAULT nextval('"Endpoints_Id_seq"'::regclass);
+ALTER TABLE ONLY public."Endpoints" ALTER COLUMN "Id" SET DEFAULT nextval('public."Endpoints_Id_seq"'::regclass);
 
 
 --
--- TOC entry 3018 (class 2604 OID 31759)
--- Name: Features Id; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "Features" ALTER COLUMN "Id" SET DEFAULT nextval('"Features_Id_seq"'::regclass);
-
-
---
--- TOC entry 3012 (class 2604 OID 31639)
+-- TOC entry 3084 (class 2604 OID 18912)
 -- Name: FieldOptions Id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "FieldOptions" ALTER COLUMN "Id" SET DEFAULT nextval('"FieldOptions_Id_seq"'::regclass);
+ALTER TABLE ONLY public."FieldOptions" ALTER COLUMN "Id" SET DEFAULT nextval('public."FieldOptions_Id_seq"'::regclass);
 
 
 --
--- TOC entry 3010 (class 2604 OID 31602)
+-- TOC entry 3082 (class 2604 OID 18875)
 -- Name: FieldTypes Id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "FieldTypes" ALTER COLUMN "Id" SET DEFAULT nextval('"FieldTypes_Id_seq"'::regclass);
+ALTER TABLE ONLY public."FieldTypes" ALTER COLUMN "Id" SET DEFAULT nextval('public."FieldTypes_Id_seq"'::regclass);
 
 
 --
--- TOC entry 3011 (class 2604 OID 31613)
+-- TOC entry 3083 (class 2604 OID 18886)
 -- Name: Fields Id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "Fields" ALTER COLUMN "Id" SET DEFAULT nextval('"Fields_Id_seq"'::regclass);
+ALTER TABLE ONLY public."Fields" ALTER COLUMN "Id" SET DEFAULT nextval('public."Fields_Id_seq"'::regclass);
 
 
 --
--- TOC entry 3015 (class 2604 OID 31709)
+-- TOC entry 3087 (class 2604 OID 18964)
 -- Name: Files Id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "Files" ALTER COLUMN "Id" SET DEFAULT nextval('"Files_Id_seq"'::regclass);
+ALTER TABLE ONLY public."Files" ALTER COLUMN "Id" SET DEFAULT nextval('public."Files_Id_seq"'::regclass);
 
 
 --
--- TOC entry 3009 (class 2604 OID 31581)
+-- TOC entry 3081 (class 2604 OID 18854)
 -- Name: Forms Id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "Forms" ALTER COLUMN "Id" SET DEFAULT nextval('"Forms_Id_seq"'::regclass);
+ALTER TABLE ONLY public."Forms" ALTER COLUMN "Id" SET DEFAULT nextval('public."Forms_Id_seq"'::regclass);
 
 
 --
--- TOC entry 2995 (class 2604 OID 31267)
+-- TOC entry 3067 (class 2604 OID 18576)
 -- Name: Localizations Id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "Localizations" ALTER COLUMN "Id" SET DEFAULT nextval('"Localizations_Id_seq"'::regclass);
+ALTER TABLE ONLY public."Localizations" ALTER COLUMN "Id" SET DEFAULT nextval('public."Localizations_Id_seq"'::regclass);
 
 
 --
--- TOC entry 3002 (class 2604 OID 31389)
+-- TOC entry 3074 (class 2604 OID 18698)
 -- Name: Members Id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "Members" ALTER COLUMN "Id" SET DEFAULT nextval('"Members_Id_seq"'::regclass);
+ALTER TABLE ONLY public."Members" ALTER COLUMN "Id" SET DEFAULT nextval('public."Members_Id_seq"'::regclass);
 
 
 --
--- TOC entry 3008 (class 2604 OID 31537)
+-- TOC entry 3080 (class 2604 OID 18828)
 -- Name: MenuItems Id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "MenuItems" ALTER COLUMN "Id" SET DEFAULT nextval('"MenuItems_Id_seq"'::regclass);
+ALTER TABLE ONLY public."MenuItems" ALTER COLUMN "Id" SET DEFAULT nextval('public."MenuItems_Id_seq"'::regclass);
 
 
 --
--- TOC entry 3007 (class 2604 OID 31526)
+-- TOC entry 3079 (class 2604 OID 18812)
 -- Name: Menus Id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "Menus" ALTER COLUMN "Id" SET DEFAULT nextval('"Menus_Id_seq"'::regclass);
+ALTER TABLE ONLY public."Menus" ALTER COLUMN "Id" SET DEFAULT nextval('public."Menus_Id_seq"'::regclass);
 
 
 --
--- TOC entry 3004 (class 2604 OID 31441)
+-- TOC entry 3076 (class 2604 OID 18750)
 -- Name: Objects Id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "Objects" ALTER COLUMN "Id" SET DEFAULT nextval('"Objects_Id_seq"'::regclass);
+ALTER TABLE ONLY public."Objects" ALTER COLUMN "Id" SET DEFAULT nextval('public."Objects_Id_seq"'::regclass);
 
 
 --
--- TOC entry 3022 (class 2604 OID 31865)
--- Name: OrderStates Id; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "OrderStates" ALTER COLUMN "Id" SET DEFAULT nextval('"OrderStates_Id_seq"'::regclass);
-
-
---
--- TOC entry 3025 (class 2604 OID 31913)
--- Name: Orders Id; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "Orders" ALTER COLUMN "Id" SET DEFAULT nextval('"Orders_Id_seq"'::regclass);
-
-
---
--- TOC entry 3023 (class 2604 OID 31881)
--- Name: PaymentMethods Id; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "PaymentMethods" ALTER COLUMN "Id" SET DEFAULT nextval('"PaymentMethods_Id_seq"'::regclass);
-
-
---
--- TOC entry 2990 (class 2604 OID 31195)
+-- TOC entry 3063 (class 2604 OID 18507)
 -- Name: Permissions Id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "Permissions" ALTER COLUMN "Id" SET DEFAULT nextval('"Permissions_Id_seq"'::regclass);
+ALTER TABLE ONLY public."Permissions" ALTER COLUMN "Id" SET DEFAULT nextval('public."Permissions_Id_seq"'::regclass);
 
 
 --
--- TOC entry 3021 (class 2604 OID 31849)
--- Name: Photos Id; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "Photos" ALTER COLUMN "Id" SET DEFAULT nextval('"Photos_Id_seq"'::regclass);
-
-
---
--- TOC entry 3027 (class 2604 OID 31955)
--- Name: Positions Id; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "Positions" ALTER COLUMN "Id" SET DEFAULT nextval('"Positions_Id_seq"'::regclass);
-
-
---
--- TOC entry 3020 (class 2604 OID 31793)
--- Name: Products Id; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "Products" ALTER COLUMN "Id" SET DEFAULT nextval('"Products_Id_seq"'::regclass);
-
-
---
--- TOC entry 3005 (class 2604 OID 31454)
+-- TOC entry 3077 (class 2604 OID 18763)
 -- Name: Properties Id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "Properties" ALTER COLUMN "Id" SET DEFAULT nextval('"Properties_Id_seq"'::regclass);
+ALTER TABLE ONLY public."Properties" ALTER COLUMN "Id" SET DEFAULT nextval('public."Properties_Id_seq"'::regclass);
 
 
 --
--- TOC entry 3006 (class 2604 OID 31480)
+-- TOC entry 3078 (class 2604 OID 18789)
 -- Name: Relations Id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "Relations" ALTER COLUMN "Id" SET DEFAULT nextval('"Relations_Id_seq"'::regclass);
+ALTER TABLE ONLY public."Relations" ALTER COLUMN "Id" SET DEFAULT nextval('public."Relations_Id_seq"'::regclass);
 
 
 --
--- TOC entry 2989 (class 2604 OID 31169)
+-- TOC entry 3062 (class 2604 OID 18481)
 -- Name: Roles Id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "Roles" ALTER COLUMN "Id" SET DEFAULT nextval('"Roles_Id_seq"'::regclass);
+ALTER TABLE ONLY public."Roles" ALTER COLUMN "Id" SET DEFAULT nextval('public."Roles_Id_seq"'::regclass);
 
 
 --
--- TOC entry 2999 (class 2604 OID 31346)
+-- TOC entry 3071 (class 2604 OID 18655)
 -- Name: Tabs Id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "Tabs" ALTER COLUMN "Id" SET DEFAULT nextval('"Tabs_Id_seq"'::regclass);
+ALTER TABLE ONLY public."Tabs" ALTER COLUMN "Id" SET DEFAULT nextval('public."Tabs_Id_seq"'::regclass);
 
 
 --
--- TOC entry 2986 (class 2604 OID 31126)
+-- TOC entry 3059 (class 2604 OID 18438)
 -- Name: Users Id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "Users" ALTER COLUMN "Id" SET DEFAULT nextval('"Users_Id_seq"'::regclass);
+ALTER TABLE ONLY public."Users" ALTER COLUMN "Id" SET DEFAULT nextval('public."Users_Id_seq"'::regclass);
 
 
 --
--- TOC entry 2992 (class 2604 OID 31232)
+-- TOC entry 3065 (class 2604 OID 18544)
 -- Name: Variables Id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "Variables" ALTER COLUMN "Id" SET DEFAULT nextval('"Variables_Id_seq"'::regclass);
+ALTER TABLE ONLY public."Variables" ALTER COLUMN "Id" SET DEFAULT nextval('public."Variables_Id_seq"'::regclass);
 
 
 --
--- TOC entry 3398 (class 0 OID 31772)
--- Dependencies: 269
--- Data for Name: Attributes; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-
-
---
--- TOC entry 3413 (class 0 OID 31936)
--- Dependencies: 284
--- Data for Name: Carts; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-
-
---
--- TOC entry 3392 (class 0 OID 31717)
--- Dependencies: 263
--- Data for Name: Catalogs; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-
-
---
--- TOC entry 3394 (class 0 OID 31738)
--- Dependencies: 265
--- Data for Name: Categories; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-
-
---
--- TOC entry 3353 (class 0 OID 31327)
--- Dependencies: 224
+-- TOC entry 3353 (class 0 OID 18636)
+-- Dependencies: 227
 -- Data for Name: Classes; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO "Classes" VALUES (1, NULL, 'Page', 'Page', 'Pages', true);
-INSERT INTO "Classes" VALUES (2, 1, 'RegularPage', 'Regular Page', 'Regular Pages', false);
-INSERT INTO "Classes" VALUES (3, NULL, 'Tag', 'Tag', 'Tags', false);
-INSERT INTO "Classes" VALUES (4, NULL, 'Comment', 'Comment', 'Comments', false);
-INSERT INTO "Classes" VALUES (5, 1, 'PostPage', 'Post Page', 'Post Pages', false);
+INSERT INTO public."Classes" ("Id", "ClassId", "Code", "Name", "PluralizedName", "IsAbstract") VALUES (1, NULL, 'Page', 'Page', 'Pages', true);
+INSERT INTO public."Classes" ("Id", "ClassId", "Code", "Name", "PluralizedName", "IsAbstract") VALUES (2, 1, 'RegularPage', 'Regular Page', 'Regular Pages', false);
+INSERT INTO public."Classes" ("Id", "ClassId", "Code", "Name", "PluralizedName", "IsAbstract") VALUES (3, NULL, 'Tag', 'Tag', 'Tags', false);
+INSERT INTO public."Classes" ("Id", "ClassId", "Code", "Name", "PluralizedName", "IsAbstract") VALUES (4, NULL, 'Comment', 'Comment', 'Comments', false);
+INSERT INTO public."Classes" ("Id", "ClassId", "Code", "Name", "PluralizedName", "IsAbstract") VALUES (5, 1, 'PostPage', 'Post Page', 'Post Pages', false);
 
 
 --
--- TOC entry 3387 (class 0 OID 31667)
--- Dependencies: 258
+-- TOC entry 3385 (class 0 OID 18940)
+-- Dependencies: 259
 -- Data for Name: CompletedFields; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 
 
 --
--- TOC entry 3385 (class 0 OID 31654)
--- Dependencies: 256
+-- TOC entry 3383 (class 0 OID 18927)
+-- Dependencies: 257
 -- Data for Name: CompletedForms; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 
 
 --
--- TOC entry 3338 (class 0 OID 31218)
--- Dependencies: 209
+-- TOC entry 3339 (class 0 OID 18530)
+-- Dependencies: 213
 -- Data for Name: Configurations; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO "Configurations" VALUES (1, 'Email', 'Email');
-INSERT INTO "Configurations" VALUES (2, 'Globalization', 'Globalization');
+INSERT INTO public."Configurations" ("Id", "Code", "Name") VALUES (1, 'Email', 'Email');
+INSERT INTO public."Configurations" ("Id", "Code", "Name") VALUES (2, 'Globalization', 'Globalization');
 
 
 --
--- TOC entry 3328 (class 0 OID 31134)
--- Dependencies: 199
+-- TOC entry 3329 (class 0 OID 18446)
+-- Dependencies: 203
 -- Data for Name: CredentialTypes; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO "CredentialTypes" VALUES (1, 'Email', 'Email', 1);
+INSERT INTO public."CredentialTypes" ("Id", "Code", "Name", "Position") VALUES (1, 'Email', 'Email', 1);
 
 
 --
--- TOC entry 3330 (class 0 OID 31145)
--- Dependencies: 201
+-- TOC entry 3331 (class 0 OID 18457)
+-- Dependencies: 205
 -- Data for Name: Credentials; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO "Credentials" VALUES (1, 1, 1, 'admin@platformus.net', '8lE3xN2Ijiv/Y/aIGwaZLrbcqrt/1jDmzPTdudKbVD0=', '0O/ZGwhScZRGbsmiUEckOg==');
+INSERT INTO public."Credentials" ("Id", "UserId", "CredentialTypeId", "Identifier", "Secret", "Extra") VALUES (1, 1, 1, 'admin@platformus.net', '8lE3xN2Ijiv/Y/aIGwaZLrbcqrt/1jDmzPTdudKbVD0=', '0O/ZGwhScZRGbsmiUEckOg==');
 
 
 --
--- TOC entry 3342 (class 0 OID 31245)
--- Dependencies: 213
+-- TOC entry 3342 (class 0 OID 18555)
+-- Dependencies: 216
 -- Data for Name: Cultures; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO "Cultures" VALUES (1, '__', 'Neutral', true, false, false);
-INSERT INTO "Cultures" VALUES (2, 'en', 'English', false, true, true);
-INSERT INTO "Cultures" VALUES (3, 'ru', 'Русский', false, false, false);
-INSERT INTO "Cultures" VALUES (4, 'uk', 'Українська', false, false, false);
+INSERT INTO public."Cultures" ("Id", "Name", "IsNeutral", "IsFrontendDefault", "IsBackendDefault") VALUES ('__', 'Neutral', true, false, false);
+INSERT INTO public."Cultures" ("Id", "Name", "IsNeutral", "IsFrontendDefault", "IsBackendDefault") VALUES ('en', 'English', false, true, true);
+INSERT INTO public."Cultures" ("Id", "Name", "IsNeutral", "IsFrontendDefault", "IsBackendDefault") VALUES ('ru', 'Русский', false, false, false);
+INSERT INTO public."Cultures" ("Id", "Name", "IsNeutral", "IsFrontendDefault", "IsBackendDefault") VALUES ('uk', 'Українська', false, false, false);
 
 
 --
--- TOC entry 3351 (class 0 OID 31311)
--- Dependencies: 222
+-- TOC entry 3351 (class 0 OID 18620)
+-- Dependencies: 225
 -- Data for Name: DataSources; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO "DataSources" VALUES (1, 1, 'Page', 'Platformus.Domain.Frontend.DataSources.PageObjectDataSource', NULL);
-INSERT INTO "DataSources" VALUES (2, 2, 'Page', 'Platformus.Domain.Frontend.DataSources.PageObjectDataSource', NULL);
-INSERT INTO "DataSources" VALUES (3, 2, 'Posts', 'Platformus.Domain.Frontend.DataSources.ObjectsDataSource', 'ClassId=5;NestedXPaths=/Tags;EnableFiltering=false;QueryUrlParameterName=q;SortingMemberId=14;SortingDirection=DESC;EnablePaging=false;SkipUrlParameterName=skip;TakeUrlParameterName=take;DefaultTake=10');
-INSERT INTO "DataSources" VALUES (4, 3, 'Page', 'Platformus.Domain.Frontend.DataSources.PageObjectDataSource', NULL);
-INSERT INTO "DataSources" VALUES (5, 3, 'Tags', 'Platformus.Domain.Frontend.DataSources.RelatedObjectsDataSource', 'RelationMemberId=11;RelationType=Primary;EnableFiltering=false;QueryUrlParameterName=q;SortingDirection=ASC;EnablePaging=false;SkipUrlParameterName=skip;TakeUrlParameterName=take;DefaultTake=10');
-INSERT INTO "DataSources" VALUES (6, 3, 'Comments', 'Platformus.Domain.Frontend.DataSources.RelatedObjectsDataSource', 'RelationMemberId=15;RelationType=Primary;EnableFiltering=false;QueryUrlParameterName=q;SortingMemberId=9;SortingDirection=ASC;EnablePaging=false;SkipUrlParameterName=skip;TakeUrlParameterName=take;DefaultTake=10');
-INSERT INTO "DataSources" VALUES (7, 4, 'Page', 'Platformus.Domain.Frontend.DataSources.PageObjectDataSource', NULL);
+INSERT INTO public."DataSources" ("Id", "EndpointId", "Code", "CSharpClassName", "Parameters") VALUES (1, 1, 'Page', 'Platformus.Website.Frontend.DataSources.PageObjectDataSource', NULL);
+INSERT INTO public."DataSources" ("Id", "EndpointId", "Code", "CSharpClassName", "Parameters") VALUES (2, 2, 'Page', 'Platformus.Website.Frontend.DataSources.PageObjectDataSource', NULL);
+INSERT INTO public."DataSources" ("Id", "EndpointId", "Code", "CSharpClassName", "Parameters") VALUES (3, 2, 'Posts', 'Platformus.Website.Frontend.DataSources.ObjectsDataSource', 'ClassId=5');
+INSERT INTO public."DataSources" ("Id", "EndpointId", "Code", "CSharpClassName", "Parameters") VALUES (4, 3, 'Page', 'Platformus.Website.Frontend.DataSources.PageObjectDataSource', NULL);
+INSERT INTO public."DataSources" ("Id", "EndpointId", "Code", "CSharpClassName", "Parameters") VALUES (5, 3, 'Tags', 'Platformus.Website.Frontend.DataSources.RelatedObjectsDataSource', 'RelationMemberId=11;RelationType=Primary');
+INSERT INTO public."DataSources" ("Id", "EndpointId", "Code", "CSharpClassName", "Parameters") VALUES (6, 3, 'Comments', 'Platformus.Website.Frontend.DataSources.RelatedObjectsDataSource', 'RelationMemberId=15;RelationType=Primary');
+INSERT INTO public."DataSources" ("Id", "EndpointId", "Code", "CSharpClassName", "Parameters") VALUES (7, 4, 'Page', 'Platformus.Website.Frontend.DataSources.PageObjectDataSource', NULL);
 
 
 --
--- TOC entry 3363 (class 0 OID 31417)
--- Dependencies: 234
+-- TOC entry 3363 (class 0 OID 18726)
+-- Dependencies: 237
 -- Data for Name: DataTypeParameterValues; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO "DataTypeParameterValues" VALUES (1, 1, 1, 'true');
-INSERT INTO "DataTypeParameterValues" VALUES (2, 2, 1, '128');
-INSERT INTO "DataTypeParameterValues" VALUES (3, 1, 3, 'false');
-INSERT INTO "DataTypeParameterValues" VALUES (4, 2, 3, '128');
-INSERT INTO "DataTypeParameterValues" VALUES (5, 1, 4, 'false');
-INSERT INTO "DataTypeParameterValues" VALUES (6, 2, 4, '512');
-INSERT INTO "DataTypeParameterValues" VALUES (7, 1, 5, 'false');
-INSERT INTO "DataTypeParameterValues" VALUES (8, 2, 5, '256');
-INSERT INTO "DataTypeParameterValues" VALUES (9, 1, 6, 'true');
-INSERT INTO "DataTypeParameterValues" VALUES (10, 2, 6, '48');
-INSERT INTO "DataTypeParameterValues" VALUES (11, 1, 7, 'true');
-INSERT INTO "DataTypeParameterValues" VALUES (12, 2, 7, '64');
-INSERT INTO "DataTypeParameterValues" VALUES (13, 3, 8, 'true');
-INSERT INTO "DataTypeParameterValues" VALUES (14, 7, 9, 'true');
-INSERT INTO "DataTypeParameterValues" VALUES (15, 1, 10, 'true');
-INSERT INTO "DataTypeParameterValues" VALUES (16, 2, 10, '128');
-INSERT INTO "DataTypeParameterValues" VALUES (17, 5, 12, '1024');
-INSERT INTO "DataTypeParameterValues" VALUES (18, 6, 12, '256');
-INSERT INTO "DataTypeParameterValues" VALUES (19, 7, 14, 'true');
+INSERT INTO public."DataTypeParameterValues" ("Id", "DataTypeParameterId", "MemberId", "Value") VALUES (1, 1, 1, 'true');
+INSERT INTO public."DataTypeParameterValues" ("Id", "DataTypeParameterId", "MemberId", "Value") VALUES (2, 2, 1, '128');
+INSERT INTO public."DataTypeParameterValues" ("Id", "DataTypeParameterId", "MemberId", "Value") VALUES (3, 1, 3, 'false');
+INSERT INTO public."DataTypeParameterValues" ("Id", "DataTypeParameterId", "MemberId", "Value") VALUES (4, 2, 3, '128');
+INSERT INTO public."DataTypeParameterValues" ("Id", "DataTypeParameterId", "MemberId", "Value") VALUES (5, 1, 4, 'false');
+INSERT INTO public."DataTypeParameterValues" ("Id", "DataTypeParameterId", "MemberId", "Value") VALUES (6, 2, 4, '512');
+INSERT INTO public."DataTypeParameterValues" ("Id", "DataTypeParameterId", "MemberId", "Value") VALUES (7, 1, 5, 'false');
+INSERT INTO public."DataTypeParameterValues" ("Id", "DataTypeParameterId", "MemberId", "Value") VALUES (8, 2, 5, '256');
+INSERT INTO public."DataTypeParameterValues" ("Id", "DataTypeParameterId", "MemberId", "Value") VALUES (9, 1, 6, 'true');
+INSERT INTO public."DataTypeParameterValues" ("Id", "DataTypeParameterId", "MemberId", "Value") VALUES (10, 2, 6, '48');
+INSERT INTO public."DataTypeParameterValues" ("Id", "DataTypeParameterId", "MemberId", "Value") VALUES (11, 1, 7, 'true');
+INSERT INTO public."DataTypeParameterValues" ("Id", "DataTypeParameterId", "MemberId", "Value") VALUES (12, 2, 7, '64');
+INSERT INTO public."DataTypeParameterValues" ("Id", "DataTypeParameterId", "MemberId", "Value") VALUES (13, 3, 8, 'true');
+INSERT INTO public."DataTypeParameterValues" ("Id", "DataTypeParameterId", "MemberId", "Value") VALUES (14, 7, 9, 'true');
+INSERT INTO public."DataTypeParameterValues" ("Id", "DataTypeParameterId", "MemberId", "Value") VALUES (15, 1, 10, 'true');
+INSERT INTO public."DataTypeParameterValues" ("Id", "DataTypeParameterId", "MemberId", "Value") VALUES (16, 2, 10, '128');
+INSERT INTO public."DataTypeParameterValues" ("Id", "DataTypeParameterId", "MemberId", "Value") VALUES (17, 5, 12, '1024');
+INSERT INTO public."DataTypeParameterValues" ("Id", "DataTypeParameterId", "MemberId", "Value") VALUES (18, 6, 12, '256');
+INSERT INTO public."DataTypeParameterValues" ("Id", "DataTypeParameterId", "MemberId", "Value") VALUES (19, 7, 14, 'true');
 
 
 --
--- TOC entry 3359 (class 0 OID 31370)
--- Dependencies: 230
+-- TOC entry 3359 (class 0 OID 18679)
+-- Dependencies: 233
 -- Data for Name: DataTypeParameters; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO "DataTypeParameters" VALUES (1, 1, 'checkbox', 'IsRequired', 'Is required');
-INSERT INTO "DataTypeParameters" VALUES (2, 1, 'numericTextBox', 'MaxLength', 'Max length');
-INSERT INTO "DataTypeParameters" VALUES (3, 2, 'checkbox', 'IsRequired', 'Is required');
-INSERT INTO "DataTypeParameters" VALUES (4, 2, 'numericTextBox', 'MaxLength', 'Max length');
-INSERT INTO "DataTypeParameters" VALUES (5, 7, 'checkbox', 'IsRequired', 'Is required');
-INSERT INTO "DataTypeParameters" VALUES (6, 8, 'numericTextBox', 'Width', 'Width');
-INSERT INTO "DataTypeParameters" VALUES (7, 8, 'numericTextBox', 'Height', 'Height');
-INSERT INTO "DataTypeParameters" VALUES (8, 9, 'textBox', 'Mode', 'Mode');
+INSERT INTO public."DataTypeParameters" ("Id", "DataTypeId", "JavaScriptEditorClassName", "Code", "Name") VALUES (1, 1, 'checkbox', 'IsRequired', 'Is required');
+INSERT INTO public."DataTypeParameters" ("Id", "DataTypeId", "JavaScriptEditorClassName", "Code", "Name") VALUES (2, 1, 'numericTextBox', 'MaxLength', 'Max length');
+INSERT INTO public."DataTypeParameters" ("Id", "DataTypeId", "JavaScriptEditorClassName", "Code", "Name") VALUES (3, 2, 'checkbox', 'IsRequired', 'Is required');
+INSERT INTO public."DataTypeParameters" ("Id", "DataTypeId", "JavaScriptEditorClassName", "Code", "Name") VALUES (4, 2, 'numericTextBox', 'MaxLength', 'Max length');
+INSERT INTO public."DataTypeParameters" ("Id", "DataTypeId", "JavaScriptEditorClassName", "Code", "Name") VALUES (5, 7, 'checkbox', 'IsRequired', 'Is required');
+INSERT INTO public."DataTypeParameters" ("Id", "DataTypeId", "JavaScriptEditorClassName", "Code", "Name") VALUES (6, 8, 'numericTextBox', 'Width', 'Width');
+INSERT INTO public."DataTypeParameters" ("Id", "DataTypeId", "JavaScriptEditorClassName", "Code", "Name") VALUES (7, 8, 'numericTextBox', 'Height', 'Height');
+INSERT INTO public."DataTypeParameters" ("Id", "DataTypeId", "JavaScriptEditorClassName", "Code", "Name") VALUES (8, 9, 'textBox', 'Mode', 'Mode');
 
 
 --
--- TOC entry 3357 (class 0 OID 31359)
--- Dependencies: 228
+-- TOC entry 3357 (class 0 OID 18668)
+-- Dependencies: 231
 -- Data for Name: DataTypes; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO "DataTypes" VALUES (1, 'string', 'singleLinePlainText', 'Single line plain text', 1);
-INSERT INTO "DataTypes" VALUES (2, 'string', 'multilinePlainText', 'Multiline plain text', 2);
-INSERT INTO "DataTypes" VALUES (3, 'string', 'html', 'Html', 3);
-INSERT INTO "DataTypes" VALUES (4, 'integer', 'integerNumber', 'Integer number', 4);
-INSERT INTO "DataTypes" VALUES (5, 'decimal', 'decimalNumber', 'Decimal number', 5);
-INSERT INTO "DataTypes" VALUES (6, 'integer', 'booleanFlag', 'Boolean flag', 6);
-INSERT INTO "DataTypes" VALUES (7, 'datetime', 'date', 'Date', 7);
-INSERT INTO "DataTypes" VALUES (8, 'string', 'image', 'Image', 8);
-INSERT INTO "DataTypes" VALUES (9, 'string', 'sourceCode', 'Source code', 9);
+INSERT INTO public."DataTypes" ("Id", "StorageDataType", "JavaScriptEditorClassName", "Name", "Position") VALUES (1, 'string', 'singleLinePlainText', 'Single line plain text', 1);
+INSERT INTO public."DataTypes" ("Id", "StorageDataType", "JavaScriptEditorClassName", "Name", "Position") VALUES (2, 'string', 'multilinePlainText', 'Multiline plain text', 2);
+INSERT INTO public."DataTypes" ("Id", "StorageDataType", "JavaScriptEditorClassName", "Name", "Position") VALUES (3, 'string', 'html', 'Html', 3);
+INSERT INTO public."DataTypes" ("Id", "StorageDataType", "JavaScriptEditorClassName", "Name", "Position") VALUES (4, 'integer', 'integerNumber', 'Integer number', 4);
+INSERT INTO public."DataTypes" ("Id", "StorageDataType", "JavaScriptEditorClassName", "Name", "Position") VALUES (5, 'decimal', 'decimalNumber', 'Decimal number', 5);
+INSERT INTO public."DataTypes" ("Id", "StorageDataType", "JavaScriptEditorClassName", "Name", "Position") VALUES (6, 'integer', 'booleanFlag', 'Boolean flag', 6);
+INSERT INTO public."DataTypes" ("Id", "StorageDataType", "JavaScriptEditorClassName", "Name", "Position") VALUES (7, 'datetime', 'date', 'Date', 7);
+INSERT INTO public."DataTypes" ("Id", "StorageDataType", "JavaScriptEditorClassName", "Name", "Position") VALUES (8, 'string', 'image', 'Image', 8);
+INSERT INTO public."DataTypes" ("Id", "StorageDataType", "JavaScriptEditorClassName", "Name", "Position") VALUES (9, 'string', 'sourceCode', 'Source code', 9);
 
 
 --
--- TOC entry 3409 (class 0 OID 31894)
--- Dependencies: 280
--- Data for Name: DeliveryMethods; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-
-
---
--- TOC entry 3344 (class 0 OID 31256)
--- Dependencies: 215
+-- TOC entry 3344 (class 0 OID 18565)
+-- Dependencies: 218
 -- Data for Name: Dictionaries; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO "Dictionaries" VALUES (1);
-INSERT INTO "Dictionaries" VALUES (2);
-INSERT INTO "Dictionaries" VALUES (3);
-INSERT INTO "Dictionaries" VALUES (4);
-INSERT INTO "Dictionaries" VALUES (5);
-INSERT INTO "Dictionaries" VALUES (6);
-INSERT INTO "Dictionaries" VALUES (7);
-INSERT INTO "Dictionaries" VALUES (8);
-INSERT INTO "Dictionaries" VALUES (9);
-INSERT INTO "Dictionaries" VALUES (10);
-INSERT INTO "Dictionaries" VALUES (11);
-INSERT INTO "Dictionaries" VALUES (12);
-INSERT INTO "Dictionaries" VALUES (13);
-INSERT INTO "Dictionaries" VALUES (14);
-INSERT INTO "Dictionaries" VALUES (15);
-INSERT INTO "Dictionaries" VALUES (16);
-INSERT INTO "Dictionaries" VALUES (17);
-INSERT INTO "Dictionaries" VALUES (18);
-INSERT INTO "Dictionaries" VALUES (19);
-INSERT INTO "Dictionaries" VALUES (20);
-INSERT INTO "Dictionaries" VALUES (21);
-INSERT INTO "Dictionaries" VALUES (22);
-INSERT INTO "Dictionaries" VALUES (23);
-INSERT INTO "Dictionaries" VALUES (24);
-INSERT INTO "Dictionaries" VALUES (25);
-INSERT INTO "Dictionaries" VALUES (26);
-INSERT INTO "Dictionaries" VALUES (27);
-INSERT INTO "Dictionaries" VALUES (28);
-INSERT INTO "Dictionaries" VALUES (29);
-INSERT INTO "Dictionaries" VALUES (30);
-INSERT INTO "Dictionaries" VALUES (31);
-INSERT INTO "Dictionaries" VALUES (32);
-INSERT INTO "Dictionaries" VALUES (33);
-INSERT INTO "Dictionaries" VALUES (34);
-INSERT INTO "Dictionaries" VALUES (35);
-INSERT INTO "Dictionaries" VALUES (36);
-INSERT INTO "Dictionaries" VALUES (37);
-INSERT INTO "Dictionaries" VALUES (38);
-INSERT INTO "Dictionaries" VALUES (39);
-INSERT INTO "Dictionaries" VALUES (40);
-INSERT INTO "Dictionaries" VALUES (41);
-INSERT INTO "Dictionaries" VALUES (42);
-INSERT INTO "Dictionaries" VALUES (43);
-INSERT INTO "Dictionaries" VALUES (44);
-INSERT INTO "Dictionaries" VALUES (45);
-INSERT INTO "Dictionaries" VALUES (46);
-INSERT INTO "Dictionaries" VALUES (47);
-INSERT INTO "Dictionaries" VALUES (48);
-INSERT INTO "Dictionaries" VALUES (49);
-INSERT INTO "Dictionaries" VALUES (50);
-INSERT INTO "Dictionaries" VALUES (51);
-INSERT INTO "Dictionaries" VALUES (52);
-INSERT INTO "Dictionaries" VALUES (53);
-INSERT INTO "Dictionaries" VALUES (54);
-INSERT INTO "Dictionaries" VALUES (55);
-INSERT INTO "Dictionaries" VALUES (56);
-INSERT INTO "Dictionaries" VALUES (57);
-INSERT INTO "Dictionaries" VALUES (58);
-INSERT INTO "Dictionaries" VALUES (59);
-INSERT INTO "Dictionaries" VALUES (60);
-INSERT INTO "Dictionaries" VALUES (61);
-INSERT INTO "Dictionaries" VALUES (62);
-INSERT INTO "Dictionaries" VALUES (63);
-INSERT INTO "Dictionaries" VALUES (64);
-INSERT INTO "Dictionaries" VALUES (65);
-INSERT INTO "Dictionaries" VALUES (66);
-INSERT INTO "Dictionaries" VALUES (67);
-INSERT INTO "Dictionaries" VALUES (68);
-INSERT INTO "Dictionaries" VALUES (69);
-INSERT INTO "Dictionaries" VALUES (70);
-INSERT INTO "Dictionaries" VALUES (71);
-INSERT INTO "Dictionaries" VALUES (72);
-INSERT INTO "Dictionaries" VALUES (73);
-INSERT INTO "Dictionaries" VALUES (74);
-INSERT INTO "Dictionaries" VALUES (75);
-INSERT INTO "Dictionaries" VALUES (76);
-INSERT INTO "Dictionaries" VALUES (77);
-INSERT INTO "Dictionaries" VALUES (78);
-INSERT INTO "Dictionaries" VALUES (79);
+INSERT INTO public."Dictionaries" ("Id") VALUES (1);
+INSERT INTO public."Dictionaries" ("Id") VALUES (2);
+INSERT INTO public."Dictionaries" ("Id") VALUES (3);
+INSERT INTO public."Dictionaries" ("Id") VALUES (4);
+INSERT INTO public."Dictionaries" ("Id") VALUES (5);
+INSERT INTO public."Dictionaries" ("Id") VALUES (6);
+INSERT INTO public."Dictionaries" ("Id") VALUES (7);
+INSERT INTO public."Dictionaries" ("Id") VALUES (8);
+INSERT INTO public."Dictionaries" ("Id") VALUES (9);
+INSERT INTO public."Dictionaries" ("Id") VALUES (10);
+INSERT INTO public."Dictionaries" ("Id") VALUES (11);
+INSERT INTO public."Dictionaries" ("Id") VALUES (12);
+INSERT INTO public."Dictionaries" ("Id") VALUES (13);
+INSERT INTO public."Dictionaries" ("Id") VALUES (14);
+INSERT INTO public."Dictionaries" ("Id") VALUES (15);
+INSERT INTO public."Dictionaries" ("Id") VALUES (16);
+INSERT INTO public."Dictionaries" ("Id") VALUES (17);
+INSERT INTO public."Dictionaries" ("Id") VALUES (18);
+INSERT INTO public."Dictionaries" ("Id") VALUES (19);
+INSERT INTO public."Dictionaries" ("Id") VALUES (20);
+INSERT INTO public."Dictionaries" ("Id") VALUES (21);
+INSERT INTO public."Dictionaries" ("Id") VALUES (22);
+INSERT INTO public."Dictionaries" ("Id") VALUES (23);
+INSERT INTO public."Dictionaries" ("Id") VALUES (24);
+INSERT INTO public."Dictionaries" ("Id") VALUES (25);
+INSERT INTO public."Dictionaries" ("Id") VALUES (26);
+INSERT INTO public."Dictionaries" ("Id") VALUES (27);
+INSERT INTO public."Dictionaries" ("Id") VALUES (28);
+INSERT INTO public."Dictionaries" ("Id") VALUES (29);
+INSERT INTO public."Dictionaries" ("Id") VALUES (30);
+INSERT INTO public."Dictionaries" ("Id") VALUES (31);
+INSERT INTO public."Dictionaries" ("Id") VALUES (32);
+INSERT INTO public."Dictionaries" ("Id") VALUES (33);
+INSERT INTO public."Dictionaries" ("Id") VALUES (34);
+INSERT INTO public."Dictionaries" ("Id") VALUES (35);
+INSERT INTO public."Dictionaries" ("Id") VALUES (36);
+INSERT INTO public."Dictionaries" ("Id") VALUES (37);
+INSERT INTO public."Dictionaries" ("Id") VALUES (38);
+INSERT INTO public."Dictionaries" ("Id") VALUES (39);
+INSERT INTO public."Dictionaries" ("Id") VALUES (40);
+INSERT INTO public."Dictionaries" ("Id") VALUES (41);
+INSERT INTO public."Dictionaries" ("Id") VALUES (42);
+INSERT INTO public."Dictionaries" ("Id") VALUES (43);
+INSERT INTO public."Dictionaries" ("Id") VALUES (44);
+INSERT INTO public."Dictionaries" ("Id") VALUES (45);
+INSERT INTO public."Dictionaries" ("Id") VALUES (46);
+INSERT INTO public."Dictionaries" ("Id") VALUES (47);
+INSERT INTO public."Dictionaries" ("Id") VALUES (48);
+INSERT INTO public."Dictionaries" ("Id") VALUES (49);
+INSERT INTO public."Dictionaries" ("Id") VALUES (50);
+INSERT INTO public."Dictionaries" ("Id") VALUES (51);
+INSERT INTO public."Dictionaries" ("Id") VALUES (52);
+INSERT INTO public."Dictionaries" ("Id") VALUES (53);
+INSERT INTO public."Dictionaries" ("Id") VALUES (54);
+INSERT INTO public."Dictionaries" ("Id") VALUES (55);
+INSERT INTO public."Dictionaries" ("Id") VALUES (56);
+INSERT INTO public."Dictionaries" ("Id") VALUES (57);
+INSERT INTO public."Dictionaries" ("Id") VALUES (58);
+INSERT INTO public."Dictionaries" ("Id") VALUES (59);
+INSERT INTO public."Dictionaries" ("Id") VALUES (60);
+INSERT INTO public."Dictionaries" ("Id") VALUES (61);
+INSERT INTO public."Dictionaries" ("Id") VALUES (62);
+INSERT INTO public."Dictionaries" ("Id") VALUES (63);
+INSERT INTO public."Dictionaries" ("Id") VALUES (64);
+INSERT INTO public."Dictionaries" ("Id") VALUES (65);
+INSERT INTO public."Dictionaries" ("Id") VALUES (66);
+INSERT INTO public."Dictionaries" ("Id") VALUES (67);
+INSERT INTO public."Dictionaries" ("Id") VALUES (68);
+INSERT INTO public."Dictionaries" ("Id") VALUES (69);
+INSERT INTO public."Dictionaries" ("Id") VALUES (70);
+INSERT INTO public."Dictionaries" ("Id") VALUES (71);
+INSERT INTO public."Dictionaries" ("Id") VALUES (72);
+INSERT INTO public."Dictionaries" ("Id") VALUES (73);
+INSERT INTO public."Dictionaries" ("Id") VALUES (74);
+INSERT INTO public."Dictionaries" ("Id") VALUES (75);
+INSERT INTO public."Dictionaries" ("Id") VALUES (76);
+INSERT INTO public."Dictionaries" ("Id") VALUES (77);
+INSERT INTO public."Dictionaries" ("Id") VALUES (78);
+INSERT INTO public."Dictionaries" ("Id") VALUES (79);
 
 
 --
--- TOC entry 3349 (class 0 OID 31294)
--- Dependencies: 220
+-- TOC entry 3349 (class 0 OID 18603)
+-- Dependencies: 223
 -- Data for Name: EndpointPermissions; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 
 
 --
--- TOC entry 3348 (class 0 OID 31285)
--- Dependencies: 219
+-- TOC entry 3348 (class 0 OID 18594)
+-- Dependencies: 222
 -- Data for Name: Endpoints; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO "Endpoints" VALUES (1, 'Default', '{*url}', 1000, false, NULL, 'Platformus.Domain.Frontend.DefaultEndpoint', 'ViewName=RegularPage;UseCaching=true');
-INSERT INTO "Endpoints" VALUES (2, 'Blog', 'blog', 10, false, NULL, 'Platformus.Domain.Frontend.DefaultEndpoint', 'ViewName=BlogPage;UseCaching=true');
-INSERT INTO "Endpoints" VALUES (3, 'Post', 'blog/{segment}', 20, false, NULL, 'Platformus.Domain.Frontend.DefaultEndpoint', 'ViewName=PostPage;UseCaching=true');
-INSERT INTO "Endpoints" VALUES (4, 'Contacts', 'contacts', 30, false, NULL, 'Platformus.Domain.Frontend.DefaultEndpoint', 'ViewName=ContactsPage;UseCaching=true');
+INSERT INTO public."Endpoints" ("Id", "Name", "UrlTemplate", "Position", "DisallowAnonymous", "SignInUrl", "ResponseCacheCSharpClassName", "CSharpClassName", "Parameters") VALUES (1, 'Default', '{*url}', 1000, false, NULL, NULL, 'Platformus.Website.Frontend.DefaultEndpoint', 'ViewName=RegularPage');
+INSERT INTO public."Endpoints" ("Id", "Name", "UrlTemplate", "Position", "DisallowAnonymous", "SignInUrl", "ResponseCacheCSharpClassName", "CSharpClassName", "Parameters") VALUES (2, 'Blog', 'blog', 10, false, NULL, NULL, 'Platformus.Website.Frontend.DefaultEndpoint', 'ViewName=BlogPage');
+INSERT INTO public."Endpoints" ("Id", "Name", "UrlTemplate", "Position", "DisallowAnonymous", "SignInUrl", "ResponseCacheCSharpClassName", "CSharpClassName", "Parameters") VALUES (3, 'Post', 'blog/{segment}', 20, false, NULL, NULL, 'Platformus.Website.Frontend.DefaultEndpoint', 'ViewName=PostPage');
+INSERT INTO public."Endpoints" ("Id", "Name", "UrlTemplate", "Position", "DisallowAnonymous", "SignInUrl", "ResponseCacheCSharpClassName", "CSharpClassName", "Parameters") VALUES (4, 'Contacts', 'contacts', 30, false, NULL, NULL, 'Platformus.Website.Frontend.DefaultEndpoint', 'ViewName=ContactsPage');
 
 
 --
--- TOC entry 3396 (class 0 OID 31756)
--- Dependencies: 267
--- Data for Name: Features; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-
-
---
--- TOC entry 3383 (class 0 OID 31636)
--- Dependencies: 254
+-- TOC entry 3381 (class 0 OID 18909)
+-- Dependencies: 255
 -- Data for Name: FieldOptions; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 
 
 --
--- TOC entry 3379 (class 0 OID 31599)
--- Dependencies: 250
+-- TOC entry 3377 (class 0 OID 18872)
+-- Dependencies: 251
 -- Data for Name: FieldTypes; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO "FieldTypes" VALUES (1, 'TextBox', 'Text box', 1);
-INSERT INTO "FieldTypes" VALUES (2, 'TextArea', 'Text area', 2);
-INSERT INTO "FieldTypes" VALUES (3, 'Checkbox', 'Checkbox', 3);
-INSERT INTO "FieldTypes" VALUES (4, 'RadioButtonList', 'Radio button list', 4);
-INSERT INTO "FieldTypes" VALUES (5, 'DropDownList', 'Drop down list', 5);
-INSERT INTO "FieldTypes" VALUES (6, 'FileUpload', 'File upload', 6);
+INSERT INTO public."FieldTypes" ("Id", "Code", "Name", "Position", "ValidatorCSharpClassName") VALUES (1, 'TextBox', 'Text box', 1, NULL);
+INSERT INTO public."FieldTypes" ("Id", "Code", "Name", "Position", "ValidatorCSharpClassName") VALUES (2, 'TextArea', 'Text area', 2, NULL);
+INSERT INTO public."FieldTypes" ("Id", "Code", "Name", "Position", "ValidatorCSharpClassName") VALUES (3, 'Checkbox', 'Checkbox', 3, NULL);
+INSERT INTO public."FieldTypes" ("Id", "Code", "Name", "Position", "ValidatorCSharpClassName") VALUES (4, 'RadioButtonList', 'Radio button list', 4, NULL);
+INSERT INTO public."FieldTypes" ("Id", "Code", "Name", "Position", "ValidatorCSharpClassName") VALUES (5, 'DropDownList', 'Drop down list', 5, NULL);
+INSERT INTO public."FieldTypes" ("Id", "Code", "Name", "Position", "ValidatorCSharpClassName") VALUES (6, 'FileUpload', 'File upload', 6, NULL);
+INSERT INTO public."FieldTypes" ("Id", "Code", "Name", "Position", "ValidatorCSharpClassName") VALUES (7, 'ReCAPTCHA', 'ReCAPTCHA', 7, 'Platformus.Website.Frontend.FormHandlers.ReCaptchaFieldValidator');
 
 
 --
--- TOC entry 3381 (class 0 OID 31610)
--- Dependencies: 252
+-- TOC entry 3379 (class 0 OID 18883)
+-- Dependencies: 253
 -- Data for Name: Fields; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO "Fields" VALUES (1, 1, 1, 'Name', 8, true, NULL, 10);
-INSERT INTO "Fields" VALUES (2, 1, 1, 'Email', 9, true, NULL, 20);
-INSERT INTO "Fields" VALUES (3, 1, 2, 'Message', 10, true, NULL, 30);
-INSERT INTO "Fields" VALUES (4, 2, 1, 'Name', 13, true, NULL, 10);
-INSERT INTO "Fields" VALUES (5, 2, 2, 'Comment', 14, true, NULL, 20);
+INSERT INTO public."Fields" ("Id", "FormId", "FieldTypeId", "Code", "NameId", "IsRequired", "MaxLength", "Position") VALUES (1, 1, 1, 'Name', 8, true, NULL, 10);
+INSERT INTO public."Fields" ("Id", "FormId", "FieldTypeId", "Code", "NameId", "IsRequired", "MaxLength", "Position") VALUES (2, 1, 1, 'Email', 9, true, NULL, 20);
+INSERT INTO public."Fields" ("Id", "FormId", "FieldTypeId", "Code", "NameId", "IsRequired", "MaxLength", "Position") VALUES (3, 1, 2, 'Message', 10, true, NULL, 30);
+INSERT INTO public."Fields" ("Id", "FormId", "FieldTypeId", "Code", "NameId", "IsRequired", "MaxLength", "Position") VALUES (4, 2, 1, 'Name', 13, true, NULL, 10);
+INSERT INTO public."Fields" ("Id", "FormId", "FieldTypeId", "Code", "NameId", "IsRequired", "MaxLength", "Position") VALUES (5, 2, 2, 'Comment', 14, true, NULL, 20);
 
 
 --
--- TOC entry 3390 (class 0 OID 31706)
+-- TOC entry 3387 (class 0 OID 18961)
 -- Dependencies: 261
 -- Data for Name: Files; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2564,2141 +1791,1420 @@ INSERT INTO "Fields" VALUES (5, 2, 2, 'Comment', 14, true, NULL, 20);
 
 
 --
--- TOC entry 3377 (class 0 OID 31578)
--- Dependencies: 248
+-- TOC entry 3375 (class 0 OID 18851)
+-- Dependencies: 249
 -- Data for Name: Forms; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO "Forms" VALUES (1, 'Feedback', 6, 7, true, 'Platformus.Forms.Frontend.FormHandlers.EmailFormHandler', 'RecipientEmails=test@test.com;RedirectUrl=/contacts');
-INSERT INTO "Forms" VALUES (2, 'WriteComment', 11, 12, true, 'WebApplication.FormHandlers.WriteCommentFormHandler', NULL);
+INSERT INTO public."Forms" ("Id", "Code", "NameId", "SubmitButtonTitleId", "ProduceCompletedForms", "CSharpClassName", "Parameters") VALUES (1, 'Feedback', 6, 7, true, 'Platformus.Website.Frontend.FormHandlers.EmailFormHandler', 'RecipientEmails=test@test.com;RedirectUrl=/contacts');
+INSERT INTO public."Forms" ("Id", "Code", "NameId", "SubmitButtonTitleId", "ProduceCompletedForms", "CSharpClassName", "Parameters") VALUES (2, 'WriteComment', 12, 11, true, 'WebApplication.FormHandlers.WriteCommentFormHandler', NULL);
 
 
 --
--- TOC entry 3346 (class 0 OID 31264)
--- Dependencies: 217
+-- TOC entry 3346 (class 0 OID 18573)
+-- Dependencies: 220
 -- Data for Name: Localizations; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO "Localizations" VALUES (1, 1, 2, 'Main');
-INSERT INTO "Localizations" VALUES (2, 1, 3, 'Главное');
-INSERT INTO "Localizations" VALUES (3, 1, 4, 'Головне');
-INSERT INTO "Localizations" VALUES (4, 2, 2, 'Home');
-INSERT INTO "Localizations" VALUES (5, 2, 3, 'Главная');
-INSERT INTO "Localizations" VALUES (6, 2, 4, 'Головна');
-INSERT INTO "Localizations" VALUES (7, 3, 2, 'About me');
-INSERT INTO "Localizations" VALUES (8, 3, 3, 'Обо мне');
-INSERT INTO "Localizations" VALUES (9, 3, 4, 'Про мене');
-INSERT INTO "Localizations" VALUES (10, 4, 2, 'Blog');
-INSERT INTO "Localizations" VALUES (11, 4, 3, 'Блог');
-INSERT INTO "Localizations" VALUES (12, 4, 4, 'Блог');
-INSERT INTO "Localizations" VALUES (13, 5, 2, 'Contacts');
-INSERT INTO "Localizations" VALUES (14, 5, 3, 'Контакты');
-INSERT INTO "Localizations" VALUES (15, 5, 4, 'Контакти');
-INSERT INTO "Localizations" VALUES (16, 6, 2, 'Feedback');
-INSERT INTO "Localizations" VALUES (17, 6, 3, 'Обратная связь');
-INSERT INTO "Localizations" VALUES (18, 6, 4, 'Зворотний зв’язок');
-INSERT INTO "Localizations" VALUES (19, 7, 2, 'Submit');
-INSERT INTO "Localizations" VALUES (20, 7, 3, 'Отправить');
-INSERT INTO "Localizations" VALUES (21, 7, 4, 'Надіслати');
-INSERT INTO "Localizations" VALUES (22, 8, 2, 'Your name');
-INSERT INTO "Localizations" VALUES (23, 8, 3, 'Ваше имя');
-INSERT INTO "Localizations" VALUES (24, 8, 4, 'Ваше ім’я');
-INSERT INTO "Localizations" VALUES (25, 9, 2, 'Your email');
-INSERT INTO "Localizations" VALUES (26, 9, 3, 'Ваша электронная почта');
-INSERT INTO "Localizations" VALUES (27, 9, 4, 'Ваша електронна пошта');
-INSERT INTO "Localizations" VALUES (28, 10, 2, 'Your message');
-INSERT INTO "Localizations" VALUES (29, 10, 3, 'Ваше сообщение');
-INSERT INTO "Localizations" VALUES (30, 10, 4, 'Ваше повідомлення');
-INSERT INTO "Localizations" VALUES (31, 11, 2, 'Write comment');
-INSERT INTO "Localizations" VALUES (32, 11, 3, 'Напишите комментарий');
-INSERT INTO "Localizations" VALUES (33, 11, 4, 'Напишіть коментар');
-INSERT INTO "Localizations" VALUES (34, 12, 2, 'Submit');
-INSERT INTO "Localizations" VALUES (35, 12, 3, 'Отправить');
-INSERT INTO "Localizations" VALUES (36, 12, 4, 'Надіслати');
-INSERT INTO "Localizations" VALUES (37, 13, 2, 'Your name');
-INSERT INTO "Localizations" VALUES (38, 13, 3, 'Ваше имя');
-INSERT INTO "Localizations" VALUES (39, 13, 4, 'Ваше ім’я');
-INSERT INTO "Localizations" VALUES (40, 14, 2, 'Your comment');
-INSERT INTO "Localizations" VALUES (41, 14, 3, 'Ваш ');
-INSERT INTO "Localizations" VALUES (42, 14, 4, 'Ваше повідомлення');
-INSERT INTO "Localizations" VALUES (43, 15, 1, '/');
-INSERT INTO "Localizations" VALUES (44, 16, 2, '<h1>Your Personal Blog</h1><p>Hello! This is your personal blog, it is based on the <a href="http://platformus.net/" target="_blank" rel="noopener">Platformus</a> content management system. You can manage it (create pages, menu items, forms and so on) using the <a href="/backend">backend</a>. Please use the username and password specified during the installation to sign in (it is &ldquo;admin@platformus.net&rdquo; and &ldquo;admin&rdquo; by default).</p><p>Please use the <a href="http://docs.platformus.net/" target="_blank" rel="noopener">documentation</a> to learn more about Platformus and how to use it. There are several examples that could be useful for the beginners. Also, you can get help in our <a href="https://gitter.im/Platformus/Platformus" target="_blank" rel="noopener">chat</a>.</p><p>Have a nice work!</p>');
-INSERT INTO "Localizations" VALUES (45, 16, 3, '<h1>Ваш персональный блог</h1><p>Здравствуйте! Это ваш персональный блог, он работает на базе системы управления содержимым &laquo;<a href="http://platformus.net/" target="_blank" rel="noopener">Платформус</a>&raquo;. Вы можете управлять им (создавать страницы, элементы меню, формы и так далее) с помощью <a href="/backend">бекенда</a>. Для входа используйте, пожалуйста, имя пользователя и пароль, указанные при установке (по умолчанию это &laquo;admin@platformus.net&raquo; и &laquo;admin&raquo; соответственно).</p><p>Чтобы узнать больше о Платформусе и о том, как им пользоваться, пожалуйста, воспользуйтесь <a href="http://docs.platformus.net/" target="_blank" rel="noopener">документацией</a>, там есть несколько примеров, которые пригодятся начинающим. При возникновении сложностей или вопросов вы можете обратиться в наш <a href="https://gitter.im/Platformus/Platformus" target="_blank" rel="noopener">чат</a>, где вам обязательно помогут.</p><p>Приятной работы!</p>');
-INSERT INTO "Localizations" VALUES (46, 16, 4, '<h1>Ваш персональний блог</h1><p>Вітаємо! Це ваш персональний блог, він працює на базі системи керування вмістом &laquo;<a href="http://platformus.net/" target="_blank" rel="noopener">Платформус</a>&raquo;. Ви можете керувати ним (створювати сторінки, елементи меню, форми і так далі) за допомогою <a href="/backend">бекенду</a>. Для входу використовуйте, будь ласка, ім&rsquo;я користувача і пароль, вказані під час установки (за замовчуванням це &laquo;admin@platformus.net&raquo; і &laquo;admin&raquo; відповідно).</p><p>Щоб дізнатися більше про Платформус і про те, як ним користуватися, будь ласка, скористайтеся <a href="http://docs.platformus.net/" target="_blank" rel="noopener">документацією</a>, там є декілька прикладів, що стануть у нагоді початківцям. При виникненні труднощів або питань ви можете звернутися в наш <a href="https://gitter.im/Platformus/Platformus" target="_blank" rel="noopener">чат</a>, де вам обов&rsquo;язково допоможуть.</p><p>Приємної роботи!</p>');
-INSERT INTO "Localizations" VALUES (47, 17, 2, 'Your Personal Blog');
-INSERT INTO "Localizations" VALUES (48, 17, 3, 'Ваш персональный блог');
-INSERT INTO "Localizations" VALUES (49, 17, 4, 'Ваш персональний блог');
-INSERT INTO "Localizations" VALUES (50, 18, 2, '');
-INSERT INTO "Localizations" VALUES (51, 18, 3, '');
-INSERT INTO "Localizations" VALUES (52, 18, 4, '');
-INSERT INTO "Localizations" VALUES (53, 19, 2, '');
-INSERT INTO "Localizations" VALUES (54, 19, 3, '');
-INSERT INTO "Localizations" VALUES (55, 19, 4, '');
-INSERT INTO "Localizations" VALUES (56, 20, 1, '/about-me');
-INSERT INTO "Localizations" VALUES (57, 21, 2, '<h1>About Me</h1><p>Tell us about yourself in a few words. You can add photos or videos here.</p>');
-INSERT INTO "Localizations" VALUES (58, 21, 3, '<h1>Обо мне</h1><p>Расскажите о себе в нескольких словах. Вы можете добавить сюда фотографии или видео.</p>');
-INSERT INTO "Localizations" VALUES (59, 21, 4, '<h1>Про мене</h1><p>Розкажіть про себе в кількох словах. Ви можете додати сюди фотографії або відео.</p>');
-INSERT INTO "Localizations" VALUES (60, 22, 2, 'About Me');
-INSERT INTO "Localizations" VALUES (61, 22, 3, 'Обо мне');
-INSERT INTO "Localizations" VALUES (62, 22, 4, 'Про мене');
-INSERT INTO "Localizations" VALUES (63, 23, 2, '');
-INSERT INTO "Localizations" VALUES (64, 23, 3, '');
-INSERT INTO "Localizations" VALUES (65, 23, 4, '');
-INSERT INTO "Localizations" VALUES (66, 24, 2, '');
-INSERT INTO "Localizations" VALUES (67, 24, 3, '');
-INSERT INTO "Localizations" VALUES (68, 24, 4, '');
-INSERT INTO "Localizations" VALUES (69, 25, 1, '/blog');
-INSERT INTO "Localizations" VALUES (70, 26, 2, '<h1>Blog</h1>');
-INSERT INTO "Localizations" VALUES (71, 26, 3, '<h1>Блог</h1>');
-INSERT INTO "Localizations" VALUES (72, 26, 4, '<h1>Блог</h1>');
-INSERT INTO "Localizations" VALUES (73, 27, 2, 'Blog');
-INSERT INTO "Localizations" VALUES (74, 27, 3, 'Блог');
-INSERT INTO "Localizations" VALUES (75, 27, 4, 'Блог');
-INSERT INTO "Localizations" VALUES (76, 28, 2, '');
-INSERT INTO "Localizations" VALUES (77, 28, 3, '');
-INSERT INTO "Localizations" VALUES (78, 28, 4, '');
-INSERT INTO "Localizations" VALUES (79, 29, 2, '');
-INSERT INTO "Localizations" VALUES (80, 29, 3, '');
-INSERT INTO "Localizations" VALUES (81, 29, 4, '');
-INSERT INTO "Localizations" VALUES (82, 30, 1, '/contacts');
-INSERT INTO "Localizations" VALUES (83, 31, 2, '<h1>Contacts</h1><p>Add your contacts on this page. Phone number, messengers, social links. The feedback form below (by the way, you can edit or move it to a different place) allows your visitors to write you directly from the website, just don&rsquo;t forget to specify the email address for the messages.</p><h2>Feedback from</h2>');
-INSERT INTO "Localizations" VALUES (84, 31, 3, '<h1>Контакты</h1><p>Добавьте свои контакты на этой странице. Телефонный номер, мессенджеры, ссылки на социальные сети. Форма обратной связи, расположенная ниже (кстати, вы можете ее изменить или перенести в другое место), поможет посетителям написать вам сообщение прямо с сайта, лишь укажите для этого адрес, на который нужно присылать сообщения.</p><h2>Форма обратной связи</h2>');
-INSERT INTO "Localizations" VALUES (85, 31, 4, '<h1>Контакти</h1><p>Додайте свої контакти на цій сторінці. Номер телефону, месенджери, посилання на соціальні мережі. Форма зворотного зв&rsquo;язку, розташована нижче (до речі, ви можете її змінити або перенести в інше місце), допоможе відвідувачам написати вам повідомлення прямо з сайту, лише вкажіть для цього адресу, на яку потрібно надсилати повідомлення.</p><h2>Форма зворотного зв&rsquo;язку</h2>');
-INSERT INTO "Localizations" VALUES (86, 32, 2, 'Contacts');
-INSERT INTO "Localizations" VALUES (87, 32, 3, 'Контакты');
-INSERT INTO "Localizations" VALUES (88, 32, 4, 'Контакти');
-INSERT INTO "Localizations" VALUES (89, 33, 2, '');
-INSERT INTO "Localizations" VALUES (90, 33, 3, '');
-INSERT INTO "Localizations" VALUES (91, 33, 4, '');
-INSERT INTO "Localizations" VALUES (92, 34, 2, '');
-INSERT INTO "Localizations" VALUES (93, 34, 3, '');
-INSERT INTO "Localizations" VALUES (94, 34, 4, '');
-INSERT INTO "Localizations" VALUES (95, 35, 1, 'Tag1');
-INSERT INTO "Localizations" VALUES (96, 36, 1, 'Tag2');
-INSERT INTO "Localizations" VALUES (97, 37, 1, 'Tag3');
-INSERT INTO "Localizations" VALUES (98, 38, 1, 'Tag4');
-INSERT INTO "Localizations" VALUES (99, 39, 1, 'Tag5');
-INSERT INTO "Localizations" VALUES (100, 40, 2, 'Post 1');
-INSERT INTO "Localizations" VALUES (101, 40, 3, 'Пост 1');
-INSERT INTO "Localizations" VALUES (102, 40, 4, 'Пост 1');
-INSERT INTO "Localizations" VALUES (103, 41, 1, '/images/objects/10/cover.jpg');
-INSERT INTO "Localizations" VALUES (104, 42, 2, '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>');
-INSERT INTO "Localizations" VALUES (105, 42, 3, '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>');
-INSERT INTO "Localizations" VALUES (106, 42, 4, '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>');
-INSERT INTO "Localizations" VALUES (107, 43, 1, '/blog/post-1');
-INSERT INTO "Localizations" VALUES (108, 44, 2, '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>');
-INSERT INTO "Localizations" VALUES (109, 44, 3, '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>');
-INSERT INTO "Localizations" VALUES (138, 55, 3, '');
-INSERT INTO "Localizations" VALUES (139, 55, 4, '');
-INSERT INTO "Localizations" VALUES (140, 56, 2, 'Post 3');
-INSERT INTO "Localizations" VALUES (141, 56, 3, 'Пост 3');
-INSERT INTO "Localizations" VALUES (142, 56, 4, 'Пост 3');
-INSERT INTO "Localizations" VALUES (143, 57, 1, '/images/objects/12/cover.jpg');
-INSERT INTO "Localizations" VALUES (110, 44, 4, '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>');
-INSERT INTO "Localizations" VALUES (111, 45, 2, 'Post 1');
-INSERT INTO "Localizations" VALUES (112, 45, 3, 'Пост 1');
-INSERT INTO "Localizations" VALUES (113, 45, 4, 'Пост 1');
-INSERT INTO "Localizations" VALUES (114, 46, 2, '');
-INSERT INTO "Localizations" VALUES (115, 46, 3, '');
-INSERT INTO "Localizations" VALUES (116, 46, 4, '');
-INSERT INTO "Localizations" VALUES (117, 47, 2, '');
-INSERT INTO "Localizations" VALUES (118, 47, 3, '');
-INSERT INTO "Localizations" VALUES (119, 47, 4, '');
-INSERT INTO "Localizations" VALUES (120, 48, 2, 'Post 2');
-INSERT INTO "Localizations" VALUES (121, 48, 3, 'Пост 2');
-INSERT INTO "Localizations" VALUES (122, 48, 4, 'Пост 2');
-INSERT INTO "Localizations" VALUES (123, 49, 1, '/images/objects/11/cover.jpg');
-INSERT INTO "Localizations" VALUES (124, 50, 2, '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>');
-INSERT INTO "Localizations" VALUES (125, 50, 3, '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>');
-INSERT INTO "Localizations" VALUES (126, 50, 4, '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>');
-INSERT INTO "Localizations" VALUES (127, 51, 1, '/blog/post-2');
-INSERT INTO "Localizations" VALUES (128, 52, 2, '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>');
-INSERT INTO "Localizations" VALUES (129, 52, 3, '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>');
-INSERT INTO "Localizations" VALUES (130, 52, 4, '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>');
-INSERT INTO "Localizations" VALUES (131, 53, 2, 'Post 2');
-INSERT INTO "Localizations" VALUES (132, 53, 3, 'Пост 2');
-INSERT INTO "Localizations" VALUES (133, 53, 4, 'Пост 2');
-INSERT INTO "Localizations" VALUES (134, 54, 2, '');
-INSERT INTO "Localizations" VALUES (135, 54, 3, '');
-INSERT INTO "Localizations" VALUES (136, 54, 4, '');
-INSERT INTO "Localizations" VALUES (137, 55, 2, '');
-INSERT INTO "Localizations" VALUES (144, 58, 2, '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>');
-INSERT INTO "Localizations" VALUES (145, 58, 3, '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>');
-INSERT INTO "Localizations" VALUES (146, 58, 4, '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>');
-INSERT INTO "Localizations" VALUES (147, 59, 1, '/blog/post-3');
-INSERT INTO "Localizations" VALUES (148, 60, 2, '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>');
-INSERT INTO "Localizations" VALUES (149, 60, 3, '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>');
-INSERT INTO "Localizations" VALUES (150, 60, 4, '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>');
-INSERT INTO "Localizations" VALUES (151, 61, 2, 'Post 3');
-INSERT INTO "Localizations" VALUES (152, 61, 3, 'Пост 3');
-INSERT INTO "Localizations" VALUES (153, 61, 4, 'Пост 3');
-INSERT INTO "Localizations" VALUES (154, 62, 2, '');
-INSERT INTO "Localizations" VALUES (155, 62, 3, '');
-INSERT INTO "Localizations" VALUES (156, 62, 4, '');
-INSERT INTO "Localizations" VALUES (157, 63, 2, '');
-INSERT INTO "Localizations" VALUES (158, 63, 3, '');
-INSERT INTO "Localizations" VALUES (159, 63, 4, '');
-INSERT INTO "Localizations" VALUES (160, 64, 2, 'Post 4');
-INSERT INTO "Localizations" VALUES (161, 64, 3, 'Пост 4');
-INSERT INTO "Localizations" VALUES (162, 64, 4, 'Пост 4');
-INSERT INTO "Localizations" VALUES (163, 65, 1, '/images/objects/13/cover.jpg');
-INSERT INTO "Localizations" VALUES (164, 66, 2, '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>');
-INSERT INTO "Localizations" VALUES (165, 66, 3, '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>');
-INSERT INTO "Localizations" VALUES (166, 66, 4, '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>');
-INSERT INTO "Localizations" VALUES (167, 67, 1, '/blog/post-4');
-INSERT INTO "Localizations" VALUES (168, 68, 2, '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>');
-INSERT INTO "Localizations" VALUES (169, 68, 3, '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>');
-INSERT INTO "Localizations" VALUES (170, 68, 4, '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>');
-INSERT INTO "Localizations" VALUES (171, 69, 2, 'Post 4');
-INSERT INTO "Localizations" VALUES (172, 69, 3, 'Пост 4');
-INSERT INTO "Localizations" VALUES (173, 69, 4, 'Пост 4');
-INSERT INTO "Localizations" VALUES (174, 70, 2, '');
-INSERT INTO "Localizations" VALUES (175, 70, 3, '');
-INSERT INTO "Localizations" VALUES (176, 70, 4, '');
-INSERT INTO "Localizations" VALUES (177, 71, 2, '');
-INSERT INTO "Localizations" VALUES (178, 71, 3, '');
-INSERT INTO "Localizations" VALUES (179, 71, 4, '');
-INSERT INTO "Localizations" VALUES (180, 72, 2, 'Post 5');
-INSERT INTO "Localizations" VALUES (181, 72, 3, 'Пост 5');
-INSERT INTO "Localizations" VALUES (182, 72, 4, 'Пост 5');
-INSERT INTO "Localizations" VALUES (183, 73, 1, '/images/objects/14/cover.jpg');
-INSERT INTO "Localizations" VALUES (184, 74, 2, '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>');
-INSERT INTO "Localizations" VALUES (185, 74, 3, '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>');
-INSERT INTO "Localizations" VALUES (186, 74, 4, '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>');
-INSERT INTO "Localizations" VALUES (187, 75, 1, '/blog/post-5');
-INSERT INTO "Localizations" VALUES (188, 76, 2, '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>');
-INSERT INTO "Localizations" VALUES (189, 76, 3, '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>');
-INSERT INTO "Localizations" VALUES (190, 76, 4, '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>');
-INSERT INTO "Localizations" VALUES (191, 77, 2, 'Post 5');
-INSERT INTO "Localizations" VALUES (192, 77, 3, 'Пост 5');
-INSERT INTO "Localizations" VALUES (193, 77, 4, 'Пост 5');
-INSERT INTO "Localizations" VALUES (194, 78, 2, '');
-INSERT INTO "Localizations" VALUES (195, 78, 3, '');
-INSERT INTO "Localizations" VALUES (196, 78, 4, '');
-INSERT INTO "Localizations" VALUES (197, 79, 2, '');
-INSERT INTO "Localizations" VALUES (198, 79, 3, '');
-INSERT INTO "Localizations" VALUES (199, 79, 4, '');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (1, 1, 'en', 'Main');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (2, 1, 'ru', 'Главное');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (3, 1, 'uk', 'Головне');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (4, 2, 'uk', 'Головна');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (5, 2, 'ru', 'Главная');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (6, 2, 'en', 'Home');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (7, 3, 'uk', 'Про мене');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (8, 3, 'ru', 'Обо мне');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (9, 3, 'en', 'About me');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (10, 4, 'uk', 'Блог');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (11, 4, 'ru', 'Блог');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (12, 4, 'en', 'Blog');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (13, 5, 'uk', 'Контакти');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (14, 5, 'ru', 'Контакты');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (15, 5, 'en', 'Contacts');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (16, 6, 'uk', 'Зворотний зв’язок');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (17, 6, 'ru', 'Обратная связь');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (18, 6, 'en', 'Feedback');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (19, 7, 'en', 'Submit');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (20, 7, 'ru', 'Отправить');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (21, 7, 'uk', 'Надіслати');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (22, 8, 'uk', 'Ваше ім’я');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (23, 8, 'ru', 'Ваше имя');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (24, 8, 'en', 'Your name');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (25, 9, 'uk', 'Ваша електронна пошта');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (26, 9, 'ru', 'Ваша электронная почта');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (27, 9, 'en', 'Your email');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (28, 10, 'uk', 'Ваше повідомлення');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (29, 10, 'ru', 'Ваше сообщение');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (30, 10, 'en', 'Your message');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (31, 11, 'uk', 'Надіслати');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (32, 11, 'ru', 'Отправить');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (33, 11, 'en', 'Submit');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (34, 12, 'uk', 'Напишіть коментар');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (35, 12, 'ru', 'Напишите комментарий');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (36, 12, 'en', 'Write comment');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (37, 13, 'uk', 'Ваше ім’я');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (38, 13, 'ru', 'Ваше имя');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (39, 13, 'en', 'Your name');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (40, 14, 'uk', 'Ваше повідомлення');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (41, 14, 'ru', 'Ваш ');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (42, 14, 'en', 'Your comment');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (43, 15, '__', '/');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (44, 16, 'uk', '<h1>Ваш персональний блог</h1><p>Вітаємо! Це ваш персональний блог, він працює на базі системи керування вмістом &laquo;<a href="http://platformus.net/" target="_blank" rel="noopener">Платформус</a>&raquo;. Ви можете керувати ним (створювати сторінки, елементи меню, форми і так далі) за допомогою <a href="/backend">бекенду</a>. Для входу використовуйте, будь ласка, ім&rsquo;я користувача і пароль, вказані під час установки (за замовчуванням це &laquo;admin@platformus.net&raquo; і &laquo;admin&raquo; відповідно).</p><p>Щоб дізнатися більше про Платформус і про те, як ним користуватися, будь ласка, скористайтеся <a href="http://docs.platformus.net/" target="_blank" rel="noopener">документацією</a>, там є декілька прикладів, що стануть у нагоді початківцям. При виникненні труднощів або питань ви можете звернутися в наш <a href="https://gitter.im/Platformus/Platformus" target="_blank" rel="noopener">чат</a>, де вам обов&rsquo;язково допоможуть.</p><p>Приємної роботи!</p>');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (45, 16, 'ru', '<h1>Ваш персональный блог</h1><p>Здравствуйте! Это ваш персональный блог, он работает на базе системы управления содержимым &laquo;<a href="http://platformus.net/" target="_blank" rel="noopener">Платформус</a>&raquo;. Вы можете управлять им (создавать страницы, элементы меню, формы и так далее) с помощью <a href="/backend">бекенда</a>. Для входа используйте, пожалуйста, имя пользователя и пароль, указанные при установке (по умолчанию это &laquo;admin@platformus.net&raquo; и &laquo;admin&raquo; соответственно).</p><p>Чтобы узнать больше о Платформусе и о том, как им пользоваться, пожалуйста, воспользуйтесь <a href="http://docs.platformus.net/" target="_blank" rel="noopener">документацией</a>, там есть несколько примеров, которые пригодятся начинающим. При возникновении сложностей или вопросов вы можете обратиться в наш <a href="https://gitter.im/Platformus/Platformus" target="_blank" rel="noopener">чат</a>, где вам обязательно помогут.</p><p>Приятной работы!</p>');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (46, 16, 'en', '<h1>Your Personal Blog</h1><p>Hello! This is your personal blog, it is based on the <a href="http://platformus.net/" target="_blank" rel="noopener">Platformus</a> content management system. You can manage it (create pages, menu items, forms and so on) using the <a href="/backend">backend</a>. Please use the username and password specified during the installation to sign in (it is &ldquo;admin@platformus.net&rdquo; and &ldquo;admin&rdquo; by default).</p><p>Please use the <a href="http://docs.platformus.net/" target="_blank" rel="noopener">documentation</a> to learn more about Platformus and how to use it. There are several examples that could be useful for the beginners. Also, you can get help in our <a href="https://gitter.im/Platformus/Platformus" target="_blank" rel="noopener">chat</a>.</p><p>Have a nice work!</p>');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (47, 17, 'uk', 'Ваш персональний блог');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (48, 17, 'ru', 'Ваш персональный блог');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (49, 17, 'en', 'Your Personal Blog');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (50, 18, 'uk', '');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (51, 18, 'ru', '');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (52, 18, 'en', '');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (53, 19, 'uk', '');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (54, 19, 'ru', '');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (55, 19, 'en', '');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (56, 20, '__', '/about-me');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (57, 21, 'uk', '<h1>Про мене</h1><p>Розкажіть про себе в кількох словах. Ви можете додати сюди фотографії або відео.</p>');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (58, 21, 'ru', '<h1>Обо мне</h1><p>Расскажите о себе в нескольких словах. Вы можете добавить сюда фотографии или видео.</p>');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (59, 21, 'en', '<h1>About Me</h1><p>Tell us about yourself in a few words. You can add photos or videos here.</p>');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (60, 22, 'uk', 'Про мене');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (61, 22, 'ru', 'Обо мне');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (62, 22, 'en', 'About Me');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (63, 23, 'uk', '');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (64, 23, 'ru', '');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (65, 23, 'en', '');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (66, 24, 'uk', '');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (67, 24, 'ru', '');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (68, 24, 'en', '');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (69, 25, '__', '/blog');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (70, 26, 'uk', '<h1>Блог</h1>');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (71, 26, 'ru', '<h1>Блог</h1>');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (72, 26, 'en', '<h1>Blog</h1>');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (73, 27, 'uk', 'Блог');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (74, 27, 'ru', 'Блог');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (75, 27, 'en', 'Blog');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (76, 28, 'uk', '');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (77, 28, 'ru', '');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (78, 28, 'en', '');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (79, 29, 'uk', '');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (80, 29, 'ru', '');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (81, 29, 'en', '');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (95, 35, 'uk', 'Тег1');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (96, 35, 'ru', 'Тэг1');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (97, 35, 'en', 'Tag1');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (101, 37, 'uk', 'Тег3');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (102, 37, 'ru', 'Тэг3');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (103, 37, 'en', 'Tag3');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (107, 39, 'uk', 'Тег5');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (108, 39, 'ru', 'Тэг5');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (109, 39, 'en', 'Tag5');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (130, 48, '__', '/blog/post-2');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (131, 49, '__', '/images/objects/11/cover.jpg');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (132, 50, 'uk', 'Пост 2');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (133, 50, 'ru', 'Пост 2');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (134, 50, 'en', 'Post 2');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (135, 51, 'uk', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (136, 51, 'ru', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (137, 51, 'en', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (138, 52, 'uk', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (139, 52, 'ru', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (140, 52, 'en', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (141, 53, 'uk', 'Пост 2');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (142, 53, 'ru', 'Пост 2');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (143, 53, 'en', 'Post 2');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (144, 54, 'uk', '');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (145, 54, 'ru', '');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (146, 54, 'en', '');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (147, 55, 'uk', '');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (148, 55, 'ru', '');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (149, 55, 'en', '');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (170, 64, '__', '/blog/post-4');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (171, 65, '__', '/images/objects/13/cover.jpg');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (172, 66, 'uk', 'Пост 4');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (173, 66, 'ru', 'Пост 4');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (174, 66, 'en', 'Post 4');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (175, 67, 'uk', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (176, 67, 'ru', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (177, 67, 'en', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (178, 68, 'uk', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (179, 68, 'ru', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (180, 68, 'en', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (181, 69, 'uk', 'Пост 4');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (182, 69, 'ru', 'Пост 4');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (183, 69, 'en', 'Post 4');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (82, 30, '__', '/contacts');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (83, 31, 'uk', '<h1>Контакти</h1><p>Додайте свої контакти на цій сторінці. Номер телефону, месенджери, посилання на соціальні мережі. Форма зворотного зв&rsquo;язку, розташована нижче (до речі, ви можете її змінити або перенести в інше місце), допоможе відвідувачам написати вам повідомлення прямо з сайту, лише вкажіть для цього адресу, на яку потрібно надсилати повідомлення.</p><h2>Форма зворотного зв&rsquo;язку</h2>');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (84, 31, 'ru', '<h1>Контакты</h1><p>Добавьте свои контакты на этой странице. Телефонный номер, мессенджеры, ссылки на социальные сети. Форма обратной связи, расположенная ниже (кстати, вы можете ее изменить или перенести в другое место), поможет посетителям написать вам сообщение прямо с сайта, лишь укажите для этого адрес, на который нужно присылать сообщения.</p><h2>Форма обратной связи</h2>');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (85, 31, 'en', '<h1>Contacts</h1><p>Add your contacts on this page. Phone number, messengers, social links. The feedback form below (by the way, you can edit or move it to a different place) allows your visitors to write you directly from the website, just don&rsquo;t forget to specify the email address for the messages.</p><h2>Feedback from</h2>');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (86, 32, 'uk', 'Контакти');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (87, 32, 'ru', 'Контакты');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (88, 32, 'en', 'Contacts');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (89, 33, 'uk', '');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (90, 33, 'ru', '');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (91, 33, 'en', '');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (92, 34, 'uk', '');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (93, 34, 'ru', '');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (94, 34, 'en', '');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (98, 36, 'uk', 'Тег2');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (99, 36, 'ru', 'Тэг2');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (100, 36, 'en', 'Tag2');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (104, 38, 'uk', 'Тег4');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (105, 38, 'ru', 'Тэг4');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (106, 38, 'en', 'Tag4');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (110, 40, '__', '/blog/post-1');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (111, 41, '__', '/images/objects/10/cover.jpg');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (112, 42, 'uk', 'Пост 1');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (113, 42, 'ru', 'Пост 1');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (114, 42, 'en', 'Post 1');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (115, 43, 'uk', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (116, 43, 'ru', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (117, 43, 'en', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (118, 44, 'uk', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (119, 44, 'ru', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (120, 44, 'en', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (121, 45, 'uk', 'Пост 1');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (122, 45, 'ru', 'Пост 1');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (123, 45, 'en', 'Post 1');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (124, 46, 'uk', '');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (125, 46, 'ru', '');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (126, 46, 'en', '');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (127, 47, 'uk', '');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (128, 47, 'ru', '');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (129, 47, 'en', '');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (150, 56, '__', '/blog/post-3');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (151, 57, '__', '/images/objects/12/cover.jpg');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (152, 58, 'uk', 'Пост 3');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (153, 58, 'ru', 'Пост 3');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (154, 58, 'en', 'Post 3');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (155, 59, 'uk', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (156, 59, 'ru', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (157, 59, 'en', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (158, 60, 'uk', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (159, 60, 'ru', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (160, 60, 'en', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (161, 61, 'uk', 'Пост 3');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (162, 61, 'ru', 'Пост 3');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (163, 61, 'en', 'Post 3');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (164, 62, 'uk', '');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (165, 62, 'ru', '');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (166, 62, 'en', '');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (167, 63, 'uk', '');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (168, 63, 'ru', '');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (169, 63, 'en', '');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (190, 72, '__', '/blog/post-5');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (191, 73, '__', '/images/objects/14/cover.jpg');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (192, 74, 'uk', 'Пост 5');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (193, 74, 'ru', 'Пост 5');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (194, 74, 'en', 'Post 5');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (195, 75, 'uk', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (196, 75, 'ru', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (197, 75, 'en', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (198, 76, 'uk', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (199, 76, 'ru', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (200, 76, 'en', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (201, 77, 'uk', 'Пост 5');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (202, 77, 'ru', 'Пост 5');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (203, 77, 'en', 'Post 5');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (204, 78, 'uk', '');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (205, 78, 'ru', '');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (206, 78, 'en', '');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (207, 79, 'uk', '');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (208, 79, 'ru', '');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (209, 79, 'en', '');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (184, 70, 'uk', '');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (185, 70, 'ru', '');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (186, 70, 'en', '');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (187, 71, 'uk', '');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (188, 71, 'ru', '');
+INSERT INTO public."Localizations" ("Id", "DictionaryId", "CultureId", "Value") VALUES (189, 71, 'en', '');
 
 
 --
--- TOC entry 3361 (class 0 OID 31386)
--- Dependencies: 232
+-- TOC entry 3361 (class 0 OID 18695)
+-- Dependencies: 235
 -- Data for Name: Members; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO "Members" VALUES (1, 1, NULL, 'Url', 'URL', 1, 1, false, true, NULL, NULL, NULL, NULL);
-INSERT INTO "Members" VALUES (2, 1, NULL, 'Content', 'Content', 100, 3, true, false, NULL, NULL, NULL, NULL);
-INSERT INTO "Members" VALUES (3, 1, 1, 'Title', 'Title', 1000, 1, true, false, NULL, NULL, NULL, NULL);
-INSERT INTO "Members" VALUES (4, 1, 1, 'MetaDescription', 'META description', 1010, 1, true, false, NULL, NULL, NULL, NULL);
-INSERT INTO "Members" VALUES (5, 1, 1, 'MetaKeywords', 'META keywords', 1020, 1, true, false, NULL, NULL, NULL, NULL);
-INSERT INTO "Members" VALUES (6, 3, NULL, 'Text', 'Text', 10, 1, false, true, NULL, NULL, NULL, NULL);
-INSERT INTO "Members" VALUES (7, 4, NULL, 'Author', 'Author', 10, 1, false, true, NULL, NULL, NULL, NULL);
-INSERT INTO "Members" VALUES (8, 4, NULL, 'Text', 'Text', 20, 2, false, false, NULL, NULL, NULL, NULL);
-INSERT INTO "Members" VALUES (9, 4, NULL, 'Created', 'Created', 30, 7, false, true, NULL, NULL, NULL, NULL);
-INSERT INTO "Members" VALUES (10, 5, NULL, 'Name', 'Name', 10, 1, true, true, NULL, NULL, NULL, NULL);
-INSERT INTO "Members" VALUES (11, 5, NULL, 'Tags', 'Tags', 20, NULL, NULL, NULL, 3, false, NULL, NULL);
-INSERT INTO "Members" VALUES (12, 5, NULL, 'Cover', 'Cover', 30, 8, false, false, NULL, NULL, NULL, NULL);
-INSERT INTO "Members" VALUES (13, 5, NULL, 'Preview', 'Preview', 40, 3, true, false, NULL, NULL, NULL, NULL);
-INSERT INTO "Members" VALUES (14, 5, NULL, 'Created', 'Created', 200, 7, false, true, NULL, NULL, NULL, NULL);
-INSERT INTO "Members" VALUES (15, 5, NULL, 'Comments', 'Comments', 0, NULL, NULL, NULL, 4, true, NULL, NULL);
+INSERT INTO public."Members" ("Id", "ClassId", "TabId", "Code", "Name", "Position", "PropertyDataTypeId", "IsPropertyLocalizable", "IsPropertyVisibleInList", "RelationClassId", "IsRelationSingleParent", "MinRelatedObjectsNumber", "MaxRelatedObjectsNumber") VALUES (1, 1, NULL, 'Url', 'URL', 1, 1, false, true, NULL, NULL, NULL, NULL);
+INSERT INTO public."Members" ("Id", "ClassId", "TabId", "Code", "Name", "Position", "PropertyDataTypeId", "IsPropertyLocalizable", "IsPropertyVisibleInList", "RelationClassId", "IsRelationSingleParent", "MinRelatedObjectsNumber", "MaxRelatedObjectsNumber") VALUES (2, 1, NULL, 'Content', 'Content', 100, 3, true, false, NULL, NULL, NULL, NULL);
+INSERT INTO public."Members" ("Id", "ClassId", "TabId", "Code", "Name", "Position", "PropertyDataTypeId", "IsPropertyLocalizable", "IsPropertyVisibleInList", "RelationClassId", "IsRelationSingleParent", "MinRelatedObjectsNumber", "MaxRelatedObjectsNumber") VALUES (3, 1, 1, 'Title', 'Title', 1000, 1, true, false, NULL, NULL, NULL, NULL);
+INSERT INTO public."Members" ("Id", "ClassId", "TabId", "Code", "Name", "Position", "PropertyDataTypeId", "IsPropertyLocalizable", "IsPropertyVisibleInList", "RelationClassId", "IsRelationSingleParent", "MinRelatedObjectsNumber", "MaxRelatedObjectsNumber") VALUES (4, 1, 1, 'MetaDescription', 'META description', 1010, 1, true, false, NULL, NULL, NULL, NULL);
+INSERT INTO public."Members" ("Id", "ClassId", "TabId", "Code", "Name", "Position", "PropertyDataTypeId", "IsPropertyLocalizable", "IsPropertyVisibleInList", "RelationClassId", "IsRelationSingleParent", "MinRelatedObjectsNumber", "MaxRelatedObjectsNumber") VALUES (5, 1, 1, 'MetaKeywords', 'META keywords', 1020, 1, true, false, NULL, NULL, NULL, NULL);
+INSERT INTO public."Members" ("Id", "ClassId", "TabId", "Code", "Name", "Position", "PropertyDataTypeId", "IsPropertyLocalizable", "IsPropertyVisibleInList", "RelationClassId", "IsRelationSingleParent", "MinRelatedObjectsNumber", "MaxRelatedObjectsNumber") VALUES (6, 3, NULL, 'Text', 'Text', 10, 1, true, true, NULL, NULL, NULL, NULL);
+INSERT INTO public."Members" ("Id", "ClassId", "TabId", "Code", "Name", "Position", "PropertyDataTypeId", "IsPropertyLocalizable", "IsPropertyVisibleInList", "RelationClassId", "IsRelationSingleParent", "MinRelatedObjectsNumber", "MaxRelatedObjectsNumber") VALUES (7, 4, NULL, 'Author', 'Author', 10, 1, false, true, NULL, NULL, NULL, NULL);
+INSERT INTO public."Members" ("Id", "ClassId", "TabId", "Code", "Name", "Position", "PropertyDataTypeId", "IsPropertyLocalizable", "IsPropertyVisibleInList", "RelationClassId", "IsRelationSingleParent", "MinRelatedObjectsNumber", "MaxRelatedObjectsNumber") VALUES (8, 4, NULL, 'Text', 'Text', 20, 2, false, false, NULL, NULL, NULL, NULL);
+INSERT INTO public."Members" ("Id", "ClassId", "TabId", "Code", "Name", "Position", "PropertyDataTypeId", "IsPropertyLocalizable", "IsPropertyVisibleInList", "RelationClassId", "IsRelationSingleParent", "MinRelatedObjectsNumber", "MaxRelatedObjectsNumber") VALUES (9, 4, NULL, 'Created', 'Created', 30, 7, false, true, NULL, NULL, NULL, NULL);
+INSERT INTO public."Members" ("Id", "ClassId", "TabId", "Code", "Name", "Position", "PropertyDataTypeId", "IsPropertyLocalizable", "IsPropertyVisibleInList", "RelationClassId", "IsRelationSingleParent", "MinRelatedObjectsNumber", "MaxRelatedObjectsNumber") VALUES (10, 5, NULL, 'Name', 'Name', 10, 1, true, true, NULL, NULL, NULL, NULL);
+INSERT INTO public."Members" ("Id", "ClassId", "TabId", "Code", "Name", "Position", "PropertyDataTypeId", "IsPropertyLocalizable", "IsPropertyVisibleInList", "RelationClassId", "IsRelationSingleParent", "MinRelatedObjectsNumber", "MaxRelatedObjectsNumber") VALUES (11, 5, NULL, 'Tags', 'Tags', 20, NULL, NULL, NULL, 3, false, NULL, NULL);
+INSERT INTO public."Members" ("Id", "ClassId", "TabId", "Code", "Name", "Position", "PropertyDataTypeId", "IsPropertyLocalizable", "IsPropertyVisibleInList", "RelationClassId", "IsRelationSingleParent", "MinRelatedObjectsNumber", "MaxRelatedObjectsNumber") VALUES (12, 5, NULL, 'Cover', 'Cover', 30, 8, false, false, NULL, NULL, NULL, NULL);
+INSERT INTO public."Members" ("Id", "ClassId", "TabId", "Code", "Name", "Position", "PropertyDataTypeId", "IsPropertyLocalizable", "IsPropertyVisibleInList", "RelationClassId", "IsRelationSingleParent", "MinRelatedObjectsNumber", "MaxRelatedObjectsNumber") VALUES (13, 5, NULL, 'Preview', 'Preview', 40, 3, true, false, NULL, NULL, NULL, NULL);
+INSERT INTO public."Members" ("Id", "ClassId", "TabId", "Code", "Name", "Position", "PropertyDataTypeId", "IsPropertyLocalizable", "IsPropertyVisibleInList", "RelationClassId", "IsRelationSingleParent", "MinRelatedObjectsNumber", "MaxRelatedObjectsNumber") VALUES (14, 5, NULL, 'Created', 'Created', 200, 7, false, true, NULL, NULL, NULL, NULL);
+INSERT INTO public."Members" ("Id", "ClassId", "TabId", "Code", "Name", "Position", "PropertyDataTypeId", "IsPropertyLocalizable", "IsPropertyVisibleInList", "RelationClassId", "IsRelationSingleParent", "MinRelatedObjectsNumber", "MaxRelatedObjectsNumber") VALUES (15, 5, NULL, 'Comments', 'Comments', 0, NULL, NULL, NULL, 4, true, NULL, NULL);
 
 
 --
--- TOC entry 3374 (class 0 OID 31534)
--- Dependencies: 245
+-- TOC entry 3373 (class 0 OID 18825)
+-- Dependencies: 247
 -- Data for Name: MenuItems; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO "MenuItems" VALUES (1, 1, NULL, 2, '/', 10);
-INSERT INTO "MenuItems" VALUES (2, 1, NULL, 3, '/about-me', 20);
-INSERT INTO "MenuItems" VALUES (3, 1, NULL, 4, '/blog', 30);
-INSERT INTO "MenuItems" VALUES (4, 1, NULL, 5, '/contacts', 40);
+INSERT INTO public."MenuItems" ("Id", "MenuId", "MenuItemId", "NameId", "Url", "Position") VALUES (1, 1, NULL, 2, '/', 10);
+INSERT INTO public."MenuItems" ("Id", "MenuId", "MenuItemId", "NameId", "Url", "Position") VALUES (2, 1, NULL, 3, '/about-me', 20);
+INSERT INTO public."MenuItems" ("Id", "MenuId", "MenuItemId", "NameId", "Url", "Position") VALUES (3, 1, NULL, 4, '/blog', 30);
+INSERT INTO public."MenuItems" ("Id", "MenuId", "MenuItemId", "NameId", "Url", "Position") VALUES (4, 1, NULL, 5, '/contacts', 40);
 
 
 --
--- TOC entry 3372 (class 0 OID 31523)
--- Dependencies: 243
+-- TOC entry 3371 (class 0 OID 18809)
+-- Dependencies: 245
 -- Data for Name: Menus; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO "Menus" VALUES (1, 'Main', 1);
+INSERT INTO public."Menus" ("Id", "Code", "NameId") VALUES (1, 'Main', 1);
 
 
 --
--- TOC entry 3365 (class 0 OID 31438)
--- Dependencies: 236
+-- TOC entry 3365 (class 0 OID 18747)
+-- Dependencies: 239
 -- Data for Name: Objects; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO "Objects" VALUES (1, 2);
-INSERT INTO "Objects" VALUES (2, 2);
-INSERT INTO "Objects" VALUES (3, 2);
-INSERT INTO "Objects" VALUES (4, 2);
-INSERT INTO "Objects" VALUES (5, 3);
-INSERT INTO "Objects" VALUES (6, 3);
-INSERT INTO "Objects" VALUES (7, 3);
-INSERT INTO "Objects" VALUES (8, 3);
-INSERT INTO "Objects" VALUES (9, 3);
-INSERT INTO "Objects" VALUES (10, 5);
-INSERT INTO "Objects" VALUES (11, 5);
-INSERT INTO "Objects" VALUES (12, 5);
-INSERT INTO "Objects" VALUES (13, 5);
-INSERT INTO "Objects" VALUES (14, 5);
+INSERT INTO public."Objects" ("Id", "ClassId") VALUES (1, 2);
+INSERT INTO public."Objects" ("Id", "ClassId") VALUES (2, 2);
+INSERT INTO public."Objects" ("Id", "ClassId") VALUES (3, 2);
+INSERT INTO public."Objects" ("Id", "ClassId") VALUES (4, 2);
+INSERT INTO public."Objects" ("Id", "ClassId") VALUES (5, 3);
+INSERT INTO public."Objects" ("Id", "ClassId") VALUES (6, 3);
+INSERT INTO public."Objects" ("Id", "ClassId") VALUES (7, 3);
+INSERT INTO public."Objects" ("Id", "ClassId") VALUES (8, 3);
+INSERT INTO public."Objects" ("Id", "ClassId") VALUES (9, 3);
+INSERT INTO public."Objects" ("Id", "ClassId") VALUES (10, 5);
+INSERT INTO public."Objects" ("Id", "ClassId") VALUES (11, 5);
+INSERT INTO public."Objects" ("Id", "ClassId") VALUES (12, 5);
+INSERT INTO public."Objects" ("Id", "ClassId") VALUES (13, 5);
+INSERT INTO public."Objects" ("Id", "ClassId") VALUES (14, 5);
 
 
 --
--- TOC entry 3405 (class 0 OID 31862)
--- Dependencies: 276
--- Data for Name: OrderStates; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-
-
---
--- TOC entry 3411 (class 0 OID 31910)
--- Dependencies: 282
--- Data for Name: Orders; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-
-
---
--- TOC entry 3407 (class 0 OID 31878)
--- Dependencies: 278
--- Data for Name: PaymentMethods; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-
-
---
--- TOC entry 3335 (class 0 OID 31192)
--- Dependencies: 206
+-- TOC entry 3336 (class 0 OID 18504)
+-- Dependencies: 210
 -- Data for Name: Permissions; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO "Permissions" VALUES (1, 'BrowseBackend', 'Browse backend', 1);
-INSERT INTO "Permissions" VALUES (2, 'DoEverything', 'Do everything', 100);
-INSERT INTO "Permissions" VALUES (3, 'BrowsePermissions', 'Browse permissions', 200);
-INSERT INTO "Permissions" VALUES (4, 'BrowseRoles', 'Browse roles', 210);
-INSERT INTO "Permissions" VALUES (5, 'BrowseUsers', 'Browse users', 220);
-INSERT INTO "Permissions" VALUES (6, 'BrowseConfigurations', 'Browse configurations', 300);
-INSERT INTO "Permissions" VALUES (7, 'BrowseCultures', 'Browse cultures', 400);
-INSERT INTO "Permissions" VALUES (8, 'BrowseEndpoints', 'Browse endpoints', 500);
-INSERT INTO "Permissions" VALUES (9, 'BrowseObjects', 'Browse objects', 600);
-INSERT INTO "Permissions" VALUES (10, 'BrowseDataTypes', 'Browse data types', 610);
-INSERT INTO "Permissions" VALUES (11, 'BrowseClasses', 'Browse classes', 620);
-INSERT INTO "Permissions" VALUES (12, 'BrowseMenus', 'Browse menus', 700);
-INSERT INTO "Permissions" VALUES (13, 'BrowseForms', 'Browse forms', 800);
-INSERT INTO "Permissions" VALUES (14, 'BrowseFileManager', 'Browse file manager', 900);
-INSERT INTO "Permissions" VALUES (15, 'BrowseViews', 'Browse views', 1000);
-INSERT INTO "Permissions" VALUES (16, 'BrowseStyles', 'Browse styles', 1010);
-INSERT INTO "Permissions" VALUES (17, 'BrowseScripts', 'Browse scripts', 1020);
-INSERT INTO "Permissions" VALUES (18, 'BrowseBundles', 'Browse bundles', 1030);
-INSERT INTO "Permissions" VALUES (19, 'BrowseCatalogs', 'Browse catalogs', 1100);
-INSERT INTO "Permissions" VALUES (20, 'BrowseCategories', 'Browse categories', 1110);
-INSERT INTO "Permissions" VALUES (21, 'BrowseProducts', 'Browse products', 1120);
-INSERT INTO "Permissions" VALUES (22, 'BrowseCarts', 'Browse carts', 1130);
-INSERT INTO "Permissions" VALUES (23, 'BrowseOrderStates', 'Browse order states', 1140);
-INSERT INTO "Permissions" VALUES (24, 'BrowsePaymentMethods', 'Browse payment methods', 1150);
-INSERT INTO "Permissions" VALUES (25, 'BrowseDeliveryMethods', 'Browse delivery methods', 1160);
-INSERT INTO "Permissions" VALUES (26, 'BrowseOrders', 'Browse orders', 1170);
+INSERT INTO public."Permissions" ("Id", "Code", "Name", "Position") VALUES (1, 'DoAnything', 'Do anything', 100);
+INSERT INTO public."Permissions" ("Id", "Code", "Name", "Position") VALUES (2, 'ManagePermissions', 'Manage permissions', 200);
+INSERT INTO public."Permissions" ("Id", "Code", "Name", "Position") VALUES (3, 'ManageRoles', 'Manage roles', 300);
+INSERT INTO public."Permissions" ("Id", "Code", "Name", "Position") VALUES (4, 'ManageUsers', 'Manage users', 400);
+INSERT INTO public."Permissions" ("Id", "Code", "Name", "Position") VALUES (5, 'ManageConfigurations', 'Manage configurations', 500);
+INSERT INTO public."Permissions" ("Id", "Code", "Name", "Position") VALUES (6, 'ManageCultures', 'Manage cultures', 600);
+INSERT INTO public."Permissions" ("Id", "Code", "Name", "Position") VALUES (7, 'ManageEndpoints', 'Manage endpoints', 700);
+INSERT INTO public."Permissions" ("Id", "Code", "Name", "Position") VALUES (8, 'ManageObjects', 'Manage objects', 800);
+INSERT INTO public."Permissions" ("Id", "Code", "Name", "Position") VALUES (9, 'ManageDataTypes', 'Manage data types', 900);
+INSERT INTO public."Permissions" ("Id", "Code", "Name", "Position") VALUES (10, 'ManageClasses', 'Manage classes', 1000);
+INSERT INTO public."Permissions" ("Id", "Code", "Name", "Position") VALUES (11, 'ManageMenus', 'Manage menus', 1100);
+INSERT INTO public."Permissions" ("Id", "Code", "Name", "Position") VALUES (12, 'ManageForms', 'Manage forms', 1200);
+INSERT INTO public."Permissions" ("Id", "Code", "Name", "Position") VALUES (13, 'ManageFileManager', 'Manage file manager', 1300);
 
 
 --
--- TOC entry 3403 (class 0 OID 31846)
--- Dependencies: 274
--- Data for Name: Photos; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-
-
---
--- TOC entry 3415 (class 0 OID 31952)
--- Dependencies: 286
--- Data for Name: Positions; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-
-
---
--- TOC entry 3401 (class 0 OID 31829)
--- Dependencies: 272
--- Data for Name: ProductAttributes; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-
-
---
--- TOC entry 3400 (class 0 OID 31790)
--- Dependencies: 271
--- Data for Name: Products; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-
-
---
--- TOC entry 3367 (class 0 OID 31451)
--- Dependencies: 238
+-- TOC entry 3367 (class 0 OID 18760)
+-- Dependencies: 241
 -- Data for Name: Properties; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO "Properties" VALUES (1, 1, 1, NULL, NULL, 15, NULL);
-INSERT INTO "Properties" VALUES (2, 1, 2, NULL, NULL, 16, NULL);
-INSERT INTO "Properties" VALUES (3, 1, 3, NULL, NULL, 17, NULL);
-INSERT INTO "Properties" VALUES (4, 1, 4, NULL, NULL, 18, NULL);
-INSERT INTO "Properties" VALUES (5, 1, 5, NULL, NULL, 19, NULL);
-INSERT INTO "Properties" VALUES (6, 2, 1, NULL, NULL, 20, NULL);
-INSERT INTO "Properties" VALUES (7, 2, 2, NULL, NULL, 21, NULL);
-INSERT INTO "Properties" VALUES (8, 2, 3, NULL, NULL, 22, NULL);
-INSERT INTO "Properties" VALUES (9, 2, 4, NULL, NULL, 23, NULL);
-INSERT INTO "Properties" VALUES (10, 2, 5, NULL, NULL, 24, NULL);
-INSERT INTO "Properties" VALUES (11, 3, 1, NULL, NULL, 25, NULL);
-INSERT INTO "Properties" VALUES (12, 3, 2, NULL, NULL, 26, NULL);
-INSERT INTO "Properties" VALUES (13, 3, 3, NULL, NULL, 27, NULL);
-INSERT INTO "Properties" VALUES (14, 3, 4, NULL, NULL, 28, NULL);
-INSERT INTO "Properties" VALUES (15, 3, 5, NULL, NULL, 29, NULL);
-INSERT INTO "Properties" VALUES (16, 4, 1, NULL, NULL, 30, NULL);
-INSERT INTO "Properties" VALUES (17, 4, 2, NULL, NULL, 31, NULL);
-INSERT INTO "Properties" VALUES (18, 4, 3, NULL, NULL, 32, NULL);
-INSERT INTO "Properties" VALUES (19, 4, 4, NULL, NULL, 33, NULL);
-INSERT INTO "Properties" VALUES (20, 4, 5, NULL, NULL, 34, NULL);
-INSERT INTO "Properties" VALUES (21, 5, 6, NULL, NULL, 35, NULL);
-INSERT INTO "Properties" VALUES (22, 6, 6, NULL, NULL, 36, NULL);
-INSERT INTO "Properties" VALUES (23, 7, 6, NULL, NULL, 37, NULL);
-INSERT INTO "Properties" VALUES (24, 8, 6, NULL, NULL, 38, NULL);
-INSERT INTO "Properties" VALUES (25, 9, 6, NULL, NULL, 39, NULL);
-INSERT INTO "Properties" VALUES (26, 10, 10, NULL, NULL, 40, NULL);
-INSERT INTO "Properties" VALUES (27, 10, 12, NULL, NULL, 41, NULL);
-INSERT INTO "Properties" VALUES (28, 10, 13, NULL, NULL, 42, NULL);
-INSERT INTO "Properties" VALUES (29, 10, 14, NULL, NULL, NULL, '2019-01-21 17:00:07.463682');
-INSERT INTO "Properties" VALUES (30, 10, 1, NULL, NULL, 43, NULL);
-INSERT INTO "Properties" VALUES (31, 10, 2, NULL, NULL, 44, NULL);
-INSERT INTO "Properties" VALUES (32, 10, 3, NULL, NULL, 45, NULL);
-INSERT INTO "Properties" VALUES (33, 10, 4, NULL, NULL, 46, NULL);
-INSERT INTO "Properties" VALUES (34, 10, 5, NULL, NULL, 47, NULL);
-INSERT INTO "Properties" VALUES (35, 11, 10, NULL, NULL, 48, NULL);
-INSERT INTO "Properties" VALUES (36, 11, 12, NULL, NULL, 49, NULL);
-INSERT INTO "Properties" VALUES (37, 11, 13, NULL, NULL, 50, NULL);
-INSERT INTO "Properties" VALUES (38, 11, 14, NULL, NULL, NULL, '2019-01-21 17:00:07.725348');
-INSERT INTO "Properties" VALUES (39, 11, 1, NULL, NULL, 51, NULL);
-INSERT INTO "Properties" VALUES (40, 11, 2, NULL, NULL, 52, NULL);
-INSERT INTO "Properties" VALUES (41, 11, 3, NULL, NULL, 53, NULL);
-INSERT INTO "Properties" VALUES (42, 11, 4, NULL, NULL, 54, NULL);
-INSERT INTO "Properties" VALUES (43, 11, 5, NULL, NULL, 55, NULL);
-INSERT INTO "Properties" VALUES (44, 12, 10, NULL, NULL, 56, NULL);
-INSERT INTO "Properties" VALUES (45, 12, 12, NULL, NULL, 57, NULL);
-INSERT INTO "Properties" VALUES (46, 12, 13, NULL, NULL, 58, NULL);
-INSERT INTO "Properties" VALUES (47, 12, 14, NULL, NULL, NULL, '2019-01-21 17:00:07.948474');
-INSERT INTO "Properties" VALUES (48, 12, 1, NULL, NULL, 59, NULL);
-INSERT INTO "Properties" VALUES (49, 12, 2, NULL, NULL, 60, NULL);
-INSERT INTO "Properties" VALUES (50, 12, 3, NULL, NULL, 61, NULL);
-INSERT INTO "Properties" VALUES (51, 12, 4, NULL, NULL, 62, NULL);
-INSERT INTO "Properties" VALUES (52, 12, 5, NULL, NULL, 63, NULL);
-INSERT INTO "Properties" VALUES (53, 13, 10, NULL, NULL, 64, NULL);
-INSERT INTO "Properties" VALUES (54, 13, 12, NULL, NULL, 65, NULL);
-INSERT INTO "Properties" VALUES (55, 13, 13, NULL, NULL, 66, NULL);
-INSERT INTO "Properties" VALUES (56, 13, 14, NULL, NULL, NULL, '2019-01-21 17:00:08.202743');
-INSERT INTO "Properties" VALUES (57, 13, 1, NULL, NULL, 67, NULL);
-INSERT INTO "Properties" VALUES (58, 13, 2, NULL, NULL, 68, NULL);
-INSERT INTO "Properties" VALUES (59, 13, 3, NULL, NULL, 69, NULL);
-INSERT INTO "Properties" VALUES (60, 13, 4, NULL, NULL, 70, NULL);
-INSERT INTO "Properties" VALUES (61, 13, 5, NULL, NULL, 71, NULL);
-INSERT INTO "Properties" VALUES (62, 14, 10, NULL, NULL, 72, NULL);
-INSERT INTO "Properties" VALUES (63, 14, 12, NULL, NULL, 73, NULL);
-INSERT INTO "Properties" VALUES (64, 14, 13, NULL, NULL, 74, NULL);
-INSERT INTO "Properties" VALUES (65, 14, 14, NULL, NULL, NULL, '2019-01-21 17:00:08.435099');
-INSERT INTO "Properties" VALUES (66, 14, 1, NULL, NULL, 75, NULL);
-INSERT INTO "Properties" VALUES (67, 14, 2, NULL, NULL, 76, NULL);
-INSERT INTO "Properties" VALUES (68, 14, 3, NULL, NULL, 77, NULL);
-INSERT INTO "Properties" VALUES (69, 14, 4, NULL, NULL, 78, NULL);
-INSERT INTO "Properties" VALUES (70, 14, 5, NULL, NULL, 79, NULL);
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (1, 1, 1, NULL, NULL, 15, NULL);
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (2, 1, 2, NULL, NULL, 16, NULL);
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (3, 1, 3, NULL, NULL, 17, NULL);
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (4, 1, 4, NULL, NULL, 18, NULL);
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (5, 1, 5, NULL, NULL, 19, NULL);
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (6, 2, 1, NULL, NULL, 20, NULL);
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (7, 2, 2, NULL, NULL, 21, NULL);
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (8, 2, 3, NULL, NULL, 22, NULL);
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (9, 2, 4, NULL, NULL, 23, NULL);
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (10, 2, 5, NULL, NULL, 24, NULL);
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (11, 3, 1, NULL, NULL, 25, NULL);
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (12, 3, 2, NULL, NULL, 26, NULL);
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (13, 3, 3, NULL, NULL, 27, NULL);
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (14, 3, 4, NULL, NULL, 28, NULL);
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (15, 3, 5, NULL, NULL, 29, NULL);
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (16, 4, 1, NULL, NULL, 30, NULL);
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (17, 4, 2, NULL, NULL, 31, NULL);
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (18, 4, 3, NULL, NULL, 32, NULL);
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (19, 4, 4, NULL, NULL, 33, NULL);
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (20, 4, 5, NULL, NULL, 34, NULL);
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (21, 5, 6, NULL, NULL, 35, NULL);
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (22, 6, 6, NULL, NULL, 36, NULL);
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (23, 7, 6, NULL, NULL, 37, NULL);
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (24, 8, 6, NULL, NULL, 38, NULL);
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (25, 9, 6, NULL, NULL, 39, NULL);
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (26, 10, 1, NULL, NULL, 40, NULL);
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (27, 10, 12, NULL, NULL, 41, NULL);
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (28, 10, 10, NULL, NULL, 42, NULL);
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (29, 10, 13, NULL, NULL, 43, NULL);
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (30, 10, 2, NULL, NULL, 44, NULL);
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (31, 10, 14, NULL, NULL, NULL, '2021-03-26 17:26:21.31791');
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (32, 10, 3, NULL, NULL, 45, NULL);
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (33, 10, 4, NULL, NULL, 46, NULL);
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (34, 10, 5, NULL, NULL, 47, NULL);
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (35, 11, 1, NULL, NULL, 48, NULL);
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (36, 11, 12, NULL, NULL, 49, NULL);
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (37, 11, 10, NULL, NULL, 50, NULL);
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (38, 11, 13, NULL, NULL, 51, NULL);
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (39, 11, 2, NULL, NULL, 52, NULL);
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (40, 11, 14, NULL, NULL, NULL, '2021-03-26 17:26:21.395874');
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (41, 11, 3, NULL, NULL, 53, NULL);
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (42, 11, 4, NULL, NULL, 54, NULL);
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (43, 11, 5, NULL, NULL, 55, NULL);
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (44, 12, 1, NULL, NULL, 56, NULL);
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (45, 12, 12, NULL, NULL, 57, NULL);
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (46, 12, 10, NULL, NULL, 58, NULL);
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (47, 12, 13, NULL, NULL, 59, NULL);
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (48, 12, 2, NULL, NULL, 60, NULL);
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (49, 12, 14, NULL, NULL, NULL, '2021-03-26 17:26:21.459537');
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (50, 12, 3, NULL, NULL, 61, NULL);
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (51, 12, 4, NULL, NULL, 62, NULL);
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (52, 12, 5, NULL, NULL, 63, NULL);
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (53, 13, 1, NULL, NULL, 64, NULL);
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (54, 13, 12, NULL, NULL, 65, NULL);
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (55, 13, 10, NULL, NULL, 66, NULL);
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (56, 13, 13, NULL, NULL, 67, NULL);
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (57, 13, 2, NULL, NULL, 68, NULL);
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (58, 13, 14, NULL, NULL, NULL, '2021-03-26 17:26:21.523893');
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (59, 13, 3, NULL, NULL, 69, NULL);
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (60, 13, 4, NULL, NULL, 70, NULL);
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (61, 13, 5, NULL, NULL, 71, NULL);
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (62, 14, 1, NULL, NULL, 72, NULL);
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (63, 14, 12, NULL, NULL, 73, NULL);
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (64, 14, 10, NULL, NULL, 74, NULL);
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (65, 14, 13, NULL, NULL, 75, NULL);
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (66, 14, 2, NULL, NULL, 76, NULL);
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (67, 14, 14, NULL, NULL, NULL, '2021-03-26 17:26:21.592497');
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (68, 14, 3, NULL, NULL, 77, NULL);
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (69, 14, 4, NULL, NULL, 78, NULL);
+INSERT INTO public."Properties" ("Id", "ObjectId", "MemberId", "IntegerValue", "DecimalValue", "StringValueId", "DateTimeValue") VALUES (70, 14, 5, NULL, NULL, 79, NULL);
 
 
 --
--- TOC entry 3369 (class 0 OID 31477)
--- Dependencies: 240
+-- TOC entry 3369 (class 0 OID 18786)
+-- Dependencies: 243
 -- Data for Name: Relations; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO "Relations" VALUES (1, 11, 6, 10);
-INSERT INTO "Relations" VALUES (2, 11, 9, 10);
-INSERT INTO "Relations" VALUES (3, 11, 5, 11);
-INSERT INTO "Relations" VALUES (4, 11, 7, 11);
-INSERT INTO "Relations" VALUES (5, 11, 9, 12);
-INSERT INTO "Relations" VALUES (6, 11, 8, 12);
-INSERT INTO "Relations" VALUES (7, 11, 5, 12);
-INSERT INTO "Relations" VALUES (8, 11, 9, 13);
-INSERT INTO "Relations" VALUES (9, 11, 5, 13);
-INSERT INTO "Relations" VALUES (10, 11, 7, 14);
-INSERT INTO "Relations" VALUES (11, 11, 5, 14);
-INSERT INTO "Relations" VALUES (12, 11, 6, 14);
+INSERT INTO public."Relations" ("Id", "MemberId", "PrimaryId", "ForeignId") VALUES (1, 11, 9, 10);
+INSERT INTO public."Relations" ("Id", "MemberId", "PrimaryId", "ForeignId") VALUES (2, 11, 7, 10);
+INSERT INTO public."Relations" ("Id", "MemberId", "PrimaryId", "ForeignId") VALUES (3, 11, 6, 11);
+INSERT INTO public."Relations" ("Id", "MemberId", "PrimaryId", "ForeignId") VALUES (4, 11, 7, 11);
+INSERT INTO public."Relations" ("Id", "MemberId", "PrimaryId", "ForeignId") VALUES (5, 11, 9, 12);
+INSERT INTO public."Relations" ("Id", "MemberId", "PrimaryId", "ForeignId") VALUES (6, 11, 6, 12);
+INSERT INTO public."Relations" ("Id", "MemberId", "PrimaryId", "ForeignId") VALUES (7, 11, 6, 13);
+INSERT INTO public."Relations" ("Id", "MemberId", "PrimaryId", "ForeignId") VALUES (8, 11, 8, 13);
+INSERT INTO public."Relations" ("Id", "MemberId", "PrimaryId", "ForeignId") VALUES (9, 11, 7, 14);
 
 
 --
--- TOC entry 3336 (class 0 OID 31201)
--- Dependencies: 207
+-- TOC entry 3337 (class 0 OID 18513)
+-- Dependencies: 211
 -- Data for Name: RolePermissions; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO "RolePermissions" VALUES (1, 1);
-INSERT INTO "RolePermissions" VALUES (2, 2);
-INSERT INTO "RolePermissions" VALUES (3, 9);
-INSERT INTO "RolePermissions" VALUES (3, 12);
-INSERT INTO "RolePermissions" VALUES (3, 13);
-INSERT INTO "RolePermissions" VALUES (3, 14);
+INSERT INTO public."RolePermissions" ("RoleId", "PermissionId") VALUES (1, 1);
+INSERT INTO public."RolePermissions" ("RoleId", "PermissionId") VALUES (2, 1);
+INSERT INTO public."RolePermissions" ("RoleId", "PermissionId") VALUES (3, 8);
+INSERT INTO public."RolePermissions" ("RoleId", "PermissionId") VALUES (3, 11);
+INSERT INTO public."RolePermissions" ("RoleId", "PermissionId") VALUES (3, 12);
+INSERT INTO public."RolePermissions" ("RoleId", "PermissionId") VALUES (3, 13);
 
 
 --
--- TOC entry 3332 (class 0 OID 31166)
--- Dependencies: 203
+-- TOC entry 3333 (class 0 OID 18478)
+-- Dependencies: 207
 -- Data for Name: Roles; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO "Roles" VALUES (1, 'Administrator', 'Administrator', 100);
-INSERT INTO "Roles" VALUES (2, 'ApplicationOwner', 'Application owner', 200);
-INSERT INTO "Roles" VALUES (3, 'ContentManager', 'Content manager', 300);
+INSERT INTO public."Roles" ("Id", "Code", "Name", "Position") VALUES (1, 'Developer', 'Developer', 100);
+INSERT INTO public."Roles" ("Id", "Code", "Name", "Position") VALUES (2, 'Administrator', 'Administrator', 200);
+INSERT INTO public."Roles" ("Id", "Code", "Name", "Position") VALUES (3, 'ContentManager', 'Content manager', 300);
 
 
 --
--- TOC entry 3388 (class 0 OID 31686)
--- Dependencies: 259
--- Data for Name: SerializedForms; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-INSERT INTO "SerializedForms" VALUES (2, 1, 'Feedback', 'Feedback', 'Submit', '[{"FieldId":1,"FieldTypeCode":"TextBox","Code":"Name","Name":"Your name","IsRequired":true,"MaxLength":null,"Position":10,"SerializedFieldOptions":null},{"FieldId":2,"FieldTypeCode":"TextBox","Code":"Email","Name":"Your email","IsRequired":true,"MaxLength":null,"Position":20,"SerializedFieldOptions":null},{"FieldId":3,"FieldTypeCode":"TextArea","Code":"Message","Name":"Your message","IsRequired":true,"MaxLength":null,"Position":30,"SerializedFieldOptions":null}]');
-INSERT INTO "SerializedForms" VALUES (3, 1, 'Feedback', 'Обратная связь', 'Отправить', '[{"FieldId":1,"FieldTypeCode":"TextBox","Code":"Name","Name":"Ваше имя","IsRequired":true,"MaxLength":null,"Position":10,"SerializedFieldOptions":null},{"FieldId":2,"FieldTypeCode":"TextBox","Code":"Email","Name":"Ваша электронная почта","IsRequired":true,"MaxLength":null,"Position":20,"SerializedFieldOptions":null},{"FieldId":3,"FieldTypeCode":"TextArea","Code":"Message","Name":"Ваше сообщение","IsRequired":true,"MaxLength":null,"Position":30,"SerializedFieldOptions":null}]');
-INSERT INTO "SerializedForms" VALUES (4, 1, 'Feedback', 'Зворотний зв’язок', 'Надіслати', '[{"FieldId":1,"FieldTypeCode":"TextBox","Code":"Name","Name":"Ваше ім’я","IsRequired":true,"MaxLength":null,"Position":10,"SerializedFieldOptions":null},{"FieldId":2,"FieldTypeCode":"TextBox","Code":"Email","Name":"Ваша електронна пошта","IsRequired":true,"MaxLength":null,"Position":20,"SerializedFieldOptions":null},{"FieldId":3,"FieldTypeCode":"TextArea","Code":"Message","Name":"Ваше повідомлення","IsRequired":true,"MaxLength":null,"Position":30,"SerializedFieldOptions":null}]');
-INSERT INTO "SerializedForms" VALUES (2, 2, 'WriteComment', 'Write comment', 'Submit', '[{"FieldId":4,"FieldTypeCode":"TextBox","Code":"Name","Name":"Your name","IsRequired":true,"MaxLength":null,"Position":10,"SerializedFieldOptions":null},{"FieldId":5,"FieldTypeCode":"TextArea","Code":"Comment","Name":"Your comment","IsRequired":true,"MaxLength":null,"Position":20,"SerializedFieldOptions":null}]');
-INSERT INTO "SerializedForms" VALUES (3, 2, 'WriteComment', 'Напишите комментарий', 'Отправить', '[{"FieldId":4,"FieldTypeCode":"TextBox","Code":"Name","Name":"Ваше имя","IsRequired":true,"MaxLength":null,"Position":10,"SerializedFieldOptions":null},{"FieldId":5,"FieldTypeCode":"TextArea","Code":"Comment","Name":"Ваш ","IsRequired":true,"MaxLength":null,"Position":20,"SerializedFieldOptions":null}]');
-INSERT INTO "SerializedForms" VALUES (4, 2, 'WriteComment', 'Напишіть коментар', 'Надіслати', '[{"FieldId":4,"FieldTypeCode":"TextBox","Code":"Name","Name":"Ваше ім’я","IsRequired":true,"MaxLength":null,"Position":10,"SerializedFieldOptions":null},{"FieldId":5,"FieldTypeCode":"TextArea","Code":"Comment","Name":"Ваше повідомлення","IsRequired":true,"MaxLength":null,"Position":20,"SerializedFieldOptions":null}]');
-
-
---
--- TOC entry 3375 (class 0 OID 31558)
--- Dependencies: 246
--- Data for Name: SerializedMenus; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-INSERT INTO "SerializedMenus" VALUES (2, 1, 'Main', '[{"MenuItemId":1,"Name":"Home","Url":"/","Position":10,"SerializedMenuItems":null},{"MenuItemId":2,"Name":"About me","Url":"/about-me","Position":20,"SerializedMenuItems":null},{"MenuItemId":3,"Name":"Blog","Url":"/blog","Position":30,"SerializedMenuItems":null},{"MenuItemId":4,"Name":"Contacts","Url":"/contacts","Position":40,"SerializedMenuItems":null}]');
-INSERT INTO "SerializedMenus" VALUES (3, 1, 'Main', '[{"MenuItemId":1,"Name":"Главная","Url":"/","Position":10,"SerializedMenuItems":null},{"MenuItemId":2,"Name":"Обо мне","Url":"/about-me","Position":20,"SerializedMenuItems":null},{"MenuItemId":3,"Name":"Блог","Url":"/blog","Position":30,"SerializedMenuItems":null},{"MenuItemId":4,"Name":"Контакты","Url":"/contacts","Position":40,"SerializedMenuItems":null}]');
-INSERT INTO "SerializedMenus" VALUES (4, 1, 'Main', '[{"MenuItemId":1,"Name":"Головна","Url":"/","Position":10,"SerializedMenuItems":null},{"MenuItemId":2,"Name":"Про мене","Url":"/about-me","Position":20,"SerializedMenuItems":null},{"MenuItemId":3,"Name":"Блог","Url":"/blog","Position":30,"SerializedMenuItems":null},{"MenuItemId":4,"Name":"Контакти","Url":"/contacts","Position":40,"SerializedMenuItems":null}]');
-
-
---
--- TOC entry 3370 (class 0 OID 31498)
--- Dependencies: 241
--- Data for Name: SerializedObjects; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-INSERT INTO "SerializedObjects" VALUES (2, 1, 2, '/', '[{"Member":{"Code":"Url","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"/","DateTimeValue":null},{"Member":{"Code":"Content","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"<h1>Your Personal Blog</h1><p>Hello! This is your personal blog, it is based on the <a href=\"http://platformus.net/\" target=\"_blank\" rel=\"noopener\">Platformus</a> content management system. You can manage it (create pages, menu items, forms and so on) using the <a href=\"/backend\">backend</a>. Please use the username and password specified during the installation to sign in (it is &ldquo;admin@platformus.net&rdquo; and &ldquo;admin&rdquo; by default).</p><p>Please use the <a href=\"http://docs.platformus.net/\" target=\"_blank\" rel=\"noopener\">documentation</a> to learn more about Platformus and how to use it. There are several examples that could be useful for the beginners. Also, you can get help in our <a href=\"https://gitter.im/Platformus/Platformus\" target=\"_blank\" rel=\"noopener\">chat</a>.</p><p>Have a nice work!</p>","DateTimeValue":null},{"Member":{"Code":"Title","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"Your Personal Blog","DateTimeValue":null},{"Member":{"Code":"MetaDescription","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"","DateTimeValue":null},{"Member":{"Code":"MetaKeywords","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"","DateTimeValue":null}]');
-INSERT INTO "SerializedObjects" VALUES (3, 1, 2, '/', '[{"Member":{"Code":"Url","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"/","DateTimeValue":null},{"Member":{"Code":"Content","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"<h1>Ваш персональный блог</h1><p>Здравствуйте! Это ваш персональный блог, он работает на базе системы управления содержимым &laquo;<a href=\"http://platformus.net/\" target=\"_blank\" rel=\"noopener\">Платформус</a>&raquo;. Вы можете управлять им (создавать страницы, элементы меню, формы и так далее) с помощью <a href=\"/backend\">бекенда</a>. Для входа используйте, пожалуйста, имя пользователя и пароль, указанные при установке (по умолчанию это &laquo;admin@platformus.net&raquo; и &laquo;admin&raquo; соответственно).</p><p>Чтобы узнать больше о Платформусе и о том, как им пользоваться, пожалуйста, воспользуйтесь <a href=\"http://docs.platformus.net/\" target=\"_blank\" rel=\"noopener\">документацией</a>, там есть несколько примеров, которые пригодятся начинающим. При возникновении сложностей или вопросов вы можете обратиться в наш <a href=\"https://gitter.im/Platformus/Platformus\" target=\"_blank\" rel=\"noopener\">чат</a>, где вам обязательно помогут.</p><p>Приятной работы!</p>","DateTimeValue":null},{"Member":{"Code":"Title","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"Ваш персональный блог","DateTimeValue":null},{"Member":{"Code":"MetaDescription","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"","DateTimeValue":null},{"Member":{"Code":"MetaKeywords","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"","DateTimeValue":null}]');
-INSERT INTO "SerializedObjects" VALUES (4, 1, 2, '/', '[{"Member":{"Code":"Url","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"/","DateTimeValue":null},{"Member":{"Code":"Content","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"<h1>Ваш персональний блог</h1><p>Вітаємо! Це ваш персональний блог, він працює на базі системи керування вмістом &laquo;<a href=\"http://platformus.net/\" target=\"_blank\" rel=\"noopener\">Платформус</a>&raquo;. Ви можете керувати ним (створювати сторінки, елементи меню, форми і так далі) за допомогою <a href=\"/backend\">бекенду</a>. Для входу використовуйте, будь ласка, ім&rsquo;я користувача і пароль, вказані під час установки (за замовчуванням це &laquo;admin@platformus.net&raquo; і &laquo;admin&raquo; відповідно).</p><p>Щоб дізнатися більше про Платформус і про те, як ним користуватися, будь ласка, скористайтеся <a href=\"http://docs.platformus.net/\" target=\"_blank\" rel=\"noopener\">документацією</a>, там є декілька прикладів, що стануть у нагоді початківцям. При виникненні труднощів або питань ви можете звернутися в наш <a href=\"https://gitter.im/Platformus/Platformus\" target=\"_blank\" rel=\"noopener\">чат</a>, де вам обов&rsquo;язково допоможуть.</p><p>Приємної роботи!</p>","DateTimeValue":null},{"Member":{"Code":"Title","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"Ваш персональний блог","DateTimeValue":null},{"Member":{"Code":"MetaDescription","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"","DateTimeValue":null},{"Member":{"Code":"MetaKeywords","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"","DateTimeValue":null}]');
-INSERT INTO "SerializedObjects" VALUES (2, 2, 2, '/about-me', '[{"Member":{"Code":"Url","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"/about-me","DateTimeValue":null},{"Member":{"Code":"Content","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"<h1>About Me</h1><p>Tell us about yourself in a few words. You can add photos or videos here.</p>","DateTimeValue":null},{"Member":{"Code":"Title","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"About Me","DateTimeValue":null},{"Member":{"Code":"MetaDescription","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"","DateTimeValue":null},{"Member":{"Code":"MetaKeywords","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"","DateTimeValue":null}]');
-INSERT INTO "SerializedObjects" VALUES (3, 2, 2, '/about-me', '[{"Member":{"Code":"Url","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"/about-me","DateTimeValue":null},{"Member":{"Code":"Content","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"<h1>Обо мне</h1><p>Расскажите о себе в нескольких словах. Вы можете добавить сюда фотографии или видео.</p>","DateTimeValue":null},{"Member":{"Code":"Title","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"Обо мне","DateTimeValue":null},{"Member":{"Code":"MetaDescription","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"","DateTimeValue":null},{"Member":{"Code":"MetaKeywords","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"","DateTimeValue":null}]');
-INSERT INTO "SerializedObjects" VALUES (4, 2, 2, '/about-me', '[{"Member":{"Code":"Url","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"/about-me","DateTimeValue":null},{"Member":{"Code":"Content","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"<h1>Про мене</h1><p>Розкажіть про себе в кількох словах. Ви можете додати сюди фотографії або відео.</p>","DateTimeValue":null},{"Member":{"Code":"Title","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"Про мене","DateTimeValue":null},{"Member":{"Code":"MetaDescription","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"","DateTimeValue":null},{"Member":{"Code":"MetaKeywords","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"","DateTimeValue":null}]');
-INSERT INTO "SerializedObjects" VALUES (2, 3, 2, '/blog', '[{"Member":{"Code":"Url","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"/blog","DateTimeValue":null},{"Member":{"Code":"Content","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"<h1>Blog</h1>","DateTimeValue":null},{"Member":{"Code":"Title","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"Blog","DateTimeValue":null},{"Member":{"Code":"MetaDescription","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"","DateTimeValue":null},{"Member":{"Code":"MetaKeywords","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"","DateTimeValue":null}]');
-INSERT INTO "SerializedObjects" VALUES (3, 8, 3, NULL, '[{"Member":{"Code":"Text","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"Tag4","DateTimeValue":null}]');
-INSERT INTO "SerializedObjects" VALUES (3, 3, 2, '/blog', '[{"Member":{"Code":"Url","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"/blog","DateTimeValue":null},{"Member":{"Code":"Content","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"<h1>Блог</h1>","DateTimeValue":null},{"Member":{"Code":"Title","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"Блог","DateTimeValue":null},{"Member":{"Code":"MetaDescription","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"","DateTimeValue":null},{"Member":{"Code":"MetaKeywords","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"","DateTimeValue":null}]');
-INSERT INTO "SerializedObjects" VALUES (4, 3, 2, '/blog', '[{"Member":{"Code":"Url","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"/blog","DateTimeValue":null},{"Member":{"Code":"Content","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"<h1>Блог</h1>","DateTimeValue":null},{"Member":{"Code":"Title","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"Блог","DateTimeValue":null},{"Member":{"Code":"MetaDescription","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"","DateTimeValue":null},{"Member":{"Code":"MetaKeywords","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"","DateTimeValue":null}]');
-INSERT INTO "SerializedObjects" VALUES (2, 4, 2, '/contacts', '[{"Member":{"Code":"Url","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"/contacts","DateTimeValue":null},{"Member":{"Code":"Content","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"<h1>Contacts</h1><p>Add your contacts on this page. Phone number, messengers, social links. The feedback form below (by the way, you can edit or move it to a different place) allows your visitors to write you directly from the website, just don&rsquo;t forget to specify the email address for the messages.</p><h2>Feedback from</h2>","DateTimeValue":null},{"Member":{"Code":"Title","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"Contacts","DateTimeValue":null},{"Member":{"Code":"MetaDescription","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"","DateTimeValue":null},{"Member":{"Code":"MetaKeywords","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"","DateTimeValue":null}]');
-INSERT INTO "SerializedObjects" VALUES (3, 4, 2, '/contacts', '[{"Member":{"Code":"Url","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"/contacts","DateTimeValue":null},{"Member":{"Code":"Content","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"<h1>Контакты</h1><p>Добавьте свои контакты на этой странице. Телефонный номер, мессенджеры, ссылки на социальные сети. Форма обратной связи, расположенная ниже (кстати, вы можете ее изменить или перенести в другое место), поможет посетителям написать вам сообщение прямо с сайта, лишь укажите для этого адрес, на который нужно присылать сообщения.</p><h2>Форма обратной связи</h2>","DateTimeValue":null},{"Member":{"Code":"Title","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"Контакты","DateTimeValue":null},{"Member":{"Code":"MetaDescription","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"","DateTimeValue":null},{"Member":{"Code":"MetaKeywords","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"","DateTimeValue":null}]');
-INSERT INTO "SerializedObjects" VALUES (4, 4, 2, '/contacts', '[{"Member":{"Code":"Url","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"/contacts","DateTimeValue":null},{"Member":{"Code":"Content","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"<h1>Контакти</h1><p>Додайте свої контакти на цій сторінці. Номер телефону, месенджери, посилання на соціальні мережі. Форма зворотного зв&rsquo;язку, розташована нижче (до речі, ви можете її змінити або перенести в інше місце), допоможе відвідувачам написати вам повідомлення прямо з сайту, лише вкажіть для цього адресу, на яку потрібно надсилати повідомлення.</p><h2>Форма зворотного зв&rsquo;язку</h2>","DateTimeValue":null},{"Member":{"Code":"Title","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"Контакти","DateTimeValue":null},{"Member":{"Code":"MetaDescription","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"","DateTimeValue":null},{"Member":{"Code":"MetaKeywords","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"","DateTimeValue":null}]');
-INSERT INTO "SerializedObjects" VALUES (2, 5, 3, NULL, '[{"Member":{"Code":"Text","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"Tag1","DateTimeValue":null}]');
-INSERT INTO "SerializedObjects" VALUES (3, 5, 3, NULL, '[{"Member":{"Code":"Text","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"Tag1","DateTimeValue":null}]');
-INSERT INTO "SerializedObjects" VALUES (4, 5, 3, NULL, '[{"Member":{"Code":"Text","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"Tag1","DateTimeValue":null}]');
-INSERT INTO "SerializedObjects" VALUES (2, 6, 3, NULL, '[{"Member":{"Code":"Text","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"Tag2","DateTimeValue":null}]');
-INSERT INTO "SerializedObjects" VALUES (3, 6, 3, NULL, '[{"Member":{"Code":"Text","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"Tag2","DateTimeValue":null}]');
-INSERT INTO "SerializedObjects" VALUES (4, 6, 3, NULL, '[{"Member":{"Code":"Text","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"Tag2","DateTimeValue":null}]');
-INSERT INTO "SerializedObjects" VALUES (2, 7, 3, NULL, '[{"Member":{"Code":"Text","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"Tag3","DateTimeValue":null}]');
-INSERT INTO "SerializedObjects" VALUES (3, 7, 3, NULL, '[{"Member":{"Code":"Text","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"Tag3","DateTimeValue":null}]');
-INSERT INTO "SerializedObjects" VALUES (4, 7, 3, NULL, '[{"Member":{"Code":"Text","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"Tag3","DateTimeValue":null}]');
-INSERT INTO "SerializedObjects" VALUES (2, 8, 3, NULL, '[{"Member":{"Code":"Text","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"Tag4","DateTimeValue":null}]');
-INSERT INTO "SerializedObjects" VALUES (4, 8, 3, NULL, '[{"Member":{"Code":"Text","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"Tag4","DateTimeValue":null}]');
-INSERT INTO "SerializedObjects" VALUES (2, 9, 3, NULL, '[{"Member":{"Code":"Text","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"Tag5","DateTimeValue":null}]');
-INSERT INTO "SerializedObjects" VALUES (3, 9, 3, NULL, '[{"Member":{"Code":"Text","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"Tag5","DateTimeValue":null}]');
-INSERT INTO "SerializedObjects" VALUES (4, 9, 3, NULL, '[{"Member":{"Code":"Text","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"Tag5","DateTimeValue":null}]');
-INSERT INTO "SerializedObjects" VALUES (2, 10, 5, '/blog/post-1', '[{"Member":{"Code":"Url","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"/blog/post-1","DateTimeValue":null},{"Member":{"Code":"Name","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"Post 1","DateTimeValue":null},{"Member":{"Code":"Cover","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"/images/objects/10/cover.jpg","DateTimeValue":null},{"Member":{"Code":"Preview","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>","DateTimeValue":null},{"Member":{"Code":"Content","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>","DateTimeValue":null},{"Member":{"Code":"Created","PropertyDataTypeStorageDataType":"datetime"},"IntegerValue":null,"DecimalValue":null,"StringValue":null,"DateTimeValue":"2019-01-21T17:00:07.4636827+02:00"},{"Member":{"Code":"Title","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"Post 1","DateTimeValue":null},{"Member":{"Code":"MetaDescription","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"","DateTimeValue":null},{"Member":{"Code":"MetaKeywords","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"","DateTimeValue":null}]');
-INSERT INTO "SerializedObjects" VALUES (3, 10, 5, '/blog/post-1', '[{"Member":{"Code":"Url","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"/blog/post-1","DateTimeValue":null},{"Member":{"Code":"Name","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"Пост 1","DateTimeValue":null},{"Member":{"Code":"Cover","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"/images/objects/10/cover.jpg","DateTimeValue":null},{"Member":{"Code":"Preview","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>","DateTimeValue":null},{"Member":{"Code":"Content","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>","DateTimeValue":null},{"Member":{"Code":"Created","PropertyDataTypeStorageDataType":"datetime"},"IntegerValue":null,"DecimalValue":null,"StringValue":null,"DateTimeValue":"2019-01-21T17:00:07.4636827+02:00"},{"Member":{"Code":"Title","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"Пост 1","DateTimeValue":null},{"Member":{"Code":"MetaDescription","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"","DateTimeValue":null},{"Member":{"Code":"MetaKeywords","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"","DateTimeValue":null}]');
-INSERT INTO "SerializedObjects" VALUES (4, 10, 5, '/blog/post-1', '[{"Member":{"Code":"Url","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"/blog/post-1","DateTimeValue":null},{"Member":{"Code":"Name","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"Пост 1","DateTimeValue":null},{"Member":{"Code":"Cover","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"/images/objects/10/cover.jpg","DateTimeValue":null},{"Member":{"Code":"Preview","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>","DateTimeValue":null},{"Member":{"Code":"Content","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>","DateTimeValue":null},{"Member":{"Code":"Created","PropertyDataTypeStorageDataType":"datetime"},"IntegerValue":null,"DecimalValue":null,"StringValue":null,"DateTimeValue":"2019-01-21T17:00:07.4636827+02:00"},{"Member":{"Code":"Title","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"Пост 1","DateTimeValue":null},{"Member":{"Code":"MetaDescription","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"","DateTimeValue":null},{"Member":{"Code":"MetaKeywords","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"","DateTimeValue":null}]');
-INSERT INTO "SerializedObjects" VALUES (2, 11, 5, '/blog/post-2', '[{"Member":{"Code":"Url","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"/blog/post-2","DateTimeValue":null},{"Member":{"Code":"Name","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"Post 2","DateTimeValue":null},{"Member":{"Code":"Cover","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"/images/objects/11/cover.jpg","DateTimeValue":null},{"Member":{"Code":"Preview","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>","DateTimeValue":null},{"Member":{"Code":"Content","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>","DateTimeValue":null},{"Member":{"Code":"Created","PropertyDataTypeStorageDataType":"datetime"},"IntegerValue":null,"DecimalValue":null,"StringValue":null,"DateTimeValue":"2019-01-21T17:00:07.7253489+02:00"},{"Member":{"Code":"Title","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"Post 2","DateTimeValue":null},{"Member":{"Code":"MetaDescription","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"","DateTimeValue":null},{"Member":{"Code":"MetaKeywords","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"","DateTimeValue":null}]');
-INSERT INTO "SerializedObjects" VALUES (3, 11, 5, '/blog/post-2', '[{"Member":{"Code":"Url","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"/blog/post-2","DateTimeValue":null},{"Member":{"Code":"Name","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"Пост 2","DateTimeValue":null},{"Member":{"Code":"Cover","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"/images/objects/11/cover.jpg","DateTimeValue":null},{"Member":{"Code":"Preview","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>","DateTimeValue":null},{"Member":{"Code":"Content","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>","DateTimeValue":null},{"Member":{"Code":"Created","PropertyDataTypeStorageDataType":"datetime"},"IntegerValue":null,"DecimalValue":null,"StringValue":null,"DateTimeValue":"2019-01-21T17:00:07.7253489+02:00"},{"Member":{"Code":"Title","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"Пост 2","DateTimeValue":null},{"Member":{"Code":"MetaDescription","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"","DateTimeValue":null},{"Member":{"Code":"MetaKeywords","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"","DateTimeValue":null}]');
-INSERT INTO "SerializedObjects" VALUES (4, 11, 5, '/blog/post-2', '[{"Member":{"Code":"Url","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"/blog/post-2","DateTimeValue":null},{"Member":{"Code":"Name","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"Пост 2","DateTimeValue":null},{"Member":{"Code":"Cover","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"/images/objects/11/cover.jpg","DateTimeValue":null},{"Member":{"Code":"Preview","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>","DateTimeValue":null},{"Member":{"Code":"Content","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>","DateTimeValue":null},{"Member":{"Code":"Created","PropertyDataTypeStorageDataType":"datetime"},"IntegerValue":null,"DecimalValue":null,"StringValue":null,"DateTimeValue":"2019-01-21T17:00:07.7253489+02:00"},{"Member":{"Code":"Title","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"Пост 2","DateTimeValue":null},{"Member":{"Code":"MetaDescription","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"","DateTimeValue":null},{"Member":{"Code":"MetaKeywords","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"","DateTimeValue":null}]');
-INSERT INTO "SerializedObjects" VALUES (2, 12, 5, '/blog/post-3', '[{"Member":{"Code":"Url","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"/blog/post-3","DateTimeValue":null},{"Member":{"Code":"Name","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"Post 3","DateTimeValue":null},{"Member":{"Code":"Cover","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"/images/objects/12/cover.jpg","DateTimeValue":null},{"Member":{"Code":"Preview","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>","DateTimeValue":null},{"Member":{"Code":"Content","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>","DateTimeValue":null},{"Member":{"Code":"Created","PropertyDataTypeStorageDataType":"datetime"},"IntegerValue":null,"DecimalValue":null,"StringValue":null,"DateTimeValue":"2019-01-21T17:00:07.9484745+02:00"},{"Member":{"Code":"Title","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"Post 3","DateTimeValue":null},{"Member":{"Code":"MetaDescription","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"","DateTimeValue":null},{"Member":{"Code":"MetaKeywords","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"","DateTimeValue":null}]');
-INSERT INTO "SerializedObjects" VALUES (3, 12, 5, '/blog/post-3', '[{"Member":{"Code":"Url","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"/blog/post-3","DateTimeValue":null},{"Member":{"Code":"Name","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"Пост 3","DateTimeValue":null},{"Member":{"Code":"Cover","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"/images/objects/12/cover.jpg","DateTimeValue":null},{"Member":{"Code":"Preview","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>","DateTimeValue":null},{"Member":{"Code":"Content","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>","DateTimeValue":null},{"Member":{"Code":"Created","PropertyDataTypeStorageDataType":"datetime"},"IntegerValue":null,"DecimalValue":null,"StringValue":null,"DateTimeValue":"2019-01-21T17:00:07.9484745+02:00"},{"Member":{"Code":"Title","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"Пост 3","DateTimeValue":null},{"Member":{"Code":"MetaDescription","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"","DateTimeValue":null},{"Member":{"Code":"MetaKeywords","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"","DateTimeValue":null}]');
-INSERT INTO "SerializedObjects" VALUES (4, 12, 5, '/blog/post-3', '[{"Member":{"Code":"Url","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"/blog/post-3","DateTimeValue":null},{"Member":{"Code":"Name","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"Пост 3","DateTimeValue":null},{"Member":{"Code":"Cover","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"/images/objects/12/cover.jpg","DateTimeValue":null},{"Member":{"Code":"Preview","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>","DateTimeValue":null},{"Member":{"Code":"Content","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>","DateTimeValue":null},{"Member":{"Code":"Created","PropertyDataTypeStorageDataType":"datetime"},"IntegerValue":null,"DecimalValue":null,"StringValue":null,"DateTimeValue":"2019-01-21T17:00:07.9484745+02:00"},{"Member":{"Code":"Title","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"Пост 3","DateTimeValue":null},{"Member":{"Code":"MetaDescription","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"","DateTimeValue":null},{"Member":{"Code":"MetaKeywords","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"","DateTimeValue":null}]');
-INSERT INTO "SerializedObjects" VALUES (2, 13, 5, '/blog/post-4', '[{"Member":{"Code":"Url","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"/blog/post-4","DateTimeValue":null},{"Member":{"Code":"Name","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"Post 4","DateTimeValue":null},{"Member":{"Code":"Cover","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"/images/objects/13/cover.jpg","DateTimeValue":null},{"Member":{"Code":"Preview","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>","DateTimeValue":null},{"Member":{"Code":"Content","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>","DateTimeValue":null},{"Member":{"Code":"Created","PropertyDataTypeStorageDataType":"datetime"},"IntegerValue":null,"DecimalValue":null,"StringValue":null,"DateTimeValue":"2019-01-21T17:00:08.2027438+02:00"},{"Member":{"Code":"Title","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"Post 4","DateTimeValue":null},{"Member":{"Code":"MetaDescription","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"","DateTimeValue":null},{"Member":{"Code":"MetaKeywords","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"","DateTimeValue":null}]');
-INSERT INTO "SerializedObjects" VALUES (3, 13, 5, '/blog/post-4', '[{"Member":{"Code":"Url","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"/blog/post-4","DateTimeValue":null},{"Member":{"Code":"Name","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"Пост 4","DateTimeValue":null},{"Member":{"Code":"Cover","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"/images/objects/13/cover.jpg","DateTimeValue":null},{"Member":{"Code":"Preview","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>","DateTimeValue":null},{"Member":{"Code":"Content","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>","DateTimeValue":null},{"Member":{"Code":"Created","PropertyDataTypeStorageDataType":"datetime"},"IntegerValue":null,"DecimalValue":null,"StringValue":null,"DateTimeValue":"2019-01-21T17:00:08.2027438+02:00"},{"Member":{"Code":"Title","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"Пост 4","DateTimeValue":null},{"Member":{"Code":"MetaDescription","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"","DateTimeValue":null},{"Member":{"Code":"MetaKeywords","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"","DateTimeValue":null}]');
-INSERT INTO "SerializedObjects" VALUES (4, 13, 5, '/blog/post-4', '[{"Member":{"Code":"Url","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"/blog/post-4","DateTimeValue":null},{"Member":{"Code":"Name","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"Пост 4","DateTimeValue":null},{"Member":{"Code":"Cover","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"/images/objects/13/cover.jpg","DateTimeValue":null},{"Member":{"Code":"Preview","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>","DateTimeValue":null},{"Member":{"Code":"Content","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>","DateTimeValue":null},{"Member":{"Code":"Created","PropertyDataTypeStorageDataType":"datetime"},"IntegerValue":null,"DecimalValue":null,"StringValue":null,"DateTimeValue":"2019-01-21T17:00:08.2027438+02:00"},{"Member":{"Code":"Title","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"Пост 4","DateTimeValue":null},{"Member":{"Code":"MetaDescription","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"","DateTimeValue":null},{"Member":{"Code":"MetaKeywords","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"","DateTimeValue":null}]');
-INSERT INTO "SerializedObjects" VALUES (2, 14, 5, '/blog/post-5', '[{"Member":{"Code":"Url","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"/blog/post-5","DateTimeValue":null},{"Member":{"Code":"Name","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"Post 5","DateTimeValue":null},{"Member":{"Code":"Cover","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"/images/objects/14/cover.jpg","DateTimeValue":null},{"Member":{"Code":"Preview","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>","DateTimeValue":null},{"Member":{"Code":"Content","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>","DateTimeValue":null},{"Member":{"Code":"Created","PropertyDataTypeStorageDataType":"datetime"},"IntegerValue":null,"DecimalValue":null,"StringValue":null,"DateTimeValue":"2019-01-21T17:00:08.4350994+02:00"},{"Member":{"Code":"Title","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"Post 5","DateTimeValue":null},{"Member":{"Code":"MetaDescription","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"","DateTimeValue":null},{"Member":{"Code":"MetaKeywords","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"","DateTimeValue":null}]');
-INSERT INTO "SerializedObjects" VALUES (3, 14, 5, '/blog/post-5', '[{"Member":{"Code":"Url","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"/blog/post-5","DateTimeValue":null},{"Member":{"Code":"Name","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"Пост 5","DateTimeValue":null},{"Member":{"Code":"Cover","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"/images/objects/14/cover.jpg","DateTimeValue":null},{"Member":{"Code":"Preview","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>","DateTimeValue":null},{"Member":{"Code":"Content","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>","DateTimeValue":null},{"Member":{"Code":"Created","PropertyDataTypeStorageDataType":"datetime"},"IntegerValue":null,"DecimalValue":null,"StringValue":null,"DateTimeValue":"2019-01-21T17:00:08.4350994+02:00"},{"Member":{"Code":"Title","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"Пост 5","DateTimeValue":null},{"Member":{"Code":"MetaDescription","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"","DateTimeValue":null},{"Member":{"Code":"MetaKeywords","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"","DateTimeValue":null}]');
-INSERT INTO "SerializedObjects" VALUES (4, 14, 5, '/blog/post-5', '[{"Member":{"Code":"Url","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"/blog/post-5","DateTimeValue":null},{"Member":{"Code":"Name","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"Пост 5","DateTimeValue":null},{"Member":{"Code":"Cover","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"/images/objects/14/cover.jpg","DateTimeValue":null},{"Member":{"Code":"Preview","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>","DateTimeValue":null},{"Member":{"Code":"Content","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>","DateTimeValue":null},{"Member":{"Code":"Created","PropertyDataTypeStorageDataType":"datetime"},"IntegerValue":null,"DecimalValue":null,"StringValue":null,"DateTimeValue":"2019-01-21T17:00:08.4350994+02:00"},{"Member":{"Code":"Title","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"Пост 5","DateTimeValue":null},{"Member":{"Code":"MetaDescription","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"","DateTimeValue":null},{"Member":{"Code":"MetaKeywords","PropertyDataTypeStorageDataType":"string"},"IntegerValue":null,"DecimalValue":null,"StringValue":"","DateTimeValue":null}]');
-
-
---
--- TOC entry 3416 (class 0 OID 31968)
--- Dependencies: 287
--- Data for Name: SerializedProducts; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-
-
---
--- TOC entry 3355 (class 0 OID 31343)
--- Dependencies: 226
+-- TOC entry 3355 (class 0 OID 18652)
+-- Dependencies: 229
 -- Data for Name: Tabs; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO "Tabs" VALUES (1, 1, 'SEO', 100);
+INSERT INTO public."Tabs" ("Id", "ClassId", "Name", "Position") VALUES (1, 1, 'SEO', 100);
 
 
 --
--- TOC entry 3333 (class 0 OID 31175)
--- Dependencies: 204
+-- TOC entry 3334 (class 0 OID 18487)
+-- Dependencies: 208
 -- Data for Name: UserRoles; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO "UserRoles" VALUES (1, 1);
-INSERT INTO "UserRoles" VALUES (1, 2);
+INSERT INTO public."UserRoles" ("UserId", "RoleId") VALUES (1, 1);
+INSERT INTO public."UserRoles" ("UserId", "RoleId") VALUES (1, 2);
 
 
 --
--- TOC entry 3326 (class 0 OID 31123)
--- Dependencies: 197
+-- TOC entry 3327 (class 0 OID 18435)
+-- Dependencies: 201
 -- Data for Name: Users; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO "Users" VALUES (1, 'Administrator', '2017-01-01 00:00:00');
+INSERT INTO public."Users" ("Id", "Name", "Created") VALUES (1, 'Administrator', '2017-01-01 00:00:00');
 
 
 --
--- TOC entry 3340 (class 0 OID 31229)
--- Dependencies: 211
+-- TOC entry 3341 (class 0 OID 18541)
+-- Dependencies: 215
 -- Data for Name: Variables; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO "Variables" VALUES (1, 1, 'SmtpServer', 'SMTP server', 'test', 1);
-INSERT INTO "Variables" VALUES (2, 1, 'SmtpPort', 'SMTP port', '25', 2);
-INSERT INTO "Variables" VALUES (3, 1, 'SmtpUseSsl', 'SMTP use SSL', 'no', 3);
-INSERT INTO "Variables" VALUES (4, 1, 'SmtpLogin', 'SMTP login', 'test', 4);
-INSERT INTO "Variables" VALUES (5, 1, 'SmtpPassword', 'SMTP password', 'test', 5);
-INSERT INTO "Variables" VALUES (6, 1, 'SmtpSenderEmail', 'SMTP sender email', 'test', 6);
-INSERT INTO "Variables" VALUES (7, 1, 'SmtpSenderName', 'SMTP sender name', 'test', 7);
-INSERT INTO "Variables" VALUES (8, 2, 'SpecifyCultureInUrl', 'Specify culture in URL', 'yes', 1);
+INSERT INTO public."Variables" ("Id", "ConfigurationId", "Code", "Name", "Value", "Position") VALUES (1, 1, 'SmtpServer', 'SMTP server', 'test', 1);
+INSERT INTO public."Variables" ("Id", "ConfigurationId", "Code", "Name", "Value", "Position") VALUES (2, 1, 'SmtpPort', 'SMTP port', '25', 2);
+INSERT INTO public."Variables" ("Id", "ConfigurationId", "Code", "Name", "Value", "Position") VALUES (3, 1, 'SmtpUseSsl', 'SMTP use SSL', 'no', 3);
+INSERT INTO public."Variables" ("Id", "ConfigurationId", "Code", "Name", "Value", "Position") VALUES (4, 1, 'SmtpLogin', 'SMTP login', 'test', 4);
+INSERT INTO public."Variables" ("Id", "ConfigurationId", "Code", "Name", "Value", "Position") VALUES (5, 1, 'SmtpPassword', 'SMTP password', 'test', 5);
+INSERT INTO public."Variables" ("Id", "ConfigurationId", "Code", "Name", "Value", "Position") VALUES (6, 1, 'SmtpSenderEmail', 'SMTP sender email', 'test', 6);
+INSERT INTO public."Variables" ("Id", "ConfigurationId", "Code", "Name", "Value", "Position") VALUES (7, 1, 'SmtpSenderName', 'SMTP sender name', 'test', 7);
+INSERT INTO public."Variables" ("Id", "ConfigurationId", "Code", "Name", "Value", "Position") VALUES (8, 2, 'SpecifyCultureInUrl', 'Specify culture in URL', 'yes', 1);
 
 
 --
--- TOC entry 3466 (class 0 OID 0)
--- Dependencies: 268
--- Name: Attributes_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('"Attributes_Id_seq"', 1, false);
-
-
---
--- TOC entry 3467 (class 0 OID 0)
--- Dependencies: 283
--- Name: Carts_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('"Carts_Id_seq"', 1, false);
-
-
---
--- TOC entry 3468 (class 0 OID 0)
--- Dependencies: 262
--- Name: Catalogs_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('"Catalogs_Id_seq"', 1, false);
-
-
---
--- TOC entry 3469 (class 0 OID 0)
--- Dependencies: 264
--- Name: Categories_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('"Categories_Id_seq"', 1, false);
-
-
---
--- TOC entry 3470 (class 0 OID 0)
--- Dependencies: 223
+-- TOC entry 3422 (class 0 OID 0)
+-- Dependencies: 226
 -- Name: Classes_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"Classes_Id_seq"', 5, true);
+SELECT pg_catalog.setval('public."Classes_Id_seq"', 5, true);
 
 
 --
--- TOC entry 3471 (class 0 OID 0)
--- Dependencies: 257
+-- TOC entry 3423 (class 0 OID 0)
+-- Dependencies: 258
 -- Name: CompletedFields_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"CompletedFields_Id_seq"', 1, false);
+SELECT pg_catalog.setval('public."CompletedFields_Id_seq"', 1, false);
 
 
 --
--- TOC entry 3472 (class 0 OID 0)
--- Dependencies: 255
+-- TOC entry 3424 (class 0 OID 0)
+-- Dependencies: 256
 -- Name: CompletedForms_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"CompletedForms_Id_seq"', 1, false);
+SELECT pg_catalog.setval('public."CompletedForms_Id_seq"', 1, false);
 
 
 --
--- TOC entry 3473 (class 0 OID 0)
--- Dependencies: 208
+-- TOC entry 3425 (class 0 OID 0)
+-- Dependencies: 212
 -- Name: Configurations_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"Configurations_Id_seq"', 3, false);
+SELECT pg_catalog.setval('public."Configurations_Id_seq"', 3, false);
 
 
 --
--- TOC entry 3474 (class 0 OID 0)
--- Dependencies: 198
+-- TOC entry 3426 (class 0 OID 0)
+-- Dependencies: 202
 -- Name: CredentialTypes_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"CredentialTypes_Id_seq"', 2, false);
+SELECT pg_catalog.setval('public."CredentialTypes_Id_seq"', 2, false);
 
 
 --
--- TOC entry 3475 (class 0 OID 0)
--- Dependencies: 200
+-- TOC entry 3427 (class 0 OID 0)
+-- Dependencies: 204
 -- Name: Credentials_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"Credentials_Id_seq"', 2, false);
+SELECT pg_catalog.setval('public."Credentials_Id_seq"', 2, false);
 
 
 --
--- TOC entry 3476 (class 0 OID 0)
--- Dependencies: 212
--- Name: Cultures_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('"Cultures_Id_seq"', 4, true);
-
-
---
--- TOC entry 3477 (class 0 OID 0)
--- Dependencies: 221
+-- TOC entry 3428 (class 0 OID 0)
+-- Dependencies: 224
 -- Name: DataSources_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"DataSources_Id_seq"', 7, true);
+SELECT pg_catalog.setval('public."DataSources_Id_seq"', 7, true);
 
 
 --
--- TOC entry 3478 (class 0 OID 0)
--- Dependencies: 233
+-- TOC entry 3429 (class 0 OID 0)
+-- Dependencies: 236
 -- Name: DataTypeParameterValues_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"DataTypeParameterValues_Id_seq"', 19, true);
+SELECT pg_catalog.setval('public."DataTypeParameterValues_Id_seq"', 19, true);
 
 
 --
--- TOC entry 3479 (class 0 OID 0)
--- Dependencies: 229
+-- TOC entry 3430 (class 0 OID 0)
+-- Dependencies: 232
 -- Name: DataTypeParameters_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"DataTypeParameters_Id_seq"', 8, false);
+SELECT pg_catalog.setval('public."DataTypeParameters_Id_seq"', 8, false);
 
 
 --
--- TOC entry 3480 (class 0 OID 0)
--- Dependencies: 227
+-- TOC entry 3431 (class 0 OID 0)
+-- Dependencies: 230
 -- Name: DataTypes_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"DataTypes_Id_seq"', 9, false);
+SELECT pg_catalog.setval('public."DataTypes_Id_seq"', 9, false);
 
 
 --
--- TOC entry 3481 (class 0 OID 0)
--- Dependencies: 279
--- Name: DeliveryMethods_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('"DeliveryMethods_Id_seq"', 1, false);
-
-
---
--- TOC entry 3482 (class 0 OID 0)
--- Dependencies: 214
+-- TOC entry 3432 (class 0 OID 0)
+-- Dependencies: 217
 -- Name: Dictionaries_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"Dictionaries_Id_seq"', 79, true);
+SELECT pg_catalog.setval('public."Dictionaries_Id_seq"', 79, true);
 
 
 --
--- TOC entry 3483 (class 0 OID 0)
--- Dependencies: 218
+-- TOC entry 3433 (class 0 OID 0)
+-- Dependencies: 221
 -- Name: Endpoints_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"Endpoints_Id_seq"', 4, true);
+SELECT pg_catalog.setval('public."Endpoints_Id_seq"', 4, true);
 
 
 --
--- TOC entry 3484 (class 0 OID 0)
--- Dependencies: 266
--- Name: Features_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('"Features_Id_seq"', 1, false);
-
-
---
--- TOC entry 3485 (class 0 OID 0)
--- Dependencies: 253
+-- TOC entry 3434 (class 0 OID 0)
+-- Dependencies: 254
 -- Name: FieldOptions_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"FieldOptions_Id_seq"', 1, false);
+SELECT pg_catalog.setval('public."FieldOptions_Id_seq"', 1, false);
 
 
 --
--- TOC entry 3486 (class 0 OID 0)
--- Dependencies: 249
+-- TOC entry 3435 (class 0 OID 0)
+-- Dependencies: 250
 -- Name: FieldTypes_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"FieldTypes_Id_seq"', 7, false);
+SELECT pg_catalog.setval('public."FieldTypes_Id_seq"', 8, false);
 
 
 --
--- TOC entry 3487 (class 0 OID 0)
--- Dependencies: 251
+-- TOC entry 3436 (class 0 OID 0)
+-- Dependencies: 252
 -- Name: Fields_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"Fields_Id_seq"', 5, true);
+SELECT pg_catalog.setval('public."Fields_Id_seq"', 5, true);
 
 
 --
--- TOC entry 3488 (class 0 OID 0)
+-- TOC entry 3437 (class 0 OID 0)
 -- Dependencies: 260
 -- Name: Files_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"Files_Id_seq"', 1, false);
+SELECT pg_catalog.setval('public."Files_Id_seq"', 1, false);
 
 
 --
--- TOC entry 3489 (class 0 OID 0)
--- Dependencies: 247
+-- TOC entry 3438 (class 0 OID 0)
+-- Dependencies: 248
 -- Name: Forms_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"Forms_Id_seq"', 2, true);
+SELECT pg_catalog.setval('public."Forms_Id_seq"', 2, true);
 
 
 --
--- TOC entry 3490 (class 0 OID 0)
--- Dependencies: 216
+-- TOC entry 3439 (class 0 OID 0)
+-- Dependencies: 219
 -- Name: Localizations_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"Localizations_Id_seq"', 199, true);
+SELECT pg_catalog.setval('public."Localizations_Id_seq"', 209, true);
 
 
 --
--- TOC entry 3491 (class 0 OID 0)
--- Dependencies: 231
+-- TOC entry 3440 (class 0 OID 0)
+-- Dependencies: 234
 -- Name: Members_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"Members_Id_seq"', 15, true);
+SELECT pg_catalog.setval('public."Members_Id_seq"', 15, true);
 
 
 --
--- TOC entry 3492 (class 0 OID 0)
--- Dependencies: 244
+-- TOC entry 3441 (class 0 OID 0)
+-- Dependencies: 246
 -- Name: MenuItems_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"MenuItems_Id_seq"', 4, true);
+SELECT pg_catalog.setval('public."MenuItems_Id_seq"', 4, true);
 
 
 --
--- TOC entry 3493 (class 0 OID 0)
--- Dependencies: 242
+-- TOC entry 3442 (class 0 OID 0)
+-- Dependencies: 244
 -- Name: Menus_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"Menus_Id_seq"', 1, true);
+SELECT pg_catalog.setval('public."Menus_Id_seq"', 1, true);
 
 
 --
--- TOC entry 3494 (class 0 OID 0)
--- Dependencies: 235
+-- TOC entry 3443 (class 0 OID 0)
+-- Dependencies: 238
 -- Name: Objects_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"Objects_Id_seq"', 14, true);
+SELECT pg_catalog.setval('public."Objects_Id_seq"', 14, true);
 
 
 --
--- TOC entry 3495 (class 0 OID 0)
--- Dependencies: 275
--- Name: OrderStates_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('"OrderStates_Id_seq"', 1, false);
-
-
---
--- TOC entry 3496 (class 0 OID 0)
--- Dependencies: 281
--- Name: Orders_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('"Orders_Id_seq"', 1, false);
-
-
---
--- TOC entry 3497 (class 0 OID 0)
--- Dependencies: 277
--- Name: PaymentMethods_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('"PaymentMethods_Id_seq"', 1, false);
-
-
---
--- TOC entry 3498 (class 0 OID 0)
--- Dependencies: 205
+-- TOC entry 3444 (class 0 OID 0)
+-- Dependencies: 209
 -- Name: Permissions_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"Permissions_Id_seq"', 27, false);
+SELECT pg_catalog.setval('public."Permissions_Id_seq"', 27, false);
 
 
 --
--- TOC entry 3499 (class 0 OID 0)
--- Dependencies: 273
--- Name: Photos_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('"Photos_Id_seq"', 1, false);
-
-
---
--- TOC entry 3500 (class 0 OID 0)
--- Dependencies: 285
--- Name: Positions_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('"Positions_Id_seq"', 1, false);
-
-
---
--- TOC entry 3501 (class 0 OID 0)
--- Dependencies: 270
--- Name: Products_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('"Products_Id_seq"', 1, false);
-
-
---
--- TOC entry 3502 (class 0 OID 0)
--- Dependencies: 237
+-- TOC entry 3445 (class 0 OID 0)
+-- Dependencies: 240
 -- Name: Properties_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"Properties_Id_seq"', 70, true);
+SELECT pg_catalog.setval('public."Properties_Id_seq"', 70, true);
 
 
 --
--- TOC entry 3503 (class 0 OID 0)
--- Dependencies: 239
+-- TOC entry 3446 (class 0 OID 0)
+-- Dependencies: 242
 -- Name: Relations_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"Relations_Id_seq"', 12, true);
+SELECT pg_catalog.setval('public."Relations_Id_seq"', 9, true);
 
 
 --
--- TOC entry 3504 (class 0 OID 0)
--- Dependencies: 202
+-- TOC entry 3447 (class 0 OID 0)
+-- Dependencies: 206
 -- Name: Roles_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"Roles_Id_seq"', 4, false);
+SELECT pg_catalog.setval('public."Roles_Id_seq"', 4, false);
 
 
 --
--- TOC entry 3505 (class 0 OID 0)
--- Dependencies: 225
+-- TOC entry 3448 (class 0 OID 0)
+-- Dependencies: 228
 -- Name: Tabs_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"Tabs_Id_seq"', 1, true);
+SELECT pg_catalog.setval('public."Tabs_Id_seq"', 1, true);
 
 
 --
--- TOC entry 3506 (class 0 OID 0)
--- Dependencies: 196
+-- TOC entry 3449 (class 0 OID 0)
+-- Dependencies: 200
 -- Name: Users_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"Users_Id_seq"', 2, false);
+SELECT pg_catalog.setval('public."Users_Id_seq"', 2, false);
 
 
 --
--- TOC entry 3507 (class 0 OID 0)
--- Dependencies: 210
+-- TOC entry 3450 (class 0 OID 0)
+-- Dependencies: 214
 -- Name: Variables_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"Variables_Id_seq"', 8, false);
+SELECT pg_catalog.setval('public."Variables_Id_seq"', 8, false);
 
 
 --
--- TOC entry 3107 (class 2606 OID 31777)
--- Name: Attributes PK_Attributes; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "Attributes"
-    ADD CONSTRAINT "PK_Attributes" PRIMARY KEY ("Id");
-
-
---
--- TOC entry 3123 (class 2606 OID 31944)
--- Name: Carts PK_Carts; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "Carts"
-    ADD CONSTRAINT "PK_Carts" PRIMARY KEY ("Id");
-
-
---
--- TOC entry 3101 (class 2606 OID 31725)
--- Name: Catalogs PK_Catalogs; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "Catalogs"
-    ADD CONSTRAINT "PK_Catalogs" PRIMARY KEY ("Id");
-
-
---
--- TOC entry 3103 (class 2606 OID 31743)
--- Name: Categories PK_Categories; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "Categories"
-    ADD CONSTRAINT "PK_Categories" PRIMARY KEY ("Id");
-
-
---
--- TOC entry 3059 (class 2606 OID 31335)
+-- TOC entry 3119 (class 2606 OID 18644)
 -- Name: Classes PK_Classes; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "Classes"
+ALTER TABLE ONLY public."Classes"
     ADD CONSTRAINT "PK_Classes" PRIMARY KEY ("Id");
 
 
 --
--- TOC entry 3095 (class 2606 OID 31675)
+-- TOC entry 3151 (class 2606 OID 18948)
 -- Name: CompletedFields PK_CompletedFields; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "CompletedFields"
+ALTER TABLE ONLY public."CompletedFields"
     ADD CONSTRAINT "PK_CompletedFields" PRIMARY KEY ("Id");
 
 
 --
--- TOC entry 3093 (class 2606 OID 31659)
+-- TOC entry 3149 (class 2606 OID 18932)
 -- Name: CompletedForms PK_CompletedForms; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "CompletedForms"
+ALTER TABLE ONLY public."CompletedForms"
     ADD CONSTRAINT "PK_CompletedForms" PRIMARY KEY ("Id");
 
 
 --
--- TOC entry 3043 (class 2606 OID 31226)
+-- TOC entry 3103 (class 2606 OID 18538)
 -- Name: Configurations PK_Configurations; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "Configurations"
+ALTER TABLE ONLY public."Configurations"
     ADD CONSTRAINT "PK_Configurations" PRIMARY KEY ("Id");
 
 
 --
--- TOC entry 3031 (class 2606 OID 31142)
+-- TOC entry 3091 (class 2606 OID 18454)
 -- Name: CredentialTypes PK_CredentialTypes; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "CredentialTypes"
+ALTER TABLE ONLY public."CredentialTypes"
     ADD CONSTRAINT "PK_CredentialTypes" PRIMARY KEY ("Id");
 
 
 --
--- TOC entry 3033 (class 2606 OID 31153)
+-- TOC entry 3093 (class 2606 OID 18465)
 -- Name: Credentials PK_Credentials; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "Credentials"
+ALTER TABLE ONLY public."Credentials"
     ADD CONSTRAINT "PK_Credentials" PRIMARY KEY ("Id");
 
 
 --
--- TOC entry 3047 (class 2606 OID 31253)
+-- TOC entry 3107 (class 2606 OID 18562)
 -- Name: Cultures PK_Cultures; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "Cultures"
+ALTER TABLE ONLY public."Cultures"
     ADD CONSTRAINT "PK_Cultures" PRIMARY KEY ("Id");
 
 
 --
--- TOC entry 3057 (class 2606 OID 31319)
+-- TOC entry 3117 (class 2606 OID 18628)
 -- Name: DataSources PK_DataSources; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "DataSources"
+ALTER TABLE ONLY public."DataSources"
     ADD CONSTRAINT "PK_DataSources" PRIMARY KEY ("Id");
 
 
 --
--- TOC entry 3069 (class 2606 OID 31425)
+-- TOC entry 3129 (class 2606 OID 18734)
 -- Name: DataTypeParameterValues PK_DataTypeParameterValues; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "DataTypeParameterValues"
+ALTER TABLE ONLY public."DataTypeParameterValues"
     ADD CONSTRAINT "PK_DataTypeParameterValues" PRIMARY KEY ("Id");
 
 
 --
--- TOC entry 3065 (class 2606 OID 31378)
+-- TOC entry 3125 (class 2606 OID 18687)
 -- Name: DataTypeParameters PK_DataTypeParameters; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "DataTypeParameters"
+ALTER TABLE ONLY public."DataTypeParameters"
     ADD CONSTRAINT "PK_DataTypeParameters" PRIMARY KEY ("Id");
 
 
 --
--- TOC entry 3063 (class 2606 OID 31367)
+-- TOC entry 3123 (class 2606 OID 18676)
 -- Name: DataTypes PK_DataTypes; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "DataTypes"
+ALTER TABLE ONLY public."DataTypes"
     ADD CONSTRAINT "PK_DataTypes" PRIMARY KEY ("Id");
 
 
 --
--- TOC entry 3119 (class 2606 OID 31902)
--- Name: DeliveryMethods PK_DeliveryMethods; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "DeliveryMethods"
-    ADD CONSTRAINT "PK_DeliveryMethods" PRIMARY KEY ("Id");
-
-
---
--- TOC entry 3049 (class 2606 OID 31261)
+-- TOC entry 3109 (class 2606 OID 18570)
 -- Name: Dictionaries PK_Dictionaries; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "Dictionaries"
+ALTER TABLE ONLY public."Dictionaries"
     ADD CONSTRAINT "PK_Dictionaries" PRIMARY KEY ("Id");
 
 
 --
--- TOC entry 3055 (class 2606 OID 31298)
+-- TOC entry 3115 (class 2606 OID 18607)
 -- Name: EndpointPermissions PK_EndpointPermissions; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "EndpointPermissions"
+ALTER TABLE ONLY public."EndpointPermissions"
     ADD CONSTRAINT "PK_EndpointPermissions" PRIMARY KEY ("EndpointId", "PermissionId");
 
 
 --
--- TOC entry 3053 (class 2606 OID 31293)
+-- TOC entry 3113 (class 2606 OID 18602)
 -- Name: Endpoints PK_Endpoints; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "Endpoints"
+ALTER TABLE ONLY public."Endpoints"
     ADD CONSTRAINT "PK_Endpoints" PRIMARY KEY ("Id");
 
 
 --
--- TOC entry 3105 (class 2606 OID 31764)
--- Name: Features PK_Features; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "Features"
-    ADD CONSTRAINT "PK_Features" PRIMARY KEY ("Id");
-
-
---
--- TOC entry 3091 (class 2606 OID 31641)
+-- TOC entry 3147 (class 2606 OID 18914)
 -- Name: FieldOptions PK_FieldOptions; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "FieldOptions"
+ALTER TABLE ONLY public."FieldOptions"
     ADD CONSTRAINT "PK_FieldOptions" PRIMARY KEY ("Id");
 
 
 --
--- TOC entry 3087 (class 2606 OID 31607)
+-- TOC entry 3143 (class 2606 OID 18880)
 -- Name: FieldTypes PK_FieldTypes; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "FieldTypes"
+ALTER TABLE ONLY public."FieldTypes"
     ADD CONSTRAINT "PK_FieldTypes" PRIMARY KEY ("Id");
 
 
 --
--- TOC entry 3089 (class 2606 OID 31618)
+-- TOC entry 3145 (class 2606 OID 18891)
 -- Name: Fields PK_Fields; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "Fields"
+ALTER TABLE ONLY public."Fields"
     ADD CONSTRAINT "PK_Fields" PRIMARY KEY ("Id");
 
 
 --
--- TOC entry 3099 (class 2606 OID 31714)
+-- TOC entry 3153 (class 2606 OID 18969)
 -- Name: Files PK_Files; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "Files"
+ALTER TABLE ONLY public."Files"
     ADD CONSTRAINT "PK_Files" PRIMARY KEY ("Id");
 
 
 --
--- TOC entry 3085 (class 2606 OID 31586)
+-- TOC entry 3141 (class 2606 OID 18859)
 -- Name: Forms PK_Forms; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "Forms"
+ALTER TABLE ONLY public."Forms"
     ADD CONSTRAINT "PK_Forms" PRIMARY KEY ("Id");
 
 
 --
--- TOC entry 3051 (class 2606 OID 31272)
+-- TOC entry 3111 (class 2606 OID 18581)
 -- Name: Localizations PK_Localizations; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "Localizations"
+ALTER TABLE ONLY public."Localizations"
     ADD CONSTRAINT "PK_Localizations" PRIMARY KEY ("Id");
 
 
 --
--- TOC entry 3067 (class 2606 OID 31394)
+-- TOC entry 3127 (class 2606 OID 18703)
 -- Name: Members PK_Members; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "Members"
+ALTER TABLE ONLY public."Members"
     ADD CONSTRAINT "PK_Members" PRIMARY KEY ("Id");
 
 
 --
--- TOC entry 3081 (class 2606 OID 31542)
+-- TOC entry 3139 (class 2606 OID 18833)
 -- Name: MenuItems PK_MenuItems; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "MenuItems"
+ALTER TABLE ONLY public."MenuItems"
     ADD CONSTRAINT "PK_MenuItems" PRIMARY KEY ("Id");
 
 
 --
--- TOC entry 3079 (class 2606 OID 31531)
+-- TOC entry 3137 (class 2606 OID 18817)
 -- Name: Menus PK_Menus; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "Menus"
+ALTER TABLE ONLY public."Menus"
     ADD CONSTRAINT "PK_Menus" PRIMARY KEY ("Id");
 
 
 --
--- TOC entry 3071 (class 2606 OID 31443)
+-- TOC entry 3131 (class 2606 OID 18752)
 -- Name: Objects PK_Objects; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "Objects"
+ALTER TABLE ONLY public."Objects"
     ADD CONSTRAINT "PK_Objects" PRIMARY KEY ("Id");
 
 
 --
--- TOC entry 3115 (class 2606 OID 31870)
--- Name: OrderStates PK_OrderStates; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "OrderStates"
-    ADD CONSTRAINT "PK_OrderStates" PRIMARY KEY ("Id");
-
-
---
--- TOC entry 3121 (class 2606 OID 31918)
--- Name: Orders PK_Orders; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "Orders"
-    ADD CONSTRAINT "PK_Orders" PRIMARY KEY ("Id");
-
-
---
--- TOC entry 3117 (class 2606 OID 31886)
--- Name: PaymentMethods PK_PaymentMethods; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "PaymentMethods"
-    ADD CONSTRAINT "PK_PaymentMethods" PRIMARY KEY ("Id");
-
-
---
--- TOC entry 3039 (class 2606 OID 31200)
+-- TOC entry 3099 (class 2606 OID 18512)
 -- Name: Permissions PK_Permissions; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "Permissions"
+ALTER TABLE ONLY public."Permissions"
     ADD CONSTRAINT "PK_Permissions" PRIMARY KEY ("Id");
 
 
 --
--- TOC entry 3113 (class 2606 OID 31854)
--- Name: Photos PK_Photos; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "Photos"
-    ADD CONSTRAINT "PK_Photos" PRIMARY KEY ("Id");
-
-
---
--- TOC entry 3125 (class 2606 OID 31957)
--- Name: Positions PK_Positions; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "Positions"
-    ADD CONSTRAINT "PK_Positions" PRIMARY KEY ("Id");
-
-
---
--- TOC entry 3111 (class 2606 OID 31833)
--- Name: ProductAttributes PK_ProductAttributes; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "ProductAttributes"
-    ADD CONSTRAINT "PK_ProductAttributes" PRIMARY KEY ("ProductId", "AttributeId");
-
-
---
--- TOC entry 3109 (class 2606 OID 31798)
--- Name: Products PK_Products; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "Products"
-    ADD CONSTRAINT "PK_Products" PRIMARY KEY ("Id");
-
-
---
--- TOC entry 3073 (class 2606 OID 31459)
+-- TOC entry 3133 (class 2606 OID 18768)
 -- Name: Properties PK_Properties; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "Properties"
+ALTER TABLE ONLY public."Properties"
     ADD CONSTRAINT "PK_Properties" PRIMARY KEY ("Id");
 
 
 --
--- TOC entry 3075 (class 2606 OID 31482)
+-- TOC entry 3135 (class 2606 OID 18791)
 -- Name: Relations PK_Relations; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "Relations"
+ALTER TABLE ONLY public."Relations"
     ADD CONSTRAINT "PK_Relations" PRIMARY KEY ("Id");
 
 
 --
--- TOC entry 3041 (class 2606 OID 31205)
+-- TOC entry 3101 (class 2606 OID 18517)
 -- Name: RolePermissions PK_RolePermissions; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "RolePermissions"
+ALTER TABLE ONLY public."RolePermissions"
     ADD CONSTRAINT "PK_RolePermissions" PRIMARY KEY ("RoleId", "PermissionId");
 
 
 --
--- TOC entry 3035 (class 2606 OID 31174)
+-- TOC entry 3095 (class 2606 OID 18486)
 -- Name: Roles PK_Roles; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "Roles"
+ALTER TABLE ONLY public."Roles"
     ADD CONSTRAINT "PK_Roles" PRIMARY KEY ("Id");
 
 
 --
--- TOC entry 3097 (class 2606 OID 31693)
--- Name: SerializedForms PK_SerializedForms; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "SerializedForms"
-    ADD CONSTRAINT "PK_SerializedForms" PRIMARY KEY ("CultureId", "FormId");
-
-
---
--- TOC entry 3083 (class 2606 OID 31565)
--- Name: SerializedMenus PK_SerializedMenus; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "SerializedMenus"
-    ADD CONSTRAINT "PK_SerializedMenus" PRIMARY KEY ("CultureId", "MenuId");
-
-
---
--- TOC entry 3077 (class 2606 OID 31505)
--- Name: SerializedObjects PK_SerializedObjects; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "SerializedObjects"
-    ADD CONSTRAINT "PK_SerializedObjects" PRIMARY KEY ("CultureId", "ObjectId");
-
-
---
--- TOC entry 3127 (class 2606 OID 31975)
--- Name: SerializedProducts PK_SerializedProducts; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "SerializedProducts"
-    ADD CONSTRAINT "PK_SerializedProducts" PRIMARY KEY ("CultureId", "ProductId");
-
-
---
--- TOC entry 3061 (class 2606 OID 31351)
+-- TOC entry 3121 (class 2606 OID 18660)
 -- Name: Tabs PK_Tabs; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "Tabs"
+ALTER TABLE ONLY public."Tabs"
     ADD CONSTRAINT "PK_Tabs" PRIMARY KEY ("Id");
 
 
 --
--- TOC entry 3037 (class 2606 OID 31179)
+-- TOC entry 3097 (class 2606 OID 18491)
 -- Name: UserRoles PK_UserRoles; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "UserRoles"
+ALTER TABLE ONLY public."UserRoles"
     ADD CONSTRAINT "PK_UserRoles" PRIMARY KEY ("UserId", "RoleId");
 
 
 --
--- TOC entry 3029 (class 2606 OID 31131)
+-- TOC entry 3089 (class 2606 OID 18443)
 -- Name: Users PK_Users; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "Users"
+ALTER TABLE ONLY public."Users"
     ADD CONSTRAINT "PK_Users" PRIMARY KEY ("Id");
 
 
 --
--- TOC entry 3045 (class 2606 OID 31237)
+-- TOC entry 3105 (class 2606 OID 18549)
 -- Name: Variables PK_Variable; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "Variables"
+ALTER TABLE ONLY public."Variables"
     ADD CONSTRAINT "PK_Variable" PRIMARY KEY ("Id");
 
 
 --
--- TOC entry 3182 (class 2606 OID 31783)
--- Name: Attributes FK_Attributes_Dictionaries; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "Attributes"
-    ADD CONSTRAINT "FK_Attributes_Dictionaries" FOREIGN KEY ("ValueId") REFERENCES "Dictionaries"("Id");
-
-
---
--- TOC entry 3181 (class 2606 OID 31778)
--- Name: Attributes FK_Attributes_Features; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "Attributes"
-    ADD CONSTRAINT "FK_Attributes_Features" FOREIGN KEY ("FeatureId") REFERENCES "Features"("Id");
-
-
---
--- TOC entry 3198 (class 2606 OID 31945)
--- Name: Carts FK_Carts_Orders; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "Carts"
-    ADD CONSTRAINT "FK_Carts_Orders" FOREIGN KEY ("OrderId") REFERENCES "Orders"("Id");
-
-
---
--- TOC entry 3176 (class 2606 OID 31726)
--- Name: Catalogs FK_Catalogs_Catalogs; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "Catalogs"
-    ADD CONSTRAINT "FK_Catalogs_Catalogs" FOREIGN KEY ("CatalogId") REFERENCES "Catalogs"("Id");
-
-
---
--- TOC entry 3177 (class 2606 OID 31731)
--- Name: Catalogs FK_Catalogs_Dictionaries; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "Catalogs"
-    ADD CONSTRAINT "FK_Catalogs_Dictionaries" FOREIGN KEY ("NameId") REFERENCES "Dictionaries"("Id");
-
-
---
--- TOC entry 3178 (class 2606 OID 31744)
--- Name: Categories FK_Categories_Categories; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "Categories"
-    ADD CONSTRAINT "FK_Categories_Categories" FOREIGN KEY ("CategoryId") REFERENCES "Categories"("Id");
-
-
---
--- TOC entry 3179 (class 2606 OID 31749)
--- Name: Categories FK_Categories_Dictionaries; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "Categories"
-    ADD CONSTRAINT "FK_Categories_Dictionaries" FOREIGN KEY ("NameId") REFERENCES "Dictionaries"("Id");
-
-
---
--- TOC entry 3140 (class 2606 OID 31336)
+-- TOC entry 3166 (class 2606 OID 18645)
 -- Name: Classes FK_Classes_Classes; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "Classes"
-    ADD CONSTRAINT "FK_Classes_Classes" FOREIGN KEY ("ClassId") REFERENCES "Classes"("Id");
+ALTER TABLE ONLY public."Classes"
+    ADD CONSTRAINT "FK_Classes_Classes" FOREIGN KEY ("ClassId") REFERENCES public."Classes"("Id") ON DELETE SET NULL;
 
 
 --
--- TOC entry 3172 (class 2606 OID 31676)
+-- TOC entry 3194 (class 2606 OID 18949)
 -- Name: CompletedFields FK_CompletedFields_CompletedForms; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "CompletedFields"
-    ADD CONSTRAINT "FK_CompletedFields_CompletedForms" FOREIGN KEY ("CompletedFormId") REFERENCES "CompletedForms"("Id");
+ALTER TABLE ONLY public."CompletedFields"
+    ADD CONSTRAINT "FK_CompletedFields_CompletedForms" FOREIGN KEY ("CompletedFormId") REFERENCES public."CompletedForms"("Id") ON DELETE CASCADE;
 
 
 --
--- TOC entry 3173 (class 2606 OID 31681)
+-- TOC entry 3195 (class 2606 OID 18954)
 -- Name: CompletedFields FK_CompletedFields_Fields; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "CompletedFields"
-    ADD CONSTRAINT "FK_CompletedFields_Fields" FOREIGN KEY ("FieldId") REFERENCES "Fields"("Id");
+ALTER TABLE ONLY public."CompletedFields"
+    ADD CONSTRAINT "FK_CompletedFields_Fields" FOREIGN KEY ("FieldId") REFERENCES public."Fields"("Id") ON DELETE CASCADE;
 
 
 --
--- TOC entry 3171 (class 2606 OID 31660)
+-- TOC entry 3193 (class 2606 OID 18933)
 -- Name: CompletedForms FK_CompletedForms_Forms; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "CompletedForms"
-    ADD CONSTRAINT "FK_CompletedForms_Forms" FOREIGN KEY ("FormId") REFERENCES "Forms"("Id");
+ALTER TABLE ONLY public."CompletedForms"
+    ADD CONSTRAINT "FK_CompletedForms_Forms" FOREIGN KEY ("FormId") REFERENCES public."Forms"("Id") ON DELETE CASCADE;
 
 
 --
--- TOC entry 3129 (class 2606 OID 31159)
+-- TOC entry 3155 (class 2606 OID 18471)
 -- Name: Credentials FK_Credentials_CredentialTypes; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "Credentials"
-    ADD CONSTRAINT "FK_Credentials_CredentialTypes" FOREIGN KEY ("CredentialTypeId") REFERENCES "CredentialTypes"("Id");
+ALTER TABLE ONLY public."Credentials"
+    ADD CONSTRAINT "FK_Credentials_CredentialTypes" FOREIGN KEY ("CredentialTypeId") REFERENCES public."CredentialTypes"("Id") ON DELETE CASCADE;
 
 
 --
--- TOC entry 3128 (class 2606 OID 31154)
+-- TOC entry 3154 (class 2606 OID 18466)
 -- Name: Credentials FK_Credentials_Users; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "Credentials"
-    ADD CONSTRAINT "FK_Credentials_Users" FOREIGN KEY ("UserId") REFERENCES "Users"("Id");
+ALTER TABLE ONLY public."Credentials"
+    ADD CONSTRAINT "FK_Credentials_Users" FOREIGN KEY ("UserId") REFERENCES public."Users"("Id") ON DELETE CASCADE;
 
 
 --
--- TOC entry 3139 (class 2606 OID 31320)
+-- TOC entry 3165 (class 2606 OID 18629)
 -- Name: DataSources FK_DataSources_Endpoints; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "DataSources"
-    ADD CONSTRAINT "FK_DataSources_Endpoints" FOREIGN KEY ("EndpointId") REFERENCES "Endpoints"("Id");
+ALTER TABLE ONLY public."DataSources"
+    ADD CONSTRAINT "FK_DataSources_Endpoints" FOREIGN KEY ("EndpointId") REFERENCES public."Endpoints"("Id") ON DELETE CASCADE;
 
 
 --
--- TOC entry 3147 (class 2606 OID 31426)
+-- TOC entry 3173 (class 2606 OID 18735)
 -- Name: DataTypeParameterValues FK_DataTypeParameterValues_DataTypeParameters_DataTypeParameter; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "DataTypeParameterValues"
-    ADD CONSTRAINT "FK_DataTypeParameterValues_DataTypeParameters_DataTypeParameter" FOREIGN KEY ("DataTypeParameterId") REFERENCES "DataTypeParameters"("Id");
+ALTER TABLE ONLY public."DataTypeParameterValues"
+    ADD CONSTRAINT "FK_DataTypeParameterValues_DataTypeParameters_DataTypeParameter" FOREIGN KEY ("DataTypeParameterId") REFERENCES public."DataTypeParameters"("Id") ON DELETE CASCADE;
 
 
 --
--- TOC entry 3148 (class 2606 OID 31431)
+-- TOC entry 3174 (class 2606 OID 18740)
 -- Name: DataTypeParameterValues FK_DataTypeParameterValues_Members_MemberId; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "DataTypeParameterValues"
-    ADD CONSTRAINT "FK_DataTypeParameterValues_Members_MemberId" FOREIGN KEY ("MemberId") REFERENCES "Members"("Id");
+ALTER TABLE ONLY public."DataTypeParameterValues"
+    ADD CONSTRAINT "FK_DataTypeParameterValues_Members_MemberId" FOREIGN KEY ("MemberId") REFERENCES public."Members"("Id") ON DELETE CASCADE;
 
 
 --
--- TOC entry 3142 (class 2606 OID 31379)
+-- TOC entry 3168 (class 2606 OID 18688)
 -- Name: DataTypeParameters FK_DataTypeParameters_DataTypes_DataTypeId; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "DataTypeParameters"
-    ADD CONSTRAINT "FK_DataTypeParameters_DataTypes_DataTypeId" FOREIGN KEY ("DataTypeId") REFERENCES "DataTypes"("Id");
+ALTER TABLE ONLY public."DataTypeParameters"
+    ADD CONSTRAINT "FK_DataTypeParameters_DataTypes_DataTypeId" FOREIGN KEY ("DataTypeId") REFERENCES public."DataTypes"("Id") ON DELETE CASCADE;
 
 
 --
--- TOC entry 3194 (class 2606 OID 31903)
--- Name: DeliveryMethods FK_DeliveryMethods_Dictionaries; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "DeliveryMethods"
-    ADD CONSTRAINT "FK_DeliveryMethods_Dictionaries" FOREIGN KEY ("NameId") REFERENCES "Dictionaries"("Id");
-
-
---
--- TOC entry 3137 (class 2606 OID 31299)
+-- TOC entry 3163 (class 2606 OID 18608)
 -- Name: EndpointPermissions FK_EndpointPermissions_Roles; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "EndpointPermissions"
-    ADD CONSTRAINT "FK_EndpointPermissions_Roles" FOREIGN KEY ("EndpointId") REFERENCES "Endpoints"("Id");
+ALTER TABLE ONLY public."EndpointPermissions"
+    ADD CONSTRAINT "FK_EndpointPermissions_Roles" FOREIGN KEY ("EndpointId") REFERENCES public."Endpoints"("Id") ON DELETE CASCADE;
 
 
 --
--- TOC entry 3180 (class 2606 OID 31765)
--- Name: Features FK_Features_Dictionaries; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "Features"
-    ADD CONSTRAINT "FK_Features_Dictionaries" FOREIGN KEY ("NameId") REFERENCES "Dictionaries"("Id");
-
-
---
--- TOC entry 3170 (class 2606 OID 31647)
+-- TOC entry 3192 (class 2606 OID 18920)
 -- Name: FieldOptions FK_FieldOptions_Dictionaries; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "FieldOptions"
-    ADD CONSTRAINT "FK_FieldOptions_Dictionaries" FOREIGN KEY ("ValueId") REFERENCES "Dictionaries"("Id");
+ALTER TABLE ONLY public."FieldOptions"
+    ADD CONSTRAINT "FK_FieldOptions_Dictionaries" FOREIGN KEY ("ValueId") REFERENCES public."Dictionaries"("Id");
 
 
 --
--- TOC entry 3169 (class 2606 OID 31642)
+-- TOC entry 3191 (class 2606 OID 18915)
 -- Name: FieldOptions FK_FieldOptions_Fields; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "FieldOptions"
-    ADD CONSTRAINT "FK_FieldOptions_Fields" FOREIGN KEY ("FieldId") REFERENCES "Fields"("Id");
+ALTER TABLE ONLY public."FieldOptions"
+    ADD CONSTRAINT "FK_FieldOptions_Fields" FOREIGN KEY ("FieldId") REFERENCES public."Fields"("Id") ON DELETE CASCADE;
 
 
 --
--- TOC entry 3168 (class 2606 OID 31629)
+-- TOC entry 3190 (class 2606 OID 18902)
 -- Name: Fields FK_Fields_Dictionaries; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "Fields"
-    ADD CONSTRAINT "FK_Fields_Dictionaries" FOREIGN KEY ("NameId") REFERENCES "Dictionaries"("Id");
+ALTER TABLE ONLY public."Fields"
+    ADD CONSTRAINT "FK_Fields_Dictionaries" FOREIGN KEY ("NameId") REFERENCES public."Dictionaries"("Id");
 
 
 --
--- TOC entry 3167 (class 2606 OID 31624)
+-- TOC entry 3189 (class 2606 OID 18897)
 -- Name: Fields FK_Fields_FieldTypes; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "Fields"
-    ADD CONSTRAINT "FK_Fields_FieldTypes" FOREIGN KEY ("FieldTypeId") REFERENCES "FieldTypes"("Id");
+ALTER TABLE ONLY public."Fields"
+    ADD CONSTRAINT "FK_Fields_FieldTypes" FOREIGN KEY ("FieldTypeId") REFERENCES public."FieldTypes"("Id") ON DELETE CASCADE;
 
 
 --
--- TOC entry 3166 (class 2606 OID 31619)
+-- TOC entry 3188 (class 2606 OID 18892)
 -- Name: Fields FK_Fields_Forms; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "Fields"
-    ADD CONSTRAINT "FK_Fields_Forms" FOREIGN KEY ("FormId") REFERENCES "Forms"("Id");
+ALTER TABLE ONLY public."Fields"
+    ADD CONSTRAINT "FK_Fields_Forms" FOREIGN KEY ("FormId") REFERENCES public."Forms"("Id") ON DELETE CASCADE;
 
 
 --
--- TOC entry 3164 (class 2606 OID 31587)
+-- TOC entry 3186 (class 2606 OID 18860)
 -- Name: Forms FK_Forms_Dictionaries_NameId; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "Forms"
-    ADD CONSTRAINT "FK_Forms_Dictionaries_NameId" FOREIGN KEY ("NameId") REFERENCES "Dictionaries"("Id");
+ALTER TABLE ONLY public."Forms"
+    ADD CONSTRAINT "FK_Forms_Dictionaries_NameId" FOREIGN KEY ("NameId") REFERENCES public."Dictionaries"("Id");
 
 
 --
--- TOC entry 3165 (class 2606 OID 31592)
+-- TOC entry 3187 (class 2606 OID 18865)
 -- Name: Forms FK_Forms_Dictionaries_SubmitButtonTitleId; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "Forms"
-    ADD CONSTRAINT "FK_Forms_Dictionaries_SubmitButtonTitleId" FOREIGN KEY ("SubmitButtonTitleId") REFERENCES "Dictionaries"("Id");
+ALTER TABLE ONLY public."Forms"
+    ADD CONSTRAINT "FK_Forms_Dictionaries_SubmitButtonTitleId" FOREIGN KEY ("SubmitButtonTitleId") REFERENCES public."Dictionaries"("Id");
 
 
 --
--- TOC entry 3136 (class 2606 OID 31278)
+-- TOC entry 3162 (class 2606 OID 18587)
 -- Name: Localizations FK_Localizations_Cultures; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "Localizations"
-    ADD CONSTRAINT "FK_Localizations_Cultures" FOREIGN KEY ("CultureId") REFERENCES "Cultures"("Id");
+ALTER TABLE ONLY public."Localizations"
+    ADD CONSTRAINT "FK_Localizations_Cultures" FOREIGN KEY ("CultureId") REFERENCES public."Cultures"("Id") ON DELETE CASCADE;
 
 
 --
--- TOC entry 3135 (class 2606 OID 31273)
+-- TOC entry 3161 (class 2606 OID 18582)
 -- Name: Localizations FK_Localizations_Dictionaries; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "Localizations"
-    ADD CONSTRAINT "FK_Localizations_Dictionaries" FOREIGN KEY ("DictionaryId") REFERENCES "Dictionaries"("Id");
+ALTER TABLE ONLY public."Localizations"
+    ADD CONSTRAINT "FK_Localizations_Dictionaries" FOREIGN KEY ("DictionaryId") REFERENCES public."Dictionaries"("Id") ON DELETE CASCADE;
 
 
 --
--- TOC entry 3143 (class 2606 OID 31395)
+-- TOC entry 3169 (class 2606 OID 18704)
 -- Name: Members FK_Members_Classes_ClassId; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "Members"
-    ADD CONSTRAINT "FK_Members_Classes_ClassId" FOREIGN KEY ("ClassId") REFERENCES "Classes"("Id");
+ALTER TABLE ONLY public."Members"
+    ADD CONSTRAINT "FK_Members_Classes_ClassId" FOREIGN KEY ("ClassId") REFERENCES public."Classes"("Id") ON DELETE CASCADE;
 
 
 --
--- TOC entry 3146 (class 2606 OID 31410)
+-- TOC entry 3172 (class 2606 OID 18719)
 -- Name: Members FK_Members_Classes_RelationClassId; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "Members"
-    ADD CONSTRAINT "FK_Members_Classes_RelationClassId" FOREIGN KEY ("RelationClassId") REFERENCES "Classes"("Id");
+ALTER TABLE ONLY public."Members"
+    ADD CONSTRAINT "FK_Members_Classes_RelationClassId" FOREIGN KEY ("RelationClassId") REFERENCES public."Classes"("Id") ON DELETE SET NULL;
 
 
 --
--- TOC entry 3145 (class 2606 OID 31405)
+-- TOC entry 3171 (class 2606 OID 18714)
 -- Name: Members FK_Members_DataTypes; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "Members"
-    ADD CONSTRAINT "FK_Members_DataTypes" FOREIGN KEY ("PropertyDataTypeId") REFERENCES "DataTypes"("Id");
+ALTER TABLE ONLY public."Members"
+    ADD CONSTRAINT "FK_Members_DataTypes" FOREIGN KEY ("PropertyDataTypeId") REFERENCES public."DataTypes"("Id") ON DELETE SET NULL;
 
 
 --
--- TOC entry 3144 (class 2606 OID 31400)
+-- TOC entry 3170 (class 2606 OID 18709)
 -- Name: Members FK_Members_Tabs; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "Members"
-    ADD CONSTRAINT "FK_Members_Tabs" FOREIGN KEY ("TabId") REFERENCES "Tabs"("Id");
+ALTER TABLE ONLY public."Members"
+    ADD CONSTRAINT "FK_Members_Tabs" FOREIGN KEY ("TabId") REFERENCES public."Tabs"("Id") ON DELETE SET NULL;
 
 
 --
--- TOC entry 3161 (class 2606 OID 31553)
+-- TOC entry 3185 (class 2606 OID 18844)
 -- Name: MenuItems FK_MenuItems_Dictionaries; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "MenuItems"
-    ADD CONSTRAINT "FK_MenuItems_Dictionaries" FOREIGN KEY ("NameId") REFERENCES "Dictionaries"("Id");
+ALTER TABLE ONLY public."MenuItems"
+    ADD CONSTRAINT "FK_MenuItems_Dictionaries" FOREIGN KEY ("NameId") REFERENCES public."Dictionaries"("Id");
 
 
 --
--- TOC entry 3160 (class 2606 OID 31548)
+-- TOC entry 3184 (class 2606 OID 18839)
 -- Name: MenuItems FK_MenuItems_MenuItems; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "MenuItems"
-    ADD CONSTRAINT "FK_MenuItems_MenuItems" FOREIGN KEY ("MenuItemId") REFERENCES "MenuItems"("Id");
+ALTER TABLE ONLY public."MenuItems"
+    ADD CONSTRAINT "FK_MenuItems_MenuItems" FOREIGN KEY ("MenuItemId") REFERENCES public."MenuItems"("Id") ON DELETE CASCADE;
 
 
 --
--- TOC entry 3159 (class 2606 OID 31543)
+-- TOC entry 3183 (class 2606 OID 18834)
 -- Name: MenuItems FK_MenuItems_Menus; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "MenuItems"
-    ADD CONSTRAINT "FK_MenuItems_Menus" FOREIGN KEY ("MenuId") REFERENCES "Menus"("Id");
+ALTER TABLE ONLY public."MenuItems"
+    ADD CONSTRAINT "FK_MenuItems_Menus" FOREIGN KEY ("MenuId") REFERENCES public."Menus"("Id") ON DELETE CASCADE;
 
 
 --
--- TOC entry 3149 (class 2606 OID 31444)
+-- TOC entry 3182 (class 2606 OID 18818)
+-- Name: Menus FK_Menus_Dictionaries; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Menus"
+    ADD CONSTRAINT "FK_Menus_Dictionaries" FOREIGN KEY ("NameId") REFERENCES public."Dictionaries"("Id");
+
+
+--
+-- TOC entry 3175 (class 2606 OID 18753)
 -- Name: Objects FK_Objects_Classes; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "Objects"
-    ADD CONSTRAINT "FK_Objects_Classes" FOREIGN KEY ("ClassId") REFERENCES "Classes"("Id");
+ALTER TABLE ONLY public."Objects"
+    ADD CONSTRAINT "FK_Objects_Classes" FOREIGN KEY ("ClassId") REFERENCES public."Classes"("Id") ON DELETE CASCADE;
 
 
 --
--- TOC entry 3192 (class 2606 OID 31871)
--- Name: OrderStates FK_OrderStates_Dictionaries; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "OrderStates"
-    ADD CONSTRAINT "FK_OrderStates_Dictionaries" FOREIGN KEY ("NameId") REFERENCES "Dictionaries"("Id");
-
-
---
--- TOC entry 3197 (class 2606 OID 31929)
--- Name: Orders FK_Orders_DeliveryMethods; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "Orders"
-    ADD CONSTRAINT "FK_Orders_DeliveryMethods" FOREIGN KEY ("DeliveryMethodId") REFERENCES "DeliveryMethods"("Id");
-
-
---
--- TOC entry 3195 (class 2606 OID 31919)
--- Name: Orders FK_Orders_OrderStates; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "Orders"
-    ADD CONSTRAINT "FK_Orders_OrderStates" FOREIGN KEY ("OrderStateId") REFERENCES "OrderStates"("Id");
-
-
---
--- TOC entry 3196 (class 2606 OID 31924)
--- Name: Orders FK_Orders_PaymentMethods; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "Orders"
-    ADD CONSTRAINT "FK_Orders_PaymentMethods" FOREIGN KEY ("PaymentMethodId") REFERENCES "PaymentMethods"("Id");
-
-
---
--- TOC entry 3193 (class 2606 OID 31887)
--- Name: PaymentMethods FK_PaymentMethods_Dictionaries; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "PaymentMethods"
-    ADD CONSTRAINT "FK_PaymentMethods_Dictionaries" FOREIGN KEY ("NameId") REFERENCES "Dictionaries"("Id");
-
-
---
--- TOC entry 3191 (class 2606 OID 31855)
--- Name: Photos FK_Photos_Products; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "Photos"
-    ADD CONSTRAINT "FK_Photos_Products" FOREIGN KEY ("ProductId") REFERENCES "Products"("Id");
-
-
---
--- TOC entry 3199 (class 2606 OID 31958)
--- Name: Positions FK_Positions_Carts; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "Positions"
-    ADD CONSTRAINT "FK_Positions_Carts" FOREIGN KEY ("CartId") REFERENCES "Carts"("Id");
-
-
---
--- TOC entry 3200 (class 2606 OID 31963)
--- Name: Positions FK_Positions_Products; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "Positions"
-    ADD CONSTRAINT "FK_Positions_Products" FOREIGN KEY ("ProductId") REFERENCES "Products"("Id");
-
-
---
--- TOC entry 3190 (class 2606 OID 31839)
--- Name: ProductAttributes FK_ProductAttributes_Attributes; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "ProductAttributes"
-    ADD CONSTRAINT "FK_ProductAttributes_Attributes" FOREIGN KEY ("AttributeId") REFERENCES "Attributes"("Id");
-
-
---
--- TOC entry 3189 (class 2606 OID 31834)
--- Name: ProductAttributes FK_ProductAttributes_Products; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "ProductAttributes"
-    ADD CONSTRAINT "FK_ProductAttributes_Products" FOREIGN KEY ("ProductId") REFERENCES "Products"("Id");
-
-
---
--- TOC entry 3183 (class 2606 OID 31799)
--- Name: Products FK_Products_Categories; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "Products"
-    ADD CONSTRAINT "FK_Products_Categories" FOREIGN KEY ("CategoryId") REFERENCES "Categories"("Id");
-
-
---
--- TOC entry 3185 (class 2606 OID 31809)
--- Name: Products FK_Products_Dictionaries_DescriptionId; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "Products"
-    ADD CONSTRAINT "FK_Products_Dictionaries_DescriptionId" FOREIGN KEY ("DescriptionId") REFERENCES "Dictionaries"("Id");
-
-
---
--- TOC entry 3187 (class 2606 OID 31819)
--- Name: Products FK_Products_Dictionaries_MetaDescriptionId; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "Products"
-    ADD CONSTRAINT "FK_Products_Dictionaries_MetaDescriptionId" FOREIGN KEY ("MetaDescriptionId") REFERENCES "Dictionaries"("Id");
-
-
---
--- TOC entry 3188 (class 2606 OID 31824)
--- Name: Products FK_Products_Dictionaries_MetaKeywordsId; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "Products"
-    ADD CONSTRAINT "FK_Products_Dictionaries_MetaKeywordsId" FOREIGN KEY ("MetaKeywordsId") REFERENCES "Dictionaries"("Id");
-
-
---
--- TOC entry 3184 (class 2606 OID 31804)
--- Name: Products FK_Products_Dictionaries_NameId; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "Products"
-    ADD CONSTRAINT "FK_Products_Dictionaries_NameId" FOREIGN KEY ("NameId") REFERENCES "Dictionaries"("Id");
-
-
---
--- TOC entry 3186 (class 2606 OID 31814)
--- Name: Products FK_Products_Dictionaries_TitleId; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "Products"
-    ADD CONSTRAINT "FK_Products_Dictionaries_TitleId" FOREIGN KEY ("TitleId") REFERENCES "Dictionaries"("Id");
-
-
---
--- TOC entry 3152 (class 2606 OID 31470)
+-- TOC entry 3178 (class 2606 OID 18779)
 -- Name: Properties FK_Properties_Dictionaries; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "Properties"
-    ADD CONSTRAINT "FK_Properties_Dictionaries" FOREIGN KEY ("StringValueId") REFERENCES "Dictionaries"("Id");
+ALTER TABLE ONLY public."Properties"
+    ADD CONSTRAINT "FK_Properties_Dictionaries" FOREIGN KEY ("StringValueId") REFERENCES public."Dictionaries"("Id");
 
 
 --
--- TOC entry 3151 (class 2606 OID 31465)
+-- TOC entry 3177 (class 2606 OID 18774)
 -- Name: Properties FK_Properties_Members; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "Properties"
-    ADD CONSTRAINT "FK_Properties_Members" FOREIGN KEY ("MemberId") REFERENCES "Members"("Id");
+ALTER TABLE ONLY public."Properties"
+    ADD CONSTRAINT "FK_Properties_Members" FOREIGN KEY ("MemberId") REFERENCES public."Members"("Id") ON DELETE CASCADE;
 
 
 --
--- TOC entry 3150 (class 2606 OID 31460)
+-- TOC entry 3176 (class 2606 OID 18769)
 -- Name: Properties FK_Properties_Objects; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "Properties"
-    ADD CONSTRAINT "FK_Properties_Objects" FOREIGN KEY ("ObjectId") REFERENCES "Objects"("Id");
+ALTER TABLE ONLY public."Properties"
+    ADD CONSTRAINT "FK_Properties_Objects" FOREIGN KEY ("ObjectId") REFERENCES public."Objects"("Id") ON DELETE CASCADE;
 
 
 --
--- TOC entry 3153 (class 2606 OID 31483)
+-- TOC entry 3179 (class 2606 OID 18792)
 -- Name: Relations FK_Relations_Members; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "Relations"
-    ADD CONSTRAINT "FK_Relations_Members" FOREIGN KEY ("MemberId") REFERENCES "Members"("Id");
+ALTER TABLE ONLY public."Relations"
+    ADD CONSTRAINT "FK_Relations_Members" FOREIGN KEY ("MemberId") REFERENCES public."Members"("Id") ON DELETE CASCADE;
 
 
 --
--- TOC entry 3155 (class 2606 OID 31493)
+-- TOC entry 3181 (class 2606 OID 18802)
 -- Name: Relations FK_Relations_Objects_ForeignId; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "Relations"
-    ADD CONSTRAINT "FK_Relations_Objects_ForeignId" FOREIGN KEY ("ForeignId") REFERENCES "Objects"("Id");
+ALTER TABLE ONLY public."Relations"
+    ADD CONSTRAINT "FK_Relations_Objects_ForeignId" FOREIGN KEY ("ForeignId") REFERENCES public."Objects"("Id") ON DELETE CASCADE;
 
 
 --
--- TOC entry 3154 (class 2606 OID 31488)
+-- TOC entry 3180 (class 2606 OID 18797)
 -- Name: Relations FK_Relations_Objects_PrimaryId; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "Relations"
-    ADD CONSTRAINT "FK_Relations_Objects_PrimaryId" FOREIGN KEY ("PrimaryId") REFERENCES "Objects"("Id");
+ALTER TABLE ONLY public."Relations"
+    ADD CONSTRAINT "FK_Relations_Objects_PrimaryId" FOREIGN KEY ("PrimaryId") REFERENCES public."Objects"("Id") ON DELETE CASCADE;
 
 
 --
--- TOC entry 3133 (class 2606 OID 31211)
+-- TOC entry 3159 (class 2606 OID 18523)
 -- Name: RolePermissions FK_RolePermissions_Permissions; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "RolePermissions"
-    ADD CONSTRAINT "FK_RolePermissions_Permissions" FOREIGN KEY ("PermissionId") REFERENCES "Permissions"("Id");
+ALTER TABLE ONLY public."RolePermissions"
+    ADD CONSTRAINT "FK_RolePermissions_Permissions" FOREIGN KEY ("PermissionId") REFERENCES public."Permissions"("Id") ON DELETE CASCADE;
 
 
 --
--- TOC entry 3138 (class 2606 OID 31304)
+-- TOC entry 3164 (class 2606 OID 18613)
 -- Name: EndpointPermissions FK_RolePermissions_Permissions; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "EndpointPermissions"
-    ADD CONSTRAINT "FK_RolePermissions_Permissions" FOREIGN KEY ("PermissionId") REFERENCES "Permissions"("Id");
+ALTER TABLE ONLY public."EndpointPermissions"
+    ADD CONSTRAINT "FK_RolePermissions_Permissions" FOREIGN KEY ("PermissionId") REFERENCES public."Permissions"("Id") ON DELETE CASCADE;
 
 
 --
--- TOC entry 3132 (class 2606 OID 31206)
+-- TOC entry 3158 (class 2606 OID 18518)
 -- Name: RolePermissions FK_RolePermissions_Roles; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "RolePermissions"
-    ADD CONSTRAINT "FK_RolePermissions_Roles" FOREIGN KEY ("RoleId") REFERENCES "Roles"("Id");
+ALTER TABLE ONLY public."RolePermissions"
+    ADD CONSTRAINT "FK_RolePermissions_Roles" FOREIGN KEY ("RoleId") REFERENCES public."Roles"("Id") ON DELETE CASCADE;
 
 
 --
--- TOC entry 3174 (class 2606 OID 31694)
--- Name: SerializedForms FK_SerializedForms_Cultures; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "SerializedForms"
-    ADD CONSTRAINT "FK_SerializedForms_Cultures" FOREIGN KEY ("CultureId") REFERENCES "Cultures"("Id");
-
-
---
--- TOC entry 3175 (class 2606 OID 31699)
--- Name: SerializedForms FK_SerializedForms_Forms; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "SerializedForms"
-    ADD CONSTRAINT "FK_SerializedForms_Forms" FOREIGN KEY ("FormId") REFERENCES "Forms"("Id");
-
-
---
--- TOC entry 3162 (class 2606 OID 31566)
--- Name: SerializedMenus FK_SerializedMenus_Cultures; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "SerializedMenus"
-    ADD CONSTRAINT "FK_SerializedMenus_Cultures" FOREIGN KEY ("CultureId") REFERENCES "Cultures"("Id");
-
-
---
--- TOC entry 3163 (class 2606 OID 31571)
--- Name: SerializedMenus FK_SerializedMenus_Menus; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "SerializedMenus"
-    ADD CONSTRAINT "FK_SerializedMenus_Menus" FOREIGN KEY ("MenuId") REFERENCES "Menus"("Id");
-
-
---
--- TOC entry 3158 (class 2606 OID 31516)
--- Name: SerializedObjects FK_SerializedObjects_Classes; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "SerializedObjects"
-    ADD CONSTRAINT "FK_SerializedObjects_Classes" FOREIGN KEY ("ClassId") REFERENCES "Classes"("Id");
-
-
---
--- TOC entry 3156 (class 2606 OID 31506)
--- Name: SerializedObjects FK_SerializedObjects_Cultures; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "SerializedObjects"
-    ADD CONSTRAINT "FK_SerializedObjects_Cultures" FOREIGN KEY ("CultureId") REFERENCES "Cultures"("Id");
-
-
---
--- TOC entry 3157 (class 2606 OID 31511)
--- Name: SerializedObjects FK_SerializedObjects_Objects; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "SerializedObjects"
-    ADD CONSTRAINT "FK_SerializedObjects_Objects" FOREIGN KEY ("ObjectId") REFERENCES "Objects"("Id");
-
-
---
--- TOC entry 3203 (class 2606 OID 31986)
--- Name: SerializedProducts FK_SerializedProducts_Categories; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "SerializedProducts"
-    ADD CONSTRAINT "FK_SerializedProducts_Categories" FOREIGN KEY ("CategoryId") REFERENCES "Categories"("Id");
-
-
---
--- TOC entry 3201 (class 2606 OID 31976)
--- Name: SerializedProducts FK_SerializedProducts_Cultures; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "SerializedProducts"
-    ADD CONSTRAINT "FK_SerializedProducts_Cultures" FOREIGN KEY ("CultureId") REFERENCES "Cultures"("Id");
-
-
---
--- TOC entry 3202 (class 2606 OID 31981)
--- Name: SerializedProducts FK_SerializedProducts_Products; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "SerializedProducts"
-    ADD CONSTRAINT "FK_SerializedProducts_Products" FOREIGN KEY ("ProductId") REFERENCES "Products"("Id");
-
-
---
--- TOC entry 3141 (class 2606 OID 31352)
+-- TOC entry 3167 (class 2606 OID 18661)
 -- Name: Tabs FK_Tabs_Classes; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "Tabs"
-    ADD CONSTRAINT "FK_Tabs_Classes" FOREIGN KEY ("ClassId") REFERENCES "Classes"("Id");
+ALTER TABLE ONLY public."Tabs"
+    ADD CONSTRAINT "FK_Tabs_Classes" FOREIGN KEY ("ClassId") REFERENCES public."Classes"("Id") ON DELETE CASCADE;
 
 
 --
--- TOC entry 3131 (class 2606 OID 31185)
+-- TOC entry 3157 (class 2606 OID 18497)
 -- Name: UserRoles FK_UserRoles_Roles; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "UserRoles"
-    ADD CONSTRAINT "FK_UserRoles_Roles" FOREIGN KEY ("RoleId") REFERENCES "Roles"("Id");
+ALTER TABLE ONLY public."UserRoles"
+    ADD CONSTRAINT "FK_UserRoles_Roles" FOREIGN KEY ("RoleId") REFERENCES public."Roles"("Id") ON DELETE CASCADE;
 
 
 --
--- TOC entry 3130 (class 2606 OID 31180)
+-- TOC entry 3156 (class 2606 OID 18492)
 -- Name: UserRoles FK_UserRoles_Users; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "UserRoles"
-    ADD CONSTRAINT "FK_UserRoles_Users" FOREIGN KEY ("UserId") REFERENCES "Users"("Id");
+ALTER TABLE ONLY public."UserRoles"
+    ADD CONSTRAINT "FK_UserRoles_Users" FOREIGN KEY ("UserId") REFERENCES public."Users"("Id") ON DELETE CASCADE;
 
 
 --
--- TOC entry 3134 (class 2606 OID 31238)
+-- TOC entry 3160 (class 2606 OID 18550)
 -- Name: Variables FK_Variables_Configurations; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "Variables"
-    ADD CONSTRAINT "FK_Variables_Configurations" FOREIGN KEY ("ConfigurationId") REFERENCES "Configurations"("Id");
+ALTER TABLE ONLY public."Variables"
+    ADD CONSTRAINT "FK_Variables_Configurations" FOREIGN KEY ("ConfigurationId") REFERENCES public."Configurations"("Id") ON DELETE CASCADE;
 
 
--- Completed on 2019-01-21 17:00:50
+-- Completed on 2021-03-26 17:26:41
 
 --
 -- PostgreSQL database dump complete
