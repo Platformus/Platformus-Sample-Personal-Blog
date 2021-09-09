@@ -1,6 +1,44 @@
 USE [Platformus]
 GO
-/****** Object:  Table [dbo].[Classes]    Script Date: 26.03.2021 17:23:07 ******/
+/****** Object:  Table [dbo].[Carts]    Script Date: 09.09.2021 17:14:06 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Carts](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[ClientSideId] [uniqueidentifier] NOT NULL,
+	[Created] [datetime2](7) NOT NULL,
+ CONSTRAINT [PK_Carts] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Categories]    Script Date: 09.09.2021 17:14:06 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Categories](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[CategoryId] [int] NULL,
+	[Url] [nvarchar](128) NOT NULL,
+	[NameId] [int] NOT NULL,
+	[DescriptionId] [int] NOT NULL,
+	[Position] [int] NULL,
+	[TitleId] [int] NOT NULL,
+	[MetaDescriptionId] [int] NOT NULL,
+	[MetaKeywordsId] [int] NOT NULL,
+	[ProductProviderCSharpClassName] [nvarchar](128) NOT NULL,
+	[ProductProviderParameters] [nvarchar](1024) NULL,
+ CONSTRAINT [PK_Categories] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Classes]    Script Date: 09.09.2021 17:14:06 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -18,7 +56,7 @@ CREATE TABLE [dbo].[Classes](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[CompletedFields]    Script Date: 26.03.2021 17:23:07 ******/
+/****** Object:  Table [dbo].[CompletedFields]    Script Date: 09.09.2021 17:14:06 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -34,7 +72,7 @@ CREATE TABLE [dbo].[CompletedFields](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[CompletedForms]    Script Date: 26.03.2021 17:23:07 ******/
+/****** Object:  Table [dbo].[CompletedForms]    Script Date: 09.09.2021 17:14:06 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -42,14 +80,14 @@ GO
 CREATE TABLE [dbo].[CompletedForms](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[FormId] [int] NOT NULL,
-	[Created] [datetime] NOT NULL,
+	[Created] [datetime2](7) NOT NULL,
  CONSTRAINT [PK_CompletedForms] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Configurations]    Script Date: 26.03.2021 17:23:07 ******/
+/****** Object:  Table [dbo].[Configurations]    Script Date: 09.09.2021 17:14:06 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -64,7 +102,7 @@ CREATE TABLE [dbo].[Configurations](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Credentials]    Script Date: 26.03.2021 17:23:07 ******/
+/****** Object:  Table [dbo].[Credentials]    Script Date: 09.09.2021 17:14:06 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -82,7 +120,7 @@ CREATE TABLE [dbo].[Credentials](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[CredentialTypes]    Script Date: 26.03.2021 17:23:07 ******/
+/****** Object:  Table [dbo].[CredentialTypes]    Script Date: 09.09.2021 17:14:06 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -98,7 +136,7 @@ CREATE TABLE [dbo].[CredentialTypes](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Cultures]    Script Date: 26.03.2021 17:23:07 ******/
+/****** Object:  Table [dbo].[Cultures]    Script Date: 09.09.2021 17:14:06 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -115,7 +153,7 @@ CREATE TABLE [dbo].[Cultures](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[DataSources]    Script Date: 26.03.2021 17:23:07 ******/
+/****** Object:  Table [dbo].[DataSources]    Script Date: 09.09.2021 17:14:06 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -124,15 +162,15 @@ CREATE TABLE [dbo].[DataSources](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[EndpointId] [int] NOT NULL,
 	[Code] [nvarchar](32) NOT NULL,
-	[CSharpClassName] [nvarchar](128) NOT NULL,
-	[Parameters] [nvarchar](1024) NULL,
+	[DataProviderCSharpClassName] [nvarchar](128) NOT NULL,
+	[DataProviderParameters] [nvarchar](1024) NULL,
  CONSTRAINT [PK_DataSources] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[DataTypeParameters]    Script Date: 26.03.2021 17:23:07 ******/
+/****** Object:  Table [dbo].[DataTypeParameters]    Script Date: 09.09.2021 17:14:06 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -149,7 +187,7 @@ CREATE TABLE [dbo].[DataTypeParameters](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[DataTypeParameterValues]    Script Date: 26.03.2021 17:23:07 ******/
+/****** Object:  Table [dbo].[DataTypeParameterValues]    Script Date: 09.09.2021 17:14:06 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -165,7 +203,7 @@ CREATE TABLE [dbo].[DataTypeParameterValues](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[DataTypes]    Script Date: 26.03.2021 17:23:07 ******/
+/****** Object:  Table [dbo].[DataTypes]    Script Date: 09.09.2021 17:14:06 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -182,7 +220,23 @@ CREATE TABLE [dbo].[DataTypes](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Dictionaries]    Script Date: 26.03.2021 17:23:07 ******/
+/****** Object:  Table [dbo].[DeliveryMethods]    Script Date: 09.09.2021 17:14:06 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[DeliveryMethods](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Code] [nvarchar](32) NOT NULL,
+	[NameId] [int] NOT NULL,
+	[Position] [int] NULL,
+ CONSTRAINT [PK_DeliveryMethods] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Dictionaries]    Script Date: 09.09.2021 17:14:06 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -195,7 +249,7 @@ CREATE TABLE [dbo].[Dictionaries](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[EndpointPermissions]    Script Date: 26.03.2021 17:23:07 ******/
+/****** Object:  Table [dbo].[EndpointPermissions]    Script Date: 09.09.2021 17:14:06 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -210,7 +264,7 @@ CREATE TABLE [dbo].[EndpointPermissions](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Endpoints]    Script Date: 26.03.2021 17:23:07 ******/
+/****** Object:  Table [dbo].[Endpoints]    Script Date: 09.09.2021 17:14:06 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -222,16 +276,17 @@ CREATE TABLE [dbo].[Endpoints](
 	[Position] [int] NULL,
 	[DisallowAnonymous] [bit] NOT NULL,
 	[SignInUrl] [nvarchar](128) NULL,
+	[RequestProcessorCSharpClassName] [nvarchar](128) NOT NULL,
+	[RequestProcessorParameters] [nvarchar](1024) NULL,
 	[ResponseCacheCSharpClassName] [nvarchar](128) NULL,
-	[CSharpClassName] [nvarchar](128) NOT NULL,
-	[Parameters] [nvarchar](1024) NULL,
+	[ResponseCacheParameters] [nvarchar](1024) NULL,
  CONSTRAINT [PK_Endpoints] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[FieldOptions]    Script Date: 26.03.2021 17:23:07 ******/
+/****** Object:  Table [dbo].[FieldOptions]    Script Date: 09.09.2021 17:14:06 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -247,7 +302,7 @@ CREATE TABLE [dbo].[FieldOptions](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Fields]    Script Date: 26.03.2021 17:23:07 ******/
+/****** Object:  Table [dbo].[Fields]    Script Date: 09.09.2021 17:14:06 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -267,7 +322,7 @@ CREATE TABLE [dbo].[Fields](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[FieldTypes]    Script Date: 26.03.2021 17:23:07 ******/
+/****** Object:  Table [dbo].[FieldTypes]    Script Date: 09.09.2021 17:14:06 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -284,7 +339,7 @@ CREATE TABLE [dbo].[FieldTypes](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Files]    Script Date: 26.03.2021 17:23:07 ******/
+/****** Object:  Table [dbo].[Files]    Script Date: 09.09.2021 17:14:06 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -299,7 +354,7 @@ CREATE TABLE [dbo].[Files](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Forms]    Script Date: 26.03.2021 17:23:07 ******/
+/****** Object:  Table [dbo].[Forms]    Script Date: 09.09.2021 17:14:06 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -310,15 +365,15 @@ CREATE TABLE [dbo].[Forms](
 	[NameId] [int] NOT NULL,
 	[SubmitButtonTitleId] [int] NOT NULL,
 	[ProduceCompletedForms] [bit] NOT NULL,
-	[CSharpClassName] [nvarchar](128) NOT NULL,
-	[Parameters] [nvarchar](1024) NULL,
+	[FormHandlerCSharpClassName] [nvarchar](128) NOT NULL,
+	[FormHandlerParameters] [nvarchar](1024) NULL,
  CONSTRAINT [PK_Forms] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Localizations]    Script Date: 26.03.2021 17:23:07 ******/
+/****** Object:  Table [dbo].[Localizations]    Script Date: 09.09.2021 17:14:06 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -334,7 +389,7 @@ CREATE TABLE [dbo].[Localizations](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Members]    Script Date: 26.03.2021 17:23:07 ******/
+/****** Object:  Table [dbo].[Members]    Script Date: 09.09.2021 17:14:06 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -359,7 +414,7 @@ CREATE TABLE [dbo].[Members](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[MenuItems]    Script Date: 26.03.2021 17:23:07 ******/
+/****** Object:  Table [dbo].[MenuItems]    Script Date: 09.09.2021 17:14:06 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -377,7 +432,7 @@ CREATE TABLE [dbo].[MenuItems](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Menus]    Script Date: 26.03.2021 17:23:07 ******/
+/****** Object:  Table [dbo].[Menus]    Script Date: 09.09.2021 17:14:06 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -392,7 +447,22 @@ CREATE TABLE [dbo].[Menus](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Objects]    Script Date: 26.03.2021 17:23:07 ******/
+/****** Object:  Table [dbo].[ModelStates]    Script Date: 09.09.2021 17:14:06 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ModelStates](
+	[Id] [uniqueidentifier] NOT NULL,
+	[Value] [nvarchar](max) NOT NULL,
+	[Created] [datetime2](7) NOT NULL,
+ CONSTRAINT [PK_ModelStates] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Objects]    Script Date: 09.09.2021 17:14:06 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -406,7 +476,62 @@ CREATE TABLE [dbo].[Objects](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Permissions]    Script Date: 26.03.2021 17:23:07 ******/
+/****** Object:  Table [dbo].[Orders]    Script Date: 09.09.2021 17:14:06 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Orders](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[OrderStateId] [int] NOT NULL,
+	[PaymentMethodId] [int] NOT NULL,
+	[DeliveryMethodId] [int] NOT NULL,
+	[CustomerFirstName] [nvarchar](64) NOT NULL,
+	[CustomerLastName] [nvarchar](64) NULL,
+	[CustomerPhone] [nvarchar](32) NOT NULL,
+	[CustomerEmail] [nvarchar](64) NULL,
+	[CustomerAddress] [nvarchar](128) NULL,
+	[Note] [nvarchar](1024) NULL,
+	[Created] [datetime2](7) NOT NULL,
+ CONSTRAINT [PK_Orders] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[OrderStates]    Script Date: 09.09.2021 17:14:06 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[OrderStates](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Code] [nvarchar](32) NOT NULL,
+	[NameId] [int] NOT NULL,
+	[Position] [int] NULL,
+ CONSTRAINT [PK_OrderStates] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[PaymentMethods]    Script Date: 09.09.2021 17:14:06 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[PaymentMethods](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Code] [nvarchar](32) NOT NULL,
+	[NameId] [int] NOT NULL,
+	[Position] [int] NULL,
+ CONSTRAINT [PK_PaymentMethods] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Permissions]    Script Date: 09.09.2021 17:14:06 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -422,7 +547,66 @@ CREATE TABLE [dbo].[Permissions](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Properties]    Script Date: 26.03.2021 17:23:07 ******/
+/****** Object:  Table [dbo].[Photos]    Script Date: 09.09.2021 17:14:06 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Photos](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[ProductId] [int] NOT NULL,
+	[Filename] [nvarchar](128) NOT NULL,
+	[IsCover] [bit] NOT NULL,
+	[Position] [int] NULL,
+ CONSTRAINT [PK_Photos] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Positions]    Script Date: 09.09.2021 17:14:06 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Positions](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[CartId] [int] NULL,
+	[OrderId] [int] NULL,
+	[ProductId] [int] NOT NULL,
+	[Price] [money] NOT NULL,
+	[Quantity] [money] NOT NULL,
+	[Subtotal] [money] NOT NULL,
+ CONSTRAINT [PK_Positions] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Products]    Script Date: 09.09.2021 17:14:06 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Products](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[CategoryId] [int] NOT NULL,
+	[Url] [nvarchar](128) NOT NULL,
+	[Code] [nvarchar](32) NOT NULL,
+	[NameId] [int] NOT NULL,
+	[DescriptionId] [int] NOT NULL,
+	[UnitsId] [int] NOT NULL,
+	[Price] [money] NOT NULL,
+	[TitleId] [int] NOT NULL,
+	[MetaDescriptionId] [int] NOT NULL,
+	[MetaKeywordsId] [int] NOT NULL,
+ CONSTRAINT [PK_Products] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Properties]    Script Date: 09.09.2021 17:14:06 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -434,14 +618,14 @@ CREATE TABLE [dbo].[Properties](
 	[IntegerValue] [int] NULL,
 	[DecimalValue] [money] NULL,
 	[StringValueId] [int] NULL,
-	[DateTimeValue] [datetime] NULL,
+	[DateTimeValue] [datetime2](7) NULL,
  CONSTRAINT [PK_Properties] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Relations]    Script Date: 26.03.2021 17:23:07 ******/
+/****** Object:  Table [dbo].[Relations]    Script Date: 09.09.2021 17:14:06 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -457,7 +641,7 @@ CREATE TABLE [dbo].[Relations](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[RolePermissions]    Script Date: 26.03.2021 17:23:07 ******/
+/****** Object:  Table [dbo].[RolePermissions]    Script Date: 09.09.2021 17:14:06 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -472,7 +656,7 @@ CREATE TABLE [dbo].[RolePermissions](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Roles]    Script Date: 26.03.2021 17:23:07 ******/
+/****** Object:  Table [dbo].[Roles]    Script Date: 09.09.2021 17:14:06 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -488,7 +672,7 @@ CREATE TABLE [dbo].[Roles](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Tabs]    Script Date: 26.03.2021 17:23:07 ******/
+/****** Object:  Table [dbo].[Tabs]    Script Date: 09.09.2021 17:14:06 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -504,7 +688,7 @@ CREATE TABLE [dbo].[Tabs](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[UserRoles]    Script Date: 26.03.2021 17:23:07 ******/
+/****** Object:  Table [dbo].[UserRoles]    Script Date: 09.09.2021 17:14:06 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -519,7 +703,7 @@ CREATE TABLE [dbo].[UserRoles](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Users]    Script Date: 26.03.2021 17:23:07 ******/
+/****** Object:  Table [dbo].[Users]    Script Date: 09.09.2021 17:14:06 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -527,14 +711,14 @@ GO
 CREATE TABLE [dbo].[Users](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[Name] [nvarchar](64) NOT NULL,
-	[Created] [datetime] NOT NULL,
+	[Created] [datetime2](7) NOT NULL,
  CONSTRAINT [PK_Users] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Variables]    Script Date: 26.03.2021 17:23:07 ******/
+/****** Object:  Table [dbo].[Variables]    Script Date: 09.09.2021 17:14:06 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -596,19 +780,19 @@ INSERT [dbo].[Cultures] ([Id], [Name], [IsNeutral], [IsFrontendDefault], [IsBack
 GO
 SET IDENTITY_INSERT [dbo].[DataSources] ON 
 GO
-INSERT [dbo].[DataSources] ([Id], [EndpointId], [Code], [CSharpClassName], [Parameters]) VALUES (1, 1, N'Page', N'Platformus.Website.Frontend.DataSources.PageObjectDataSource', NULL)
+INSERT [dbo].[DataSources] ([Id], [EndpointId], [Code], [DataProviderCSharpClassName], [DataProviderParameters]) VALUES (1, 1, N'Page', N'Platformus.Website.Frontend.DataProviders.PageObjectDataProvider', NULL)
 GO
-INSERT [dbo].[DataSources] ([Id], [EndpointId], [Code], [CSharpClassName], [Parameters]) VALUES (2, 2, N'Page', N'Platformus.Website.Frontend.DataSources.PageObjectDataSource', NULL)
+INSERT [dbo].[DataSources] ([Id], [EndpointId], [Code], [DataProviderCSharpClassName], [DataProviderParameters]) VALUES (2, 2, N'Page', N'Platformus.Website.Frontend.DataProviders.PageObjectDataProvider', NULL)
 GO
-INSERT [dbo].[DataSources] ([Id], [EndpointId], [Code], [CSharpClassName], [Parameters]) VALUES (3, 2, N'Posts', N'Platformus.Website.Frontend.DataSources.ObjectsDataSource', N'ClassId=5')
+INSERT [dbo].[DataSources] ([Id], [EndpointId], [Code], [DataProviderCSharpClassName], [DataProviderParameters]) VALUES (3, 2, N'Posts', N'Platformus.Website.Frontend.DataProviders.ObjectsDataProvider', N'ClassId=5')
 GO
-INSERT [dbo].[DataSources] ([Id], [EndpointId], [Code], [CSharpClassName], [Parameters]) VALUES (4, 3, N'Page', N'Platformus.Website.Frontend.DataSources.PageObjectDataSource', NULL)
+INSERT [dbo].[DataSources] ([Id], [EndpointId], [Code], [DataProviderCSharpClassName], [DataProviderParameters]) VALUES (4, 3, N'Page', N'Platformus.Website.Frontend.DataProviders.PageObjectDataProvider', NULL)
 GO
-INSERT [dbo].[DataSources] ([Id], [EndpointId], [Code], [CSharpClassName], [Parameters]) VALUES (5, 3, N'Tags', N'Platformus.Website.Frontend.DataSources.RelatedObjectsDataSource', N'RelationMemberId=11;RelationType=Primary')
+INSERT [dbo].[DataSources] ([Id], [EndpointId], [Code], [DataProviderCSharpClassName], [DataProviderParameters]) VALUES (5, 3, N'Tags', N'Platformus.Website.Frontend.DataProviders.RelatedObjectsDataProvider', N'RelationMemberId=11;RelationType=Primary')
 GO
-INSERT [dbo].[DataSources] ([Id], [EndpointId], [Code], [CSharpClassName], [Parameters]) VALUES (6, 3, N'Comments', N'Platformus.Website.Frontend.DataSources.RelatedObjectsDataSource', N'RelationMemberId=15;RelationType=Primary')
+INSERT [dbo].[DataSources] ([Id], [EndpointId], [Code], [DataProviderCSharpClassName], [DataProviderParameters]) VALUES (6, 3, N'Comments', N'Platformus.Website.Frontend.DataProviders.RelatedObjectsDataProvider', N'RelationMemberId=15;RelationType=Primary')
 GO
-INSERT [dbo].[DataSources] ([Id], [EndpointId], [Code], [CSharpClassName], [Parameters]) VALUES (7, 4, N'Page', N'Platformus.Website.Frontend.DataSources.PageObjectDataSource', NULL)
+INSERT [dbo].[DataSources] ([Id], [EndpointId], [Code], [DataProviderCSharpClassName], [DataProviderParameters]) VALUES (7, 4, N'Page', N'Platformus.Website.Frontend.DataProviders.PageObjectDataProvider', NULL)
 GO
 SET IDENTITY_INSERT [dbo].[DataSources] OFF
 GO
@@ -622,13 +806,25 @@ INSERT [dbo].[DataTypeParameters] ([Id], [DataTypeId], [JavaScriptEditorClassNam
 GO
 INSERT [dbo].[DataTypeParameters] ([Id], [DataTypeId], [JavaScriptEditorClassName], [Code], [Name]) VALUES (4, 2, N'numericTextBox', N'MaxLength', N'Max length')
 GO
-INSERT [dbo].[DataTypeParameters] ([Id], [DataTypeId], [JavaScriptEditorClassName], [Code], [Name]) VALUES (5, 7, N'checkbox', N'IsRequired', N'Is required')
+INSERT [dbo].[DataTypeParameters] ([Id], [DataTypeId], [JavaScriptEditorClassName], [Code], [Name]) VALUES (5, 4, N'checkbox', N'IsRequired', N'Is required')
 GO
-INSERT [dbo].[DataTypeParameters] ([Id], [DataTypeId], [JavaScriptEditorClassName], [Code], [Name]) VALUES (6, 8, N'numericTextBox', N'Width', N'Width')
+INSERT [dbo].[DataTypeParameters] ([Id], [DataTypeId], [JavaScriptEditorClassName], [Code], [Name]) VALUES (6, 4, N'numericTextBox', N'MinValue', N'Min value')
 GO
-INSERT [dbo].[DataTypeParameters] ([Id], [DataTypeId], [JavaScriptEditorClassName], [Code], [Name]) VALUES (7, 8, N'numericTextBox', N'Height', N'Height')
+INSERT [dbo].[DataTypeParameters] ([Id], [DataTypeId], [JavaScriptEditorClassName], [Code], [Name]) VALUES (7, 4, N'numericTextBox', N'MaxValue', N'Max value')
 GO
-INSERT [dbo].[DataTypeParameters] ([Id], [DataTypeId], [JavaScriptEditorClassName], [Code], [Name]) VALUES (8, 9, N'textBox', N'Mode', N'Mode')
+INSERT [dbo].[DataTypeParameters] ([Id], [DataTypeId], [JavaScriptEditorClassName], [Code], [Name]) VALUES (8, 5, N'checkbox', N'IsRequired', N'Is required')
+GO
+INSERT [dbo].[DataTypeParameters] ([Id], [DataTypeId], [JavaScriptEditorClassName], [Code], [Name]) VALUES (9, 5, N'numericTextBox', N'MinValue', N'Min value')
+GO
+INSERT [dbo].[DataTypeParameters] ([Id], [DataTypeId], [JavaScriptEditorClassName], [Code], [Name]) VALUES (10, 5, N'numericTextBox', N'MaxValue', N'Max value')
+GO
+INSERT [dbo].[DataTypeParameters] ([Id], [DataTypeId], [JavaScriptEditorClassName], [Code], [Name]) VALUES (11, 7, N'checkbox', N'IsRequired', N'Is required')
+GO
+INSERT [dbo].[DataTypeParameters] ([Id], [DataTypeId], [JavaScriptEditorClassName], [Code], [Name]) VALUES (12, 8, N'numericTextBox', N'Width', N'Width')
+GO
+INSERT [dbo].[DataTypeParameters] ([Id], [DataTypeId], [JavaScriptEditorClassName], [Code], [Name]) VALUES (13, 8, N'numericTextBox', N'Height', N'Height')
+GO
+INSERT [dbo].[DataTypeParameters] ([Id], [DataTypeId], [JavaScriptEditorClassName], [Code], [Name]) VALUES (14, 9, N'textBox', N'Mode', N'Mode')
 GO
 SET IDENTITY_INSERT [dbo].[DataTypeParameters] OFF
 GO
@@ -690,9 +886,11 @@ INSERT [dbo].[DataTypes] ([Id], [StorageDataType], [JavaScriptEditorClassName], 
 GO
 INSERT [dbo].[DataTypes] ([Id], [StorageDataType], [JavaScriptEditorClassName], [Name], [Position]) VALUES (7, N'datetime', N'date', N'Date', 7)
 GO
-INSERT [dbo].[DataTypes] ([Id], [StorageDataType], [JavaScriptEditorClassName], [Name], [Position]) VALUES (8, N'string', N'image', N'Image', 8)
+INSERT [dbo].[DataTypes] ([Id], [StorageDataType], [JavaScriptEditorClassName], [Name], [Position]) VALUES (8, N'datetime', N'dateTime', N'DateTime', 8)
 GO
-INSERT [dbo].[DataTypes] ([Id], [StorageDataType], [JavaScriptEditorClassName], [Name], [Position]) VALUES (9, N'string', N'sourceCode', N'Source code', 9)
+INSERT [dbo].[DataTypes] ([Id], [StorageDataType], [JavaScriptEditorClassName], [Name], [Position]) VALUES (9, N'string', N'image', N'Image', 9)
+GO
+INSERT [dbo].[DataTypes] ([Id], [StorageDataType], [JavaScriptEditorClassName], [Name], [Position]) VALUES (10, N'string', N'sourceCode', N'Source code', 10)
 GO
 SET IDENTITY_INSERT [dbo].[DataTypes] OFF
 GO
@@ -860,13 +1058,13 @@ SET IDENTITY_INSERT [dbo].[Dictionaries] OFF
 GO
 SET IDENTITY_INSERT [dbo].[Endpoints] ON 
 GO
-INSERT [dbo].[Endpoints] ([Id], [Name], [UrlTemplate], [Position], [DisallowAnonymous], [SignInUrl], [ResponseCacheCSharpClassName], [CSharpClassName], [Parameters]) VALUES (1, N'Default', N'{*url}', 1000, 0, NULL, NULL, N'Platformus.Website.Frontend.DefaultEndpoint', N'ViewName=RegularPage')
+INSERT [dbo].[Endpoints] ([Id], [Name], [UrlTemplate], [Position], [DisallowAnonymous], [SignInUrl], [RequestProcessorCSharpClassName], [RequestProcessorParameters], [ResponseCacheCSharpClassName], [ResponseCacheParameters]) VALUES (1, N'Default', N'{*url}', 1000, 0, NULL, N'Platformus.Website.Frontend.RequestProcessors.DefaultRequestProcessor', N'ViewName=RegularPage', NULL, NULL)
 GO
-INSERT [dbo].[Endpoints] ([Id], [Name], [UrlTemplate], [Position], [DisallowAnonymous], [SignInUrl], [ResponseCacheCSharpClassName], [CSharpClassName], [Parameters]) VALUES (2, N'Blog', N'blog', 10, 0, NULL, NULL, N'Platformus.Website.Frontend.DefaultEndpoint', N'ViewName=BlogPage')
+INSERT [dbo].[Endpoints] ([Id], [Name], [UrlTemplate], [Position], [DisallowAnonymous], [SignInUrl], [RequestProcessorCSharpClassName], [RequestProcessorParameters], [ResponseCacheCSharpClassName], [ResponseCacheParameters]) VALUES (2, N'Blog', N'blog', 10, 0, NULL, N'Platformus.Website.Frontend.RequestProcessors.DefaultRequestProcessor', N'ViewName=BlogPage', NULL, NULL)
 GO
-INSERT [dbo].[Endpoints] ([Id], [Name], [UrlTemplate], [Position], [DisallowAnonymous], [SignInUrl], [ResponseCacheCSharpClassName], [CSharpClassName], [Parameters]) VALUES (3, N'Post', N'blog/{segment}', 20, 0, NULL, NULL, N'Platformus.Website.Frontend.DefaultEndpoint', N'ViewName=PostPage')
+INSERT [dbo].[Endpoints] ([Id], [Name], [UrlTemplate], [Position], [DisallowAnonymous], [SignInUrl], [RequestProcessorCSharpClassName], [RequestProcessorParameters], [ResponseCacheCSharpClassName], [ResponseCacheParameters]) VALUES (3, N'Post', N'blog/{segment}', 20, 0, NULL, N'Platformus.Website.Frontend.RequestProcessors.DefaultRequestProcessor', N'ViewName=PostPage', NULL, NULL)
 GO
-INSERT [dbo].[Endpoints] ([Id], [Name], [UrlTemplate], [Position], [DisallowAnonymous], [SignInUrl], [ResponseCacheCSharpClassName], [CSharpClassName], [Parameters]) VALUES (4, N'Contacts', N'contacts', 30, 0, NULL, NULL, N'Platformus.Website.Frontend.DefaultEndpoint', N'ViewName=ContactsPage')
+INSERT [dbo].[Endpoints] ([Id], [Name], [UrlTemplate], [Position], [DisallowAnonymous], [SignInUrl], [RequestProcessorCSharpClassName], [RequestProcessorParameters], [ResponseCacheCSharpClassName], [ResponseCacheParameters]) VALUES (4, N'Contacts', N'contacts', 30, 0, NULL, N'Platformus.Website.Frontend.RequestProcessors.DefaultRequestProcessor', N'ViewName=ContactsPage', NULL, NULL)
 GO
 SET IDENTITY_INSERT [dbo].[Endpoints] OFF
 GO
@@ -898,15 +1096,15 @@ INSERT [dbo].[FieldTypes] ([Id], [Code], [Name], [Position], [ValidatorCSharpCla
 GO
 INSERT [dbo].[FieldTypes] ([Id], [Code], [Name], [Position], [ValidatorCSharpClassName]) VALUES (6, N'FileUpload', N'File upload', 6, NULL)
 GO
-INSERT [dbo].[FieldTypes] ([Id], [Code], [Name], [Position], [ValidatorCSharpClassName]) VALUES (7, N'ReCAPTCHA', N'ReCAPTCHA', 7, N'Platformus.Website.Frontend.FormHandlers.ReCaptchaFieldValidator')
+INSERT [dbo].[FieldTypes] ([Id], [Code], [Name], [Position], [ValidatorCSharpClassName]) VALUES (7, N'ReCAPTCHA', N'ReCAPTCHA', 7, N'Platformus.Website.Frontend.FieldValidators.ReCaptchaFieldValidator')
 GO
 SET IDENTITY_INSERT [dbo].[FieldTypes] OFF
 GO
 SET IDENTITY_INSERT [dbo].[Forms] ON 
 GO
-INSERT [dbo].[Forms] ([Id], [Code], [NameId], [SubmitButtonTitleId], [ProduceCompletedForms], [CSharpClassName], [Parameters]) VALUES (1, N'Feedback', 6, 7, 1, N'Platformus.Website.Frontend.FormHandlers.EmailFormHandler', N'RecipientEmails=test@test.com;RedirectUrl=/contacts')
+INSERT [dbo].[Forms] ([Id], [Code], [NameId], [SubmitButtonTitleId], [ProduceCompletedForms], [FormHandlerCSharpClassName], [FormHandlerParameters]) VALUES (1, N'Feedback', 6, 7, 1, N'Platformus.Website.Frontend.FormHandlers.EmailFormHandler', N'RecipientEmails=test@test.com;RedirectUrl=/contacts')
 GO
-INSERT [dbo].[Forms] ([Id], [Code], [NameId], [SubmitButtonTitleId], [ProduceCompletedForms], [CSharpClassName], [Parameters]) VALUES (2, N'WriteComment', 12, 11, 1, N'WebApplication.FormHandlers.WriteCommentFormHandler', NULL)
+INSERT [dbo].[Forms] ([Id], [Code], [NameId], [SubmitButtonTitleId], [ProduceCompletedForms], [FormHandlerCSharpClassName], [FormHandlerParameters]) VALUES (2, N'WriteComment', 12, 11, 1, N'WebApplication.FormHandlers.WriteCommentFormHandler', NULL)
 GO
 SET IDENTITY_INSERT [dbo].[Forms] OFF
 GO
@@ -1444,6 +1642,20 @@ INSERT [dbo].[Permissions] ([Id], [Code], [Name], [Position]) VALUES (12, N'Mana
 GO
 INSERT [dbo].[Permissions] ([Id], [Code], [Name], [Position]) VALUES (13, N'ManageFileManager', N'Manage file manager', 1300)
 GO
+INSERT [dbo].[Permissions] ([Id], [Code], [Name], [Position]) VALUES (14, N'ManageCategories', N'Manage categories', 1400)
+GO
+INSERT [dbo].[Permissions] ([Id], [Code], [Name], [Position]) VALUES (15, N'ManageProducts', N'Manage products', 1500)
+GO
+INSERT [dbo].[Permissions] ([Id], [Code], [Name], [Position]) VALUES (16, N'ManageOrderStates', N'Manage order states', 1600)
+GO
+INSERT [dbo].[Permissions] ([Id], [Code], [Name], [Position]) VALUES (17, N'ManagePaymentMethods', N'Manage payment methods', 1700)
+GO
+INSERT [dbo].[Permissions] ([Id], [Code], [Name], [Position]) VALUES (18, N'ManageDeliveryMethods', N'Manage delivery methods', 1800)
+GO
+INSERT [dbo].[Permissions] ([Id], [Code], [Name], [Position]) VALUES (19, N'ManageCarts', N'Manage carts', 1900)
+GO
+INSERT [dbo].[Permissions] ([Id], [Code], [Name], [Position]) VALUES (20, N'ManageOrders', N'Manage orders', 2000)
+GO
 SET IDENTITY_INSERT [dbo].[Permissions] OFF
 GO
 SET IDENTITY_INSERT [dbo].[Properties] ON 
@@ -1508,7 +1720,7 @@ INSERT [dbo].[Properties] ([Id], [ObjectId], [MemberId], [IntegerValue], [Decima
 GO
 INSERT [dbo].[Properties] ([Id], [ObjectId], [MemberId], [IntegerValue], [DecimalValue], [StringValueId], [DateTimeValue]) VALUES (30, 10, 2, NULL, NULL, 44, NULL)
 GO
-INSERT [dbo].[Properties] ([Id], [ObjectId], [MemberId], [IntegerValue], [DecimalValue], [StringValueId], [DateTimeValue]) VALUES (31, 10, 14, NULL, NULL, NULL, CAST(N'2021-03-26T17:22:20.053' AS DateTime))
+INSERT [dbo].[Properties] ([Id], [ObjectId], [MemberId], [IntegerValue], [DecimalValue], [StringValueId], [DateTimeValue]) VALUES (31, 10, 14, NULL, NULL, NULL, CAST(N'2021-09-09T17:13:29.5216083' AS DateTime2))
 GO
 INSERT [dbo].[Properties] ([Id], [ObjectId], [MemberId], [IntegerValue], [DecimalValue], [StringValueId], [DateTimeValue]) VALUES (32, 10, 3, NULL, NULL, 45, NULL)
 GO
@@ -1526,7 +1738,7 @@ INSERT [dbo].[Properties] ([Id], [ObjectId], [MemberId], [IntegerValue], [Decima
 GO
 INSERT [dbo].[Properties] ([Id], [ObjectId], [MemberId], [IntegerValue], [DecimalValue], [StringValueId], [DateTimeValue]) VALUES (39, 11, 2, NULL, NULL, 52, NULL)
 GO
-INSERT [dbo].[Properties] ([Id], [ObjectId], [MemberId], [IntegerValue], [DecimalValue], [StringValueId], [DateTimeValue]) VALUES (40, 11, 14, NULL, NULL, NULL, CAST(N'2021-03-26T17:22:20.483' AS DateTime))
+INSERT [dbo].[Properties] ([Id], [ObjectId], [MemberId], [IntegerValue], [DecimalValue], [StringValueId], [DateTimeValue]) VALUES (40, 11, 14, NULL, NULL, NULL, CAST(N'2021-09-09T17:13:30.0631473' AS DateTime2))
 GO
 INSERT [dbo].[Properties] ([Id], [ObjectId], [MemberId], [IntegerValue], [DecimalValue], [StringValueId], [DateTimeValue]) VALUES (41, 11, 3, NULL, NULL, 53, NULL)
 GO
@@ -1544,7 +1756,7 @@ INSERT [dbo].[Properties] ([Id], [ObjectId], [MemberId], [IntegerValue], [Decima
 GO
 INSERT [dbo].[Properties] ([Id], [ObjectId], [MemberId], [IntegerValue], [DecimalValue], [StringValueId], [DateTimeValue]) VALUES (48, 12, 2, NULL, NULL, 60, NULL)
 GO
-INSERT [dbo].[Properties] ([Id], [ObjectId], [MemberId], [IntegerValue], [DecimalValue], [StringValueId], [DateTimeValue]) VALUES (49, 12, 14, NULL, NULL, NULL, CAST(N'2021-03-26T17:22:20.970' AS DateTime))
+INSERT [dbo].[Properties] ([Id], [ObjectId], [MemberId], [IntegerValue], [DecimalValue], [StringValueId], [DateTimeValue]) VALUES (49, 12, 14, NULL, NULL, NULL, CAST(N'2021-09-09T17:13:30.5379654' AS DateTime2))
 GO
 INSERT [dbo].[Properties] ([Id], [ObjectId], [MemberId], [IntegerValue], [DecimalValue], [StringValueId], [DateTimeValue]) VALUES (50, 12, 3, NULL, NULL, 61, NULL)
 GO
@@ -1562,7 +1774,7 @@ INSERT [dbo].[Properties] ([Id], [ObjectId], [MemberId], [IntegerValue], [Decima
 GO
 INSERT [dbo].[Properties] ([Id], [ObjectId], [MemberId], [IntegerValue], [DecimalValue], [StringValueId], [DateTimeValue]) VALUES (57, 13, 2, NULL, NULL, 68, NULL)
 GO
-INSERT [dbo].[Properties] ([Id], [ObjectId], [MemberId], [IntegerValue], [DecimalValue], [StringValueId], [DateTimeValue]) VALUES (58, 13, 14, NULL, NULL, NULL, CAST(N'2021-03-26T17:22:21.407' AS DateTime))
+INSERT [dbo].[Properties] ([Id], [ObjectId], [MemberId], [IntegerValue], [DecimalValue], [StringValueId], [DateTimeValue]) VALUES (58, 13, 14, NULL, NULL, NULL, CAST(N'2021-09-09T17:13:31.0456729' AS DateTime2))
 GO
 INSERT [dbo].[Properties] ([Id], [ObjectId], [MemberId], [IntegerValue], [DecimalValue], [StringValueId], [DateTimeValue]) VALUES (59, 13, 3, NULL, NULL, 69, NULL)
 GO
@@ -1580,7 +1792,7 @@ INSERT [dbo].[Properties] ([Id], [ObjectId], [MemberId], [IntegerValue], [Decima
 GO
 INSERT [dbo].[Properties] ([Id], [ObjectId], [MemberId], [IntegerValue], [DecimalValue], [StringValueId], [DateTimeValue]) VALUES (66, 14, 2, NULL, NULL, 76, NULL)
 GO
-INSERT [dbo].[Properties] ([Id], [ObjectId], [MemberId], [IntegerValue], [DecimalValue], [StringValueId], [DateTimeValue]) VALUES (67, 14, 14, NULL, NULL, NULL, CAST(N'2021-03-26T17:22:21.853' AS DateTime))
+INSERT [dbo].[Properties] ([Id], [ObjectId], [MemberId], [IntegerValue], [DecimalValue], [StringValueId], [DateTimeValue]) VALUES (67, 14, 14, NULL, NULL, NULL, CAST(N'2021-09-09T17:13:31.9108071' AS DateTime2))
 GO
 INSERT [dbo].[Properties] ([Id], [ObjectId], [MemberId], [IntegerValue], [DecimalValue], [StringValueId], [DateTimeValue]) VALUES (68, 14, 3, NULL, NULL, 77, NULL)
 GO
@@ -1592,25 +1804,21 @@ SET IDENTITY_INSERT [dbo].[Properties] OFF
 GO
 SET IDENTITY_INSERT [dbo].[Relations] ON 
 GO
-INSERT [dbo].[Relations] ([Id], [MemberId], [PrimaryId], [ForeignId]) VALUES (1, 11, 7, 10)
+INSERT [dbo].[Relations] ([Id], [MemberId], [PrimaryId], [ForeignId]) VALUES (1, 11, 6, 10)
 GO
-INSERT [dbo].[Relations] ([Id], [MemberId], [PrimaryId], [ForeignId]) VALUES (2, 11, 8, 11)
+INSERT [dbo].[Relations] ([Id], [MemberId], [PrimaryId], [ForeignId]) VALUES (2, 11, 5, 10)
 GO
 INSERT [dbo].[Relations] ([Id], [MemberId], [PrimaryId], [ForeignId]) VALUES (3, 11, 9, 11)
 GO
-INSERT [dbo].[Relations] ([Id], [MemberId], [PrimaryId], [ForeignId]) VALUES (4, 11, 7, 11)
+INSERT [dbo].[Relations] ([Id], [MemberId], [PrimaryId], [ForeignId]) VALUES (4, 11, 6, 12)
 GO
-INSERT [dbo].[Relations] ([Id], [MemberId], [PrimaryId], [ForeignId]) VALUES (5, 11, 6, 12)
+INSERT [dbo].[Relations] ([Id], [MemberId], [PrimaryId], [ForeignId]) VALUES (5, 11, 5, 12)
 GO
-INSERT [dbo].[Relations] ([Id], [MemberId], [PrimaryId], [ForeignId]) VALUES (6, 11, 5, 13)
+INSERT [dbo].[Relations] ([Id], [MemberId], [PrimaryId], [ForeignId]) VALUES (6, 11, 6, 13)
 GO
-INSERT [dbo].[Relations] ([Id], [MemberId], [PrimaryId], [ForeignId]) VALUES (7, 11, 6, 13)
+INSERT [dbo].[Relations] ([Id], [MemberId], [PrimaryId], [ForeignId]) VALUES (7, 11, 8, 14)
 GO
-INSERT [dbo].[Relations] ([Id], [MemberId], [PrimaryId], [ForeignId]) VALUES (8, 11, 7, 13)
-GO
-INSERT [dbo].[Relations] ([Id], [MemberId], [PrimaryId], [ForeignId]) VALUES (9, 11, 5, 14)
-GO
-INSERT [dbo].[Relations] ([Id], [MemberId], [PrimaryId], [ForeignId]) VALUES (10, 11, 9, 14)
+INSERT [dbo].[Relations] ([Id], [MemberId], [PrimaryId], [ForeignId]) VALUES (8, 11, 7, 14)
 GO
 SET IDENTITY_INSERT [dbo].[Relations] OFF
 GO
@@ -1648,7 +1856,7 @@ INSERT [dbo].[UserRoles] ([UserId], [RoleId]) VALUES (1, 2)
 GO
 SET IDENTITY_INSERT [dbo].[Users] ON 
 GO
-INSERT [dbo].[Users] ([Id], [Name], [Created]) VALUES (1, N'Administrator', CAST(N'2017-01-01T00:00:00.000' AS DateTime))
+INSERT [dbo].[Users] ([Id], [Name], [Created]) VALUES (1, N'Administrator', CAST(N'2017-01-01T00:00:00.0000000' AS DateTime2))
 GO
 SET IDENTITY_INSERT [dbo].[Users] OFF
 GO
@@ -1672,15 +1880,21 @@ INSERT [dbo].[Variables] ([Id], [ConfigurationId], [Code], [Name], [Value], [Pos
 GO
 SET IDENTITY_INSERT [dbo].[Variables] OFF
 GO
+/****** Object:  Index [IX_Categories_CategoryId]    Script Date: 09.09.2021 17:14:08 ******/
+CREATE NONCLUSTERED INDEX [IX_Categories_CategoryId] ON [dbo].[Categories]
+(
+	[CategoryId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_Configurations_Code]    Script Date: 26.03.2021 17:23:09 ******/
+/****** Object:  Index [IX_Configurations_Code]    Script Date: 09.09.2021 17:14:08 ******/
 CREATE NONCLUSTERED INDEX [IX_Configurations_Code] ON [dbo].[Configurations]
 (
 	[Code] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
-/****** Object:  Index [IX_Credentials_UserId]    Script Date: 26.03.2021 17:23:09 ******/
+/****** Object:  Index [IX_Credentials_UserId]    Script Date: 09.09.2021 17:14:08 ******/
 CREATE NONCLUSTERED INDEX [IX_Credentials_UserId] ON [dbo].[Credentials]
 (
 	[UserId] ASC
@@ -1688,37 +1902,37 @@ CREATE NONCLUSTERED INDEX [IX_Credentials_UserId] ON [dbo].[Credentials]
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_CredentialTypes_Code]    Script Date: 26.03.2021 17:23:09 ******/
+/****** Object:  Index [IX_CredentialTypes_Code]    Script Date: 09.09.2021 17:14:08 ******/
 CREATE NONCLUSTERED INDEX [IX_CredentialTypes_Code] ON [dbo].[CredentialTypes]
 (
 	[Code] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
-/****** Object:  Index [IX_DataSources_EndpointId]    Script Date: 26.03.2021 17:23:09 ******/
+/****** Object:  Index [IX_DataSources_EndpointId]    Script Date: 09.09.2021 17:14:08 ******/
 CREATE NONCLUSTERED INDEX [IX_DataSources_EndpointId] ON [dbo].[DataSources]
 (
 	[EndpointId] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
-/****** Object:  Index [IX_DataTypeParameters_DataTypeId]    Script Date: 26.03.2021 17:23:09 ******/
+/****** Object:  Index [IX_DataTypeParameters_DataTypeId]    Script Date: 09.09.2021 17:14:08 ******/
 CREATE NONCLUSTERED INDEX [IX_DataTypeParameters_DataTypeId] ON [dbo].[DataTypeParameters]
 (
 	[DataTypeId] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
-/****** Object:  Index [IX_DataTypeParameterValues_DataTypeParameterId]    Script Date: 26.03.2021 17:23:09 ******/
+/****** Object:  Index [IX_DataTypeParameterValues_DataTypeParameterId]    Script Date: 09.09.2021 17:14:08 ******/
 CREATE NONCLUSTERED INDEX [IX_DataTypeParameterValues_DataTypeParameterId] ON [dbo].[DataTypeParameterValues]
 (
 	[DataTypeParameterId] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
-/****** Object:  Index [IX_FieldOptions_FieldId]    Script Date: 26.03.2021 17:23:09 ******/
+/****** Object:  Index [IX_FieldOptions_FieldId]    Script Date: 09.09.2021 17:14:08 ******/
 CREATE NONCLUSTERED INDEX [IX_FieldOptions_FieldId] ON [dbo].[FieldOptions]
 (
 	[FieldId] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
-/****** Object:  Index [IX_Fields_FieldId]    Script Date: 26.03.2021 17:23:09 ******/
+/****** Object:  Index [IX_Fields_FieldId]    Script Date: 09.09.2021 17:14:08 ******/
 CREATE NONCLUSTERED INDEX [IX_Fields_FieldId] ON [dbo].[Fields]
 (
 	[FormId] ASC
@@ -1726,7 +1940,7 @@ CREATE NONCLUSTERED INDEX [IX_Fields_FieldId] ON [dbo].[Fields]
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_FieldTypes_Code]    Script Date: 26.03.2021 17:23:09 ******/
+/****** Object:  Index [IX_FieldTypes_Code]    Script Date: 09.09.2021 17:14:08 ******/
 CREATE NONCLUSTERED INDEX [IX_FieldTypes_Code] ON [dbo].[FieldTypes]
 (
 	[Code] ASC
@@ -1734,13 +1948,13 @@ CREATE NONCLUSTERED INDEX [IX_FieldTypes_Code] ON [dbo].[FieldTypes]
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_Forms_Code]    Script Date: 26.03.2021 17:23:09 ******/
+/****** Object:  Index [IX_Forms_Code]    Script Date: 09.09.2021 17:14:08 ******/
 CREATE NONCLUSTERED INDEX [IX_Forms_Code] ON [dbo].[Forms]
 (
 	[Code] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
-/****** Object:  Index [IX_Localizations_DictionaryId]    Script Date: 26.03.2021 17:23:09 ******/
+/****** Object:  Index [IX_Localizations_DictionaryId]    Script Date: 09.09.2021 17:14:08 ******/
 CREATE NONCLUSTERED INDEX [IX_Localizations_DictionaryId] ON [dbo].[Localizations]
 (
 	[DictionaryId] ASC
@@ -1748,26 +1962,26 @@ CREATE NONCLUSTERED INDEX [IX_Localizations_DictionaryId] ON [dbo].[Localization
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_Localizations_DictionaryId_CultureId]    Script Date: 26.03.2021 17:23:09 ******/
+/****** Object:  Index [IX_Localizations_DictionaryId_CultureId]    Script Date: 09.09.2021 17:14:08 ******/
 CREATE NONCLUSTERED INDEX [IX_Localizations_DictionaryId_CultureId] ON [dbo].[Localizations]
 (
 	[CultureId] ASC,
 	[DictionaryId] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
-/****** Object:  Index [IX_Members_ClassId]    Script Date: 26.03.2021 17:23:09 ******/
+/****** Object:  Index [IX_Members_ClassId]    Script Date: 09.09.2021 17:14:08 ******/
 CREATE NONCLUSTERED INDEX [IX_Members_ClassId] ON [dbo].[Members]
 (
 	[ClassId] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
-/****** Object:  Index [IX_MenuItems_MenuId]    Script Date: 26.03.2021 17:23:09 ******/
+/****** Object:  Index [IX_MenuItems_MenuId]    Script Date: 09.09.2021 17:14:08 ******/
 CREATE NONCLUSTERED INDEX [IX_MenuItems_MenuId] ON [dbo].[MenuItems]
 (
 	[MenuId] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
-/****** Object:  Index [IX_MenuItems_MenuItemId]    Script Date: 26.03.2021 17:23:09 ******/
+/****** Object:  Index [IX_MenuItems_MenuItemId]    Script Date: 09.09.2021 17:14:08 ******/
 CREATE NONCLUSTERED INDEX [IX_MenuItems_MenuItemId] ON [dbo].[MenuItems]
 (
 	[MenuItemId] ASC
@@ -1775,60 +1989,108 @@ CREATE NONCLUSTERED INDEX [IX_MenuItems_MenuItemId] ON [dbo].[MenuItems]
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_Menus_Code]    Script Date: 26.03.2021 17:23:09 ******/
+/****** Object:  Index [IX_Menus_Code]    Script Date: 09.09.2021 17:14:08 ******/
 CREATE NONCLUSTERED INDEX [IX_Menus_Code] ON [dbo].[Menus]
 (
 	[Code] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
-/****** Object:  Index [IX_Objects_ClassId]    Script Date: 26.03.2021 17:23:09 ******/
+/****** Object:  Index [IX_Objects_ClassId]    Script Date: 09.09.2021 17:14:08 ******/
 CREATE NONCLUSTERED INDEX [IX_Objects_ClassId] ON [dbo].[Objects]
 (
 	[ClassId] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
+/****** Object:  Index [IX_Orders_DeliveryMethodId]    Script Date: 09.09.2021 17:14:08 ******/
+CREATE NONCLUSTERED INDEX [IX_Orders_DeliveryMethodId] ON [dbo].[Orders]
+(
+	[DeliveryMethodId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_Orders_OrderStateId]    Script Date: 09.09.2021 17:14:08 ******/
+CREATE NONCLUSTERED INDEX [IX_Orders_OrderStateId] ON [dbo].[Orders]
+(
+	[OrderStateId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_Orders_PaymentMethodId]    Script Date: 09.09.2021 17:14:08 ******/
+CREATE NONCLUSTERED INDEX [IX_Orders_PaymentMethodId] ON [dbo].[Orders]
+(
+	[PaymentMethodId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_Permissions_Code]    Script Date: 26.03.2021 17:23:09 ******/
+/****** Object:  Index [IX_Permissions_Code]    Script Date: 09.09.2021 17:14:08 ******/
 CREATE NONCLUSTERED INDEX [IX_Permissions_Code] ON [dbo].[Permissions]
 (
 	[Code] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
-/****** Object:  Index [IX_Properties_ObjectId]    Script Date: 26.03.2021 17:23:09 ******/
+/****** Object:  Index [IX_Photos_ProductId]    Script Date: 09.09.2021 17:14:08 ******/
+CREATE NONCLUSTERED INDEX [IX_Photos_ProductId] ON [dbo].[Photos]
+(
+	[ProductId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_Positions_CartId]    Script Date: 09.09.2021 17:14:08 ******/
+CREATE NONCLUSTERED INDEX [IX_Positions_CartId] ON [dbo].[Positions]
+(
+	[CartId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_Positions_OrderId]    Script Date: 09.09.2021 17:14:08 ******/
+CREATE NONCLUSTERED INDEX [IX_Positions_OrderId] ON [dbo].[Positions]
+(
+	[OrderId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_Positions_ProductId]    Script Date: 09.09.2021 17:14:08 ******/
+CREATE NONCLUSTERED INDEX [IX_Positions_ProductId] ON [dbo].[Positions]
+(
+	[ProductId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_Products_CategoryId]    Script Date: 09.09.2021 17:14:08 ******/
+CREATE NONCLUSTERED INDEX [IX_Products_CategoryId] ON [dbo].[Products]
+(
+	[CategoryId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_Properties_ObjectId]    Script Date: 09.09.2021 17:14:08 ******/
 CREATE NONCLUSTERED INDEX [IX_Properties_ObjectId] ON [dbo].[Properties]
 (
 	[ObjectId] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
-/****** Object:  Index [IX_Properties_ObjectId_MemberId]    Script Date: 26.03.2021 17:23:09 ******/
+/****** Object:  Index [IX_Properties_ObjectId_MemberId]    Script Date: 09.09.2021 17:14:08 ******/
 CREATE NONCLUSTERED INDEX [IX_Properties_ObjectId_MemberId] ON [dbo].[Properties]
 (
 	[ObjectId] ASC,
 	[MemberId] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
-/****** Object:  Index [IX_Relations_ForeignId]    Script Date: 26.03.2021 17:23:09 ******/
+/****** Object:  Index [IX_Relations_ForeignId]    Script Date: 09.09.2021 17:14:08 ******/
 CREATE NONCLUSTERED INDEX [IX_Relations_ForeignId] ON [dbo].[Relations]
 (
 	[ForeignId] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
-/****** Object:  Index [IX_Relations_MemberId_ForeignId]    Script Date: 26.03.2021 17:23:09 ******/
+/****** Object:  Index [IX_Relations_MemberId_ForeignId]    Script Date: 09.09.2021 17:14:08 ******/
 CREATE NONCLUSTERED INDEX [IX_Relations_MemberId_ForeignId] ON [dbo].[Relations]
 (
 	[MemberId] ASC,
 	[ForeignId] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
-/****** Object:  Index [IX_Relations_MemberId_PrimaryId]    Script Date: 26.03.2021 17:23:09 ******/
+/****** Object:  Index [IX_Relations_MemberId_PrimaryId]    Script Date: 09.09.2021 17:14:08 ******/
 CREATE NONCLUSTERED INDEX [IX_Relations_MemberId_PrimaryId] ON [dbo].[Relations]
 (
 	[PrimaryId] ASC,
 	[MemberId] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
-/****** Object:  Index [IX_Relations_PrimaryId]    Script Date: 26.03.2021 17:23:09 ******/
+/****** Object:  Index [IX_Relations_PrimaryId]    Script Date: 09.09.2021 17:14:08 ******/
 CREATE NONCLUSTERED INDEX [IX_Relations_PrimaryId] ON [dbo].[Relations]
 (
 	[PrimaryId] ASC
@@ -1836,13 +2098,13 @@ CREATE NONCLUSTERED INDEX [IX_Relations_PrimaryId] ON [dbo].[Relations]
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_Roles_Code]    Script Date: 26.03.2021 17:23:09 ******/
+/****** Object:  Index [IX_Roles_Code]    Script Date: 09.09.2021 17:14:08 ******/
 CREATE NONCLUSTERED INDEX [IX_Roles_Code] ON [dbo].[Roles]
 (
 	[Code] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
-/****** Object:  Index [IX_Tabs_ClassId]    Script Date: 26.03.2021 17:23:09 ******/
+/****** Object:  Index [IX_Tabs_ClassId]    Script Date: 09.09.2021 17:14:08 ******/
 CREATE NONCLUSTERED INDEX [IX_Tabs_ClassId] ON [dbo].[Tabs]
 (
 	[ClassId] ASC
@@ -1850,13 +2112,13 @@ CREATE NONCLUSTERED INDEX [IX_Tabs_ClassId] ON [dbo].[Tabs]
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_Users_Name]    Script Date: 26.03.2021 17:23:09 ******/
+/****** Object:  Index [IX_Users_Name]    Script Date: 09.09.2021 17:14:08 ******/
 CREATE NONCLUSTERED INDEX [IX_Users_Name] ON [dbo].[Users]
 (
 	[Name] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
-/****** Object:  Index [IX_Variables_ConfigurationId]    Script Date: 26.03.2021 17:23:09 ******/
+/****** Object:  Index [IX_Variables_ConfigurationId]    Script Date: 09.09.2021 17:14:08 ******/
 CREATE NONCLUSTERED INDEX [IX_Variables_ConfigurationId] ON [dbo].[Variables]
 (
 	[ConfigurationId] ASC
@@ -1864,12 +2126,42 @@ CREATE NONCLUSTERED INDEX [IX_Variables_ConfigurationId] ON [dbo].[Variables]
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_Variables_ConfigurationId_Code]    Script Date: 26.03.2021 17:23:09 ******/
+/****** Object:  Index [IX_Variables_ConfigurationId_Code]    Script Date: 09.09.2021 17:14:08 ******/
 CREATE NONCLUSTERED INDEX [IX_Variables_ConfigurationId_Code] ON [dbo].[Variables]
 (
 	[ConfigurationId] ASC,
 	[Code] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[Categories]  WITH CHECK ADD  CONSTRAINT [FK_Categories_Categories] FOREIGN KEY([CategoryId])
+REFERENCES [dbo].[Categories] ([Id])
+GO
+ALTER TABLE [dbo].[Categories] CHECK CONSTRAINT [FK_Categories_Categories]
+GO
+ALTER TABLE [dbo].[Categories]  WITH CHECK ADD  CONSTRAINT [FK_Categories_Dictionaries] FOREIGN KEY([NameId])
+REFERENCES [dbo].[Dictionaries] ([Id])
+GO
+ALTER TABLE [dbo].[Categories] CHECK CONSTRAINT [FK_Categories_Dictionaries]
+GO
+ALTER TABLE [dbo].[Categories]  WITH CHECK ADD  CONSTRAINT [FK_Categories_Dictionaries_DescriptionId] FOREIGN KEY([DescriptionId])
+REFERENCES [dbo].[Dictionaries] ([Id])
+GO
+ALTER TABLE [dbo].[Categories] CHECK CONSTRAINT [FK_Categories_Dictionaries_DescriptionId]
+GO
+ALTER TABLE [dbo].[Categories]  WITH CHECK ADD  CONSTRAINT [FK_Categories_Dictionaries_MetaDescriptionId] FOREIGN KEY([MetaDescriptionId])
+REFERENCES [dbo].[Dictionaries] ([Id])
+GO
+ALTER TABLE [dbo].[Categories] CHECK CONSTRAINT [FK_Categories_Dictionaries_MetaDescriptionId]
+GO
+ALTER TABLE [dbo].[Categories]  WITH CHECK ADD  CONSTRAINT [FK_Categories_Dictionaries_MetaKeywordsId] FOREIGN KEY([MetaKeywordsId])
+REFERENCES [dbo].[Dictionaries] ([Id])
+GO
+ALTER TABLE [dbo].[Categories] CHECK CONSTRAINT [FK_Categories_Dictionaries_MetaKeywordsId]
+GO
+ALTER TABLE [dbo].[Categories]  WITH CHECK ADD  CONSTRAINT [FK_Categories_Dictionaries_TitleId] FOREIGN KEY([TitleId])
+REFERENCES [dbo].[Dictionaries] ([Id])
+GO
+ALTER TABLE [dbo].[Categories] CHECK CONSTRAINT [FK_Categories_Dictionaries_TitleId]
 GO
 ALTER TABLE [dbo].[Classes]  WITH CHECK ADD  CONSTRAINT [FK_Classes_Classes] FOREIGN KEY([ClassId])
 REFERENCES [dbo].[Classes] ([Id])
@@ -1928,6 +2220,11 @@ REFERENCES [dbo].[Members] ([Id])
 ON DELETE CASCADE
 GO
 ALTER TABLE [dbo].[DataTypeParameterValues] CHECK CONSTRAINT [FK_DataTypeParameterValues_Members_MemberId]
+GO
+ALTER TABLE [dbo].[DeliveryMethods]  WITH CHECK ADD  CONSTRAINT [FK_DeliveryMethods_Dictionaries] FOREIGN KEY([NameId])
+REFERENCES [dbo].[Dictionaries] ([Id])
+GO
+ALTER TABLE [dbo].[DeliveryMethods] CHECK CONSTRAINT [FK_DeliveryMethods_Dictionaries]
 GO
 ALTER TABLE [dbo].[EndpointPermissions]  WITH CHECK ADD  CONSTRAINT [FK_EndpointPermissions_Permissions] FOREIGN KEY([PermissionId])
 REFERENCES [dbo].[Permissions] ([Id])
@@ -2038,6 +2335,94 @@ REFERENCES [dbo].[Classes] ([Id])
 GO
 ALTER TABLE [dbo].[Objects] CHECK CONSTRAINT [FK_Objects_Classes]
 GO
+ALTER TABLE [dbo].[Orders]  WITH CHECK ADD  CONSTRAINT [FK_Orders_DeliveryMethods] FOREIGN KEY([DeliveryMethodId])
+REFERENCES [dbo].[DeliveryMethods] ([Id])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[Orders] CHECK CONSTRAINT [FK_Orders_DeliveryMethods]
+GO
+ALTER TABLE [dbo].[Orders]  WITH CHECK ADD  CONSTRAINT [FK_Orders_OrderStates] FOREIGN KEY([OrderStateId])
+REFERENCES [dbo].[OrderStates] ([Id])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[Orders] CHECK CONSTRAINT [FK_Orders_OrderStates]
+GO
+ALTER TABLE [dbo].[Orders]  WITH CHECK ADD  CONSTRAINT [FK_Orders_PaymentMethods] FOREIGN KEY([PaymentMethodId])
+REFERENCES [dbo].[PaymentMethods] ([Id])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[Orders] CHECK CONSTRAINT [FK_Orders_PaymentMethods]
+GO
+ALTER TABLE [dbo].[OrderStates]  WITH CHECK ADD  CONSTRAINT [FK_OrderStates_Dictionaries] FOREIGN KEY([NameId])
+REFERENCES [dbo].[Dictionaries] ([Id])
+GO
+ALTER TABLE [dbo].[OrderStates] CHECK CONSTRAINT [FK_OrderStates_Dictionaries]
+GO
+ALTER TABLE [dbo].[PaymentMethods]  WITH CHECK ADD  CONSTRAINT [FK_PaymentMethods_Dictionaries] FOREIGN KEY([NameId])
+REFERENCES [dbo].[Dictionaries] ([Id])
+GO
+ALTER TABLE [dbo].[PaymentMethods] CHECK CONSTRAINT [FK_PaymentMethods_Dictionaries]
+GO
+ALTER TABLE [dbo].[Photos]  WITH CHECK ADD  CONSTRAINT [FK_Photos_Products] FOREIGN KEY([ProductId])
+REFERENCES [dbo].[Products] ([Id])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[Photos] CHECK CONSTRAINT [FK_Photos_Products]
+GO
+ALTER TABLE [dbo].[Positions]  WITH CHECK ADD  CONSTRAINT [FK_Positions_Carts] FOREIGN KEY([CartId])
+REFERENCES [dbo].[Carts] ([Id])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[Positions] CHECK CONSTRAINT [FK_Positions_Carts]
+GO
+ALTER TABLE [dbo].[Positions]  WITH CHECK ADD  CONSTRAINT [FK_Positions_Orders] FOREIGN KEY([OrderId])
+REFERENCES [dbo].[Orders] ([Id])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[Positions] CHECK CONSTRAINT [FK_Positions_Orders]
+GO
+ALTER TABLE [dbo].[Positions]  WITH CHECK ADD  CONSTRAINT [FK_Positions_Products] FOREIGN KEY([ProductId])
+REFERENCES [dbo].[Products] ([Id])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[Positions] CHECK CONSTRAINT [FK_Positions_Products]
+GO
+ALTER TABLE [dbo].[Products]  WITH CHECK ADD  CONSTRAINT [FK_Products_Categories] FOREIGN KEY([CategoryId])
+REFERENCES [dbo].[Categories] ([Id])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[Products] CHECK CONSTRAINT [FK_Products_Categories]
+GO
+ALTER TABLE [dbo].[Products]  WITH CHECK ADD  CONSTRAINT [FK_Products_Dictionaries_DescriptionId] FOREIGN KEY([DescriptionId])
+REFERENCES [dbo].[Dictionaries] ([Id])
+GO
+ALTER TABLE [dbo].[Products] CHECK CONSTRAINT [FK_Products_Dictionaries_DescriptionId]
+GO
+ALTER TABLE [dbo].[Products]  WITH CHECK ADD  CONSTRAINT [FK_Products_Dictionaries_MetaDescriptionId] FOREIGN KEY([MetaDescriptionId])
+REFERENCES [dbo].[Dictionaries] ([Id])
+GO
+ALTER TABLE [dbo].[Products] CHECK CONSTRAINT [FK_Products_Dictionaries_MetaDescriptionId]
+GO
+ALTER TABLE [dbo].[Products]  WITH CHECK ADD  CONSTRAINT [FK_Products_Dictionaries_MetaKeywordsId] FOREIGN KEY([MetaKeywordsId])
+REFERENCES [dbo].[Dictionaries] ([Id])
+GO
+ALTER TABLE [dbo].[Products] CHECK CONSTRAINT [FK_Products_Dictionaries_MetaKeywordsId]
+GO
+ALTER TABLE [dbo].[Products]  WITH CHECK ADD  CONSTRAINT [FK_Products_Dictionaries_NameId] FOREIGN KEY([NameId])
+REFERENCES [dbo].[Dictionaries] ([Id])
+GO
+ALTER TABLE [dbo].[Products] CHECK CONSTRAINT [FK_Products_Dictionaries_NameId]
+GO
+ALTER TABLE [dbo].[Products]  WITH CHECK ADD  CONSTRAINT [FK_Products_Dictionaries_TitleId] FOREIGN KEY([TitleId])
+REFERENCES [dbo].[Dictionaries] ([Id])
+GO
+ALTER TABLE [dbo].[Products] CHECK CONSTRAINT [FK_Products_Dictionaries_TitleId]
+GO
+ALTER TABLE [dbo].[Products]  WITH CHECK ADD  CONSTRAINT [FK_Products_Dictionaries_UnitsId] FOREIGN KEY([UnitsId])
+REFERENCES [dbo].[Dictionaries] ([Id])
+GO
+ALTER TABLE [dbo].[Products] CHECK CONSTRAINT [FK_Products_Dictionaries_UnitsId]
+GO
 ALTER TABLE [dbo].[Properties]  WITH CHECK ADD  CONSTRAINT [FK_Properties_Dictionaries] FOREIGN KEY([StringValueId])
 REFERENCES [dbo].[Dictionaries] ([Id])
 GO
@@ -2045,12 +2430,12 @@ ALTER TABLE [dbo].[Properties] CHECK CONSTRAINT [FK_Properties_Dictionaries]
 GO
 ALTER TABLE [dbo].[Properties]  WITH CHECK ADD  CONSTRAINT [FK_Properties_Members] FOREIGN KEY([MemberId])
 REFERENCES [dbo].[Members] ([Id])
+ON DELETE CASCADE
 GO
 ALTER TABLE [dbo].[Properties] CHECK CONSTRAINT [FK_Properties_Members]
 GO
 ALTER TABLE [dbo].[Properties]  WITH CHECK ADD  CONSTRAINT [FK_Properties_Objects] FOREIGN KEY([ObjectId])
 REFERENCES [dbo].[Objects] ([Id])
-ON DELETE CASCADE
 GO
 ALTER TABLE [dbo].[Properties] CHECK CONSTRAINT [FK_Properties_Objects]
 GO

@@ -1,4 +1,10 @@
 BEGIN TRANSACTION;
+CREATE TABLE IF NOT EXISTS "ModelStates" (
+	"Id"	TEXT NOT NULL,
+	"Value"	TEXT NOT NULL,
+	"Created"	TEXT NOT NULL,
+	CONSTRAINT "PK_ModelState" PRIMARY KEY("Id")
+);
 CREATE TABLE IF NOT EXISTS "Users" (
 	"Id"	INTEGER NOT NULL,
 	"Name"	TEXT NOT NULL,
@@ -19,9 +25,9 @@ CREATE TABLE IF NOT EXISTS "Credentials" (
 	"Identifier"	TEXT NOT NULL,
 	"Secret"	TEXT,
 	"Extra"	TEXT,
-	CONSTRAINT "FK_Credential_CredentialType_CredentialTypeId" FOREIGN KEY("CredentialTypeId") REFERENCES "CredentialTypes"("Id") ON DELETE CASCADE,
+	CONSTRAINT "PK_Credential" PRIMARY KEY("Id" AUTOINCREMENT),
 	CONSTRAINT "FK_Credential_User_UserId" FOREIGN KEY("UserId") REFERENCES "Users"("Id") ON DELETE CASCADE,
-	CONSTRAINT "PK_Credential" PRIMARY KEY("Id" AUTOINCREMENT)
+	CONSTRAINT "FK_Credential_CredentialType_CredentialTypeId" FOREIGN KEY("CredentialTypeId") REFERENCES "CredentialTypes"("Id") ON DELETE CASCADE
 );
 CREATE TABLE IF NOT EXISTS "Roles" (
 	"Id"	INTEGER NOT NULL,
@@ -33,9 +39,9 @@ CREATE TABLE IF NOT EXISTS "Roles" (
 CREATE TABLE IF NOT EXISTS "UserRoles" (
 	"UserId"	INTEGER NOT NULL,
 	"RoleId"	INTEGER NOT NULL,
+	CONSTRAINT "PK_UserRole" PRIMARY KEY("UserId","RoleId"),
 	CONSTRAINT "FK_UserRole_User_UserId" FOREIGN KEY("UserId") REFERENCES "Users"("Id") ON DELETE CASCADE,
-	CONSTRAINT "FK_UserRole_Role_RoleId" FOREIGN KEY("RoleId") REFERENCES "Roles"("Id") ON DELETE CASCADE,
-	CONSTRAINT "PK_UserRole" PRIMARY KEY("UserId","RoleId")
+	CONSTRAINT "FK_UserRole_Role_RoleId" FOREIGN KEY("RoleId") REFERENCES "Roles"("Id") ON DELETE CASCADE
 );
 CREATE TABLE IF NOT EXISTS "Permissions" (
 	"Id"	INTEGER NOT NULL,
@@ -47,9 +53,9 @@ CREATE TABLE IF NOT EXISTS "Permissions" (
 CREATE TABLE IF NOT EXISTS "RolePermissions" (
 	"RoleId"	INTEGER NOT NULL,
 	"PermissionId"	INTEGER NOT NULL,
+	CONSTRAINT "PK_RolePermission" PRIMARY KEY("RoleId","PermissionId"),
 	CONSTRAINT "FK_RolePermission_Role_RoleId" FOREIGN KEY("RoleId") REFERENCES "Roles"("Id") ON DELETE CASCADE,
-	CONSTRAINT "FK_RolePermission_Permission_PermissionId" FOREIGN KEY("PermissionId") REFERENCES "Permissions"("Id") ON DELETE CASCADE,
-	CONSTRAINT "PK_RolePermission" PRIMARY KEY("RoleId","PermissionId")
+	CONSTRAINT "FK_RolePermission_Permission_PermissionId" FOREIGN KEY("PermissionId") REFERENCES "Permissions"("Id") ON DELETE CASCADE
 );
 CREATE TABLE IF NOT EXISTS "Configurations" (
 	"Id"	INTEGER NOT NULL,
@@ -64,8 +70,8 @@ CREATE TABLE IF NOT EXISTS "Variables" (
 	"Name"	TEXT NOT NULL,
 	"Value"	TEXT NOT NULL,
 	"Position"	INTEGER,
-	CONSTRAINT "FK_Variable_Configuration_ConfigurationId" FOREIGN KEY("ConfigurationId") REFERENCES "Configurations"("Id") ON DELETE CASCADE,
-	CONSTRAINT "PK_Variable" PRIMARY KEY("Id" AUTOINCREMENT)
+	CONSTRAINT "PK_Variable" PRIMARY KEY("Id" AUTOINCREMENT),
+	CONSTRAINT "FK_Variable_Configuration_ConfigurationId" FOREIGN KEY("ConfigurationId") REFERENCES "Configurations"("Id") ON DELETE CASCADE
 );
 CREATE TABLE IF NOT EXISTS "Cultures" (
 	"Id"	TEXT NOT NULL,
@@ -84,9 +90,9 @@ CREATE TABLE IF NOT EXISTS "Localizations" (
 	"DictionaryId"	INTEGER NOT NULL,
 	"CultureId"	TEXT NOT NULL,
 	"Value"	TEXT,
+	CONSTRAINT "PK_Localization" PRIMARY KEY("Id" AUTOINCREMENT),
 	CONSTRAINT "FK_Localization_Dictionary_DictionaryId" FOREIGN KEY("DictionaryId") REFERENCES "Dictionaries"("Id") ON DELETE CASCADE,
-	CONSTRAINT "FK_Localization_Culture_CultureId" FOREIGN KEY("CultureId") REFERENCES "Cultures"("Id") ON DELETE CASCADE,
-	CONSTRAINT "PK_Localization" PRIMARY KEY("Id" AUTOINCREMENT)
+	CONSTRAINT "FK_Localization_Culture_CultureId" FOREIGN KEY("CultureId") REFERENCES "Cultures"("Id") ON DELETE CASCADE
 );
 CREATE TABLE IF NOT EXISTS "Endpoints" (
 	"Id"	INTEGER NOT NULL,
@@ -95,26 +101,27 @@ CREATE TABLE IF NOT EXISTS "Endpoints" (
 	"Position"	INTEGER,
 	"DisallowAnonymous"	INTEGER NOT NULL,
 	"SignInUrl"	TEXT,
+	"RequestProcessorCSharpClassName"	TEXT NOT NULL,
+	"RequestProcessorParameters"	TEXT,
 	"ResponseCacheCSharpClassName"	TEXT,
-	"CSharpClassName"	TEXT NOT NULL,
-	"Parameters"	TEXT,
+	"ResponseCacheParameters"	TEXT,
 	CONSTRAINT "PK_Endpoint" PRIMARY KEY("Id" AUTOINCREMENT)
 );
 CREATE TABLE IF NOT EXISTS "EndpointPermissions" (
 	"EndpointId"	INTEGER NOT NULL,
 	"PermissionId"	INTEGER NOT NULL,
+	CONSTRAINT "PK_EndpointPermission" PRIMARY KEY("EndpointId","PermissionId"),
 	CONSTRAINT "FK_EndpointPermission_Endpoint_EndpointId" FOREIGN KEY("EndpointId") REFERENCES "Endpoints"("Id") ON DELETE CASCADE,
-	CONSTRAINT "FK_EndpointPermission_Permission_PermissionId" FOREIGN KEY("PermissionId") REFERENCES "Permissions"("Id") ON DELETE CASCADE,
-	CONSTRAINT "PK_EndpointPermission" PRIMARY KEY("EndpointId","PermissionId")
+	CONSTRAINT "FK_EndpointPermission_Permission_PermissionId" FOREIGN KEY("PermissionId") REFERENCES "Permissions"("Id") ON DELETE CASCADE
 );
 CREATE TABLE IF NOT EXISTS "DataSources" (
 	"Id"	INTEGER NOT NULL,
 	"EndpointId"	INTEGER NOT NULL,
 	"Code"	TEXT NOT NULL,
-	"CSharpClassName"	TEXT NOT NULL,
-	"Parameters"	TEXT,
-	CONSTRAINT "FK_DataSource_Endpoint_EndpointId" FOREIGN KEY("EndpointId") REFERENCES "Endpoints"("Id") ON DELETE CASCADE,
-	CONSTRAINT "PK_DataSource" PRIMARY KEY("Id" AUTOINCREMENT)
+	"DataProviderCSharpClassName"	TEXT NOT NULL,
+	"DataProviderParameters"	TEXT,
+	CONSTRAINT "PK_DataSource" PRIMARY KEY("Id" AUTOINCREMENT),
+	CONSTRAINT "FK_DataSource_Endpoint_EndpointId" FOREIGN KEY("EndpointId") REFERENCES "Endpoints"("Id") ON DELETE CASCADE
 );
 CREATE TABLE IF NOT EXISTS "Classes" (
 	"Id"	INTEGER NOT NULL,
@@ -123,16 +130,16 @@ CREATE TABLE IF NOT EXISTS "Classes" (
 	"Name"	TEXT NOT NULL,
 	"PluralizedName"	TEXT NOT NULL,
 	"IsAbstract"	INTEGER NOT NULL,
-	CONSTRAINT "FK_Class_Class_ClassId" FOREIGN KEY("ClassId") REFERENCES "Classes"("Id") ON DELETE SET NULL,
-	CONSTRAINT "PK_Class" PRIMARY KEY("Id" AUTOINCREMENT)
+	CONSTRAINT "PK_Class" PRIMARY KEY("Id" AUTOINCREMENT),
+	CONSTRAINT "FK_Class_Class_ClassId" FOREIGN KEY("ClassId") REFERENCES "Classes"("Id") ON DELETE SET NULL
 );
 CREATE TABLE IF NOT EXISTS "Tabs" (
 	"Id"	INTEGER NOT NULL,
 	"ClassId"	INTEGER NOT NULL,
 	"Name"	TEXT NOT NULL,
 	"Position"	INTEGER,
-	CONSTRAINT "FK_Tab_Class_ClassId" FOREIGN KEY("ClassId") REFERENCES "Classes"("Id") ON DELETE CASCADE,
-	CONSTRAINT "PK_Tab" PRIMARY KEY("Id" AUTOINCREMENT)
+	CONSTRAINT "PK_Tab" PRIMARY KEY("Id" AUTOINCREMENT),
+	CONSTRAINT "FK_Tab_Class_ClassId" FOREIGN KEY("ClassId") REFERENCES "Classes"("Id") ON DELETE CASCADE
 );
 CREATE TABLE IF NOT EXISTS "DataTypes" (
 	"Id"	INTEGER NOT NULL,
@@ -165,10 +172,10 @@ CREATE TABLE IF NOT EXISTS "Members" (
 	"IsRelationSingleParent"	INTEGER,
 	"MinRelatedObjectsNumber"	INTEGER,
 	"MaxRelatedObjectsNumber"	INTEGER,
-	CONSTRAINT "FK_Member_Tab_TabId" FOREIGN KEY("TabId") REFERENCES "Tabs"("Id") ON DELETE SET NULL,
 	CONSTRAINT "FK_Member_Class_ClassId" FOREIGN KEY("ClassId") REFERENCES "Classes"("Id") ON DELETE CASCADE,
-	CONSTRAINT "FK_Member_DataType_PropertyDataTypeId" FOREIGN KEY("PropertyDataTypeId") REFERENCES "DataTypes"("Id") ON DELETE SET NULL,
 	CONSTRAINT "FK_Member_Class_RelationClassId" FOREIGN KEY("RelationClassId") REFERENCES "Classes"("Id") ON DELETE SET NULL,
+	CONSTRAINT "FK_Member_Tab_TabId" FOREIGN KEY("TabId") REFERENCES "Tabs"("Id") ON DELETE SET NULL,
+	CONSTRAINT "FK_Member_DataType_PropertyDataTypeId" FOREIGN KEY("PropertyDataTypeId") REFERENCES "DataTypes"("Id") ON DELETE SET NULL,
 	CONSTRAINT "PK_Member" PRIMARY KEY("Id" AUTOINCREMENT)
 );
 CREATE TABLE IF NOT EXISTS "DataTypeParameterValues" (
@@ -204,8 +211,8 @@ CREATE TABLE IF NOT EXISTS "Relations" (
 	"MemberId"	INTEGER NOT NULL,
 	"PrimaryId"	INTEGER NOT NULL,
 	"ForeignId"	INTEGER NOT NULL,
-	CONSTRAINT "FK_Relation_Object_PrimaryId" FOREIGN KEY("PrimaryId") REFERENCES "Objects"("Id") ON DELETE CASCADE,
 	CONSTRAINT "FK_Relation_Object_ForeignId" FOREIGN KEY("ForeignId") REFERENCES "Objects"("Id") ON DELETE CASCADE,
+	CONSTRAINT "FK_Relation_Object_PrimaryId" FOREIGN KEY("PrimaryId") REFERENCES "Objects"("Id") ON DELETE CASCADE,
 	CONSTRAINT "FK_Relation_Member_MemberId" FOREIGN KEY("MemberId") REFERENCES "Members"("Id") ON DELETE CASCADE,
 	CONSTRAINT "PK_Relation" PRIMARY KEY("Id" AUTOINCREMENT)
 );
@@ -223,9 +230,9 @@ CREATE TABLE IF NOT EXISTS "MenuItems" (
 	"NameId"	INTEGER NOT NULL,
 	"Url"	TEXT,
 	"Position"	INTEGER,
+	CONSTRAINT "FK_MenuItem_Menu_MenuId" FOREIGN KEY("MenuId") REFERENCES "Menus"("Id") ON DELETE CASCADE,
 	CONSTRAINT "FK_MenuItem_MenuItem_MenuItemId" FOREIGN KEY("MenuItemId") REFERENCES "MenuItems"("Id") ON DELETE CASCADE,
 	CONSTRAINT "FK_MenuItem_Dictionary_NameId" FOREIGN KEY("NameId") REFERENCES "Dictionaries"("Id"),
-	CONSTRAINT "FK_MenuItem_Menu_MenuId" FOREIGN KEY("MenuId") REFERENCES "Menus"("Id") ON DELETE CASCADE,
 	CONSTRAINT "PK_MenuItem" PRIMARY KEY("Id" AUTOINCREMENT)
 );
 CREATE TABLE IF NOT EXISTS "Forms" (
@@ -234,8 +241,8 @@ CREATE TABLE IF NOT EXISTS "Forms" (
 	"NameId"	INTEGER NOT NULL,
 	"SubmitButtonTitleId"	INTEGER NOT NULL,
 	"ProduceCompletedForms"	INTEGER NOT NULL,
-	"CSharpClassName"	TEXT NOT NULL,
-	"Parameters"	TEXT,
+	"FormHandlerCSharpClassName"	TEXT NOT NULL,
+	"FormHandlerParameters"	TEXT,
 	CONSTRAINT "FK_Form_Dictionary_NameId" FOREIGN KEY("NameId") REFERENCES "Dictionaries"("Id"),
 	CONSTRAINT "FK_Form_Dictionary_SubmitButtonTitleId" FOREIGN KEY("SubmitButtonTitleId") REFERENCES "Dictionaries"("Id"),
 	CONSTRAINT "PK_Form" PRIMARY KEY("Id" AUTOINCREMENT)
@@ -257,9 +264,9 @@ CREATE TABLE IF NOT EXISTS "Fields" (
 	"IsRequired"	INTEGER NOT NULL,
 	"MaxLength"	INTEGER,
 	"Position"	INTEGER,
-	CONSTRAINT "FK_Field_Dictionary_NameId" FOREIGN KEY("NameId") REFERENCES "Dictionaries"("Id"),
 	CONSTRAINT "FK_Field_FieldType_FieldTypeId" FOREIGN KEY("FieldTypeId") REFERENCES "FieldTypes"("Id") ON DELETE CASCADE,
 	CONSTRAINT "FK_Field_Form_FormId" FOREIGN KEY("FormId") REFERENCES "Forms"("Id") ON DELETE CASCADE,
+	CONSTRAINT "FK_Field_Dictionary_NameId" FOREIGN KEY("NameId") REFERENCES "Dictionaries"("Id"),
 	CONSTRAINT "PK_Field" PRIMARY KEY("Id" AUTOINCREMENT)
 );
 CREATE TABLE IF NOT EXISTS "FieldOptions" (
@@ -293,6 +300,116 @@ CREATE TABLE IF NOT EXISTS "Files" (
 	"Size"	INTEGER NOT NULL,
 	CONSTRAINT "PK_File" PRIMARY KEY("Id" AUTOINCREMENT)
 );
+CREATE TABLE IF NOT EXISTS "Categories" (
+	"Id"	INTEGER NOT NULL,
+	"CategoryId"	INTEGER,
+	"Url"	TEXT,
+	"NameId"	INTEGER NOT NULL,
+	"DescriptionId"	INTEGER NOT NULL,
+	"Position"	INTEGER,
+	"TitleId"	INTEGER NOT NULL,
+	"MetaDescriptionId"	INTEGER NOT NULL,
+	"MetaKeywordsId"	INTEGER NOT NULL,
+	"ProductProviderCSharpClassName"	TEXT NOT NULL,
+	"ProductProviderParameters"	TEXT,
+	CONSTRAINT "FK_Category_Dictionary_DescriptionId" FOREIGN KEY("DescriptionId") REFERENCES "Dictionaries"("Id"),
+	CONSTRAINT "FK_Category_Dictionary_TitleId" FOREIGN KEY("TitleId") REFERENCES "Dictionaries"("Id"),
+	CONSTRAINT "FK_Category_Category_CategoryId" FOREIGN KEY("CategoryId") REFERENCES "Categories"("Id") ON DELETE CASCADE,
+	CONSTRAINT "FK_Category_Dictionary_MetaKeywordsId" FOREIGN KEY("MetaKeywordsId") REFERENCES "Dictionaries"("Id"),
+	CONSTRAINT "FK_Category_Dictionary_NameId" FOREIGN KEY("NameId") REFERENCES "Dictionaries"("Id"),
+	CONSTRAINT "FK_Category_Dictionary_MetaDescriptionId" FOREIGN KEY("MetaDescriptionId") REFERENCES "Dictionaries"("Id"),
+	CONSTRAINT "PK_Category" PRIMARY KEY("Id" AUTOINCREMENT)
+);
+CREATE TABLE IF NOT EXISTS "Products" (
+	"Id"	INTEGER NOT NULL,
+	"CategoryId"	INTEGER NOT NULL,
+	"Url"	TEXT,
+	"Code"	TEXT NOT NULL,
+	"NameId"	INTEGER NOT NULL,
+	"DescriptionId"	INTEGER NOT NULL,
+	"UnitsId"	INTEGER NOT NULL,
+	"Price"	REAL NOT NULL,
+	"TitleId"	INTEGER NOT NULL,
+	"MetaDescriptionId"	INTEGER NOT NULL,
+	"MetaKeywordsId"	INTEGER NOT NULL,
+	CONSTRAINT "FK_Product_Dictionary_DescriptionId" FOREIGN KEY("DescriptionId") REFERENCES "Dictionaries"("Id"),
+	CONSTRAINT "FK_Product_Dictionary_TitleId" FOREIGN KEY("TitleId") REFERENCES "Dictionaries"("Id"),
+	CONSTRAINT "FK_Product_Dictionary_UnitsId" FOREIGN KEY("UnitsId") REFERENCES "Dictionaries"("Id"),
+	CONSTRAINT "FK_Product_Dictionary_MetaKeywordsId" FOREIGN KEY("MetaKeywordsId") REFERENCES "Dictionaries"("Id"),
+	CONSTRAINT "FK_Product_Category_CategoryId" FOREIGN KEY("CategoryId") REFERENCES "Categories"("Id") ON DELETE CASCADE,
+	CONSTRAINT "FK_Product_Dictionary_NameId" FOREIGN KEY("NameId") REFERENCES "Dictionaries"("Id"),
+	CONSTRAINT "FK_Product_Dictionary_MetaDescriptionId" FOREIGN KEY("MetaDescriptionId") REFERENCES "Dictionaries"("Id"),
+	CONSTRAINT "PK_Product" PRIMARY KEY("Id" AUTOINCREMENT)
+);
+CREATE TABLE IF NOT EXISTS "Photos" (
+	"Id"	INTEGER NOT NULL,
+	"ProductId"	INTEGER NOT NULL,
+	"Filename"	TEXT NOT NULL,
+	"IsCover"	INTEGER NOT NULL,
+	"Position"	INTEGER,
+	CONSTRAINT "FK_Photo_Product_ProductId" FOREIGN KEY("ProductId") REFERENCES "Products"("Id") ON DELETE CASCADE,
+	CONSTRAINT "PK_Photo" PRIMARY KEY("Id" AUTOINCREMENT)
+);
+CREATE TABLE IF NOT EXISTS "OrderStates" (
+	"Id"	INTEGER NOT NULL,
+	"Code"	TEXT NOT NULL,
+	"NameId"	INTEGER NOT NULL,
+	"Position"	INTEGER,
+	CONSTRAINT "FK_OrderState_Dictionary_NameId" FOREIGN KEY("NameId") REFERENCES "Dictionaries"("Id"),
+	CONSTRAINT "PK_OrderState" PRIMARY KEY("Id" AUTOINCREMENT)
+);
+CREATE TABLE IF NOT EXISTS "PaymentMethods" (
+	"Id"	INTEGER NOT NULL,
+	"Code"	TEXT NOT NULL,
+	"NameId"	INTEGER NOT NULL,
+	"Position"	INTEGER,
+	CONSTRAINT "FK_PaymentMethod_Dictionary_NameId" FOREIGN KEY("NameId") REFERENCES "Dictionaries"("Id"),
+	CONSTRAINT "PK_PaymentMethod" PRIMARY KEY("Id" AUTOINCREMENT)
+);
+CREATE TABLE IF NOT EXISTS "DeliveryMethods" (
+	"Id"	INTEGER NOT NULL,
+	"Code"	TEXT NOT NULL,
+	"NameId"	INTEGER NOT NULL,
+	"Position"	INTEGER,
+	CONSTRAINT "FK_DeliveryMethod_Dictionary_NameId" FOREIGN KEY("NameId") REFERENCES "Dictionaries"("Id"),
+	CONSTRAINT "PK_DeliveryMethod" PRIMARY KEY("Id" AUTOINCREMENT)
+);
+CREATE TABLE IF NOT EXISTS "Carts" (
+	"Id"	INTEGER NOT NULL,
+	"ClientSideId"	TEXT NOT NULL,
+	"Created"	TEXT NOT NULL,
+	CONSTRAINT "PK_Cart" PRIMARY KEY("Id" AUTOINCREMENT)
+);
+CREATE TABLE IF NOT EXISTS "Orders" (
+	"Id"	INTEGER NOT NULL,
+	"OrderStateId"	INTEGER NOT NULL,
+	"PaymentMethodId"	INTEGER NOT NULL,
+	"DeliveryMethodId"	INTEGER NOT NULL,
+	"CustomerFirstName"	TEXT NOT NULL,
+	"CustomerLastName"	TEXT,
+	"CustomerPhone"	TEXT NOT NULL,
+	"CustomerEmail"	TEXT,
+	"CustomerAddress"	TEXT,
+	"Note"	TEXT,
+	"Created"	TEXT NOT NULL,
+	CONSTRAINT "FK_Order_OrderState_OrderStateId" FOREIGN KEY("OrderStateId") REFERENCES "OrderStates"("Id") ON DELETE CASCADE,
+	CONSTRAINT "FK_Order_PaymentMethod_PaymentMethodId" FOREIGN KEY("PaymentMethodId") REFERENCES "PaymentMethods"("Id") ON DELETE CASCADE,
+	CONSTRAINT "FK_Order_DeliveryMethod_DeliveryMethodId" FOREIGN KEY("DeliveryMethodId") REFERENCES "DeliveryMethods"("Id") ON DELETE CASCADE,
+	CONSTRAINT "PK_Order" PRIMARY KEY("Id" AUTOINCREMENT)
+);
+CREATE TABLE IF NOT EXISTS "Positions" (
+	"Id"	INTEGER NOT NULL,
+	"CartId"	INTEGER,
+	"OrderId"	INTEGER,
+	"ProductId"	INTEGER NOT NULL,
+	"Price"	REAL NOT NULL,
+	"Quantity"	REAL NOT NULL,
+	"Subtotal"	REAL NOT NULL,
+	CONSTRAINT "FK_Position_Cart_CartId" FOREIGN KEY("CartId") REFERENCES "Carts"("Id") ON DELETE CASCADE,
+	CONSTRAINT "FK_Position_Order_OrderId" FOREIGN KEY("OrderId") REFERENCES "Orders"("Id") ON DELETE CASCADE,
+	CONSTRAINT "FK_Position_Product_ProductId" FOREIGN KEY("ProductId") REFERENCES "Products"("Id") ON DELETE CASCADE,
+	CONSTRAINT "PK_Position" PRIMARY KEY("Id" AUTOINCREMENT)
+);
 INSERT INTO "Users" VALUES (1,'Administrator','2017-01-01 00:00:00.0000000');
 INSERT INTO "CredentialTypes" VALUES (1,'Email','Email',1);
 INSERT INTO "Credentials" VALUES (1,1,1,'admin@platformus.net','8lE3xN2Ijiv/Y/aIGwaZLrbcqrt/1jDmzPTdudKbVD0=','0O/ZGwhScZRGbsmiUEckOg==');
@@ -314,6 +431,13 @@ INSERT INTO "Permissions" VALUES (10,'ManageClasses','Manage classes',1000);
 INSERT INTO "Permissions" VALUES (11,'ManageMenus','Manage menus',1100);
 INSERT INTO "Permissions" VALUES (12,'ManageForms','Manage forms',1200);
 INSERT INTO "Permissions" VALUES (13,'ManageFileManager','Manage file manager',1300);
+INSERT INTO "Permissions" VALUES (14,'ManageCategories','Manage categories',1400);
+INSERT INTO "Permissions" VALUES (15,'ManageProducts','Manage products',1500);
+INSERT INTO "Permissions" VALUES (16,'ManageOrderStates','Manage order states',1600);
+INSERT INTO "Permissions" VALUES (17,'ManagePaymentMethods','Manage payment methods',1700);
+INSERT INTO "Permissions" VALUES (18,'ManageDeliveryMethods','Manage delivery methods',1800);
+INSERT INTO "Permissions" VALUES (19,'ManageCarts','Manage carts',1900);
+INSERT INTO "Permissions" VALUES (20,'ManageOrders','Manage orders',2000);
 INSERT INTO "RolePermissions" VALUES (1,1);
 INSERT INTO "RolePermissions" VALUES (2,1);
 INSERT INTO "RolePermissions" VALUES (3,8);
@@ -413,8 +537,6 @@ INSERT INTO "Dictionaries" VALUES (76);
 INSERT INTO "Dictionaries" VALUES (77);
 INSERT INTO "Dictionaries" VALUES (78);
 INSERT INTO "Dictionaries" VALUES (79);
-INSERT INTO "Dictionaries" VALUES (80);
-INSERT INTO "Dictionaries" VALUES (81);
 INSERT INTO "Localizations" VALUES (1,1,'en','Main');
 INSERT INTO "Localizations" VALUES (2,1,'ru','Главное');
 INSERT INTO "Localizations" VALUES (3,1,'uk','Головне');
@@ -624,19 +746,17 @@ INSERT INTO "Localizations" VALUES (206,78,'en','');
 INSERT INTO "Localizations" VALUES (207,79,'uk','');
 INSERT INTO "Localizations" VALUES (208,79,'ru','');
 INSERT INTO "Localizations" VALUES (209,79,'en','');
-INSERT INTO "Localizations" VALUES (210,80,'__','xx');
-INSERT INTO "Localizations" VALUES (211,81,'__','xx');
-INSERT INTO "Endpoints" VALUES (1,'Default','{*url}',1000,0,NULL,NULL,'Platformus.Website.Frontend.DefaultEndpoint','ViewName=RegularPage');
-INSERT INTO "Endpoints" VALUES (2,'Blog','blog',10,0,NULL,NULL,'Platformus.Website.Frontend.DefaultEndpoint','ViewName=BlogPage');
-INSERT INTO "Endpoints" VALUES (3,'Post','blog/{segment}',20,0,NULL,NULL,'Platformus.Website.Frontend.DefaultEndpoint','ViewName=PostPage');
-INSERT INTO "Endpoints" VALUES (4,'Contacts','contacts',30,0,NULL,NULL,'Platformus.Website.Frontend.DefaultEndpoint','ViewName=ContactsPage');
-INSERT INTO "DataSources" VALUES (1,1,'Page','Platformus.Website.Frontend.DataSources.PageObjectDataSource',NULL);
-INSERT INTO "DataSources" VALUES (2,2,'Page','Platformus.Website.Frontend.DataSources.PageObjectDataSource',NULL);
-INSERT INTO "DataSources" VALUES (3,2,'Posts','Platformus.Website.Frontend.DataSources.ObjectsDataSource','ClassId=5');
-INSERT INTO "DataSources" VALUES (4,3,'Page','Platformus.Website.Frontend.DataSources.PageObjectDataSource',NULL);
-INSERT INTO "DataSources" VALUES (5,3,'Tags','Platformus.Website.Frontend.DataSources.RelatedObjectsDataSource','RelationMemberId=11;RelationType=Primary');
-INSERT INTO "DataSources" VALUES (6,3,'Comments','Platformus.Website.Frontend.DataSources.RelatedObjectsDataSource','RelationMemberId=15;RelationType=Primary');
-INSERT INTO "DataSources" VALUES (7,4,'Page','Platformus.Website.Frontend.DataSources.PageObjectDataSource',NULL);
+INSERT INTO "Endpoints" VALUES (1,'Default','{*url}',1000,0,NULL,'Platformus.Website.Frontend.RequestProcessors.DefaultRequestProcessor','ViewName=RegularPage',NULL,NULL);
+INSERT INTO "Endpoints" VALUES (2,'Blog','blog',10,0,NULL,'Platformus.Website.Frontend.RequestProcessors.DefaultRequestProcessor','ViewName=BlogPage',NULL,NULL);
+INSERT INTO "Endpoints" VALUES (3,'Post','blog/{segment}',20,0,NULL,'Platformus.Website.Frontend.RequestProcessors.DefaultRequestProcessor','ViewName=PostPage',NULL,NULL);
+INSERT INTO "Endpoints" VALUES (4,'Contacts','contacts',30,0,NULL,'Platformus.Website.Frontend.RequestProcessors.DefaultRequestProcessor','ViewName=ContactsPage',NULL,NULL);
+INSERT INTO "DataSources" VALUES (1,1,'Page','Platformus.Website.Frontend.DataProviders.PageObjectDataProvider',NULL);
+INSERT INTO "DataSources" VALUES (2,2,'Page','Platformus.Website.Frontend.DataProviders.PageObjectDataProvider',NULL);
+INSERT INTO "DataSources" VALUES (3,2,'Posts','Platformus.Website.Frontend.DataProviders.ObjectsDataProvider','ClassId=5');
+INSERT INTO "DataSources" VALUES (4,3,'Page','Platformus.Website.Frontend.DataProviders.PageObjectDataProvider',NULL);
+INSERT INTO "DataSources" VALUES (5,3,'Tags','Platformus.Website.Frontend.DataProviders.RelatedObjectsDataProvider','RelationMemberId=11;RelationType=Primary');
+INSERT INTO "DataSources" VALUES (6,3,'Comments','Platformus.Website.Frontend.DataProviders.RelatedObjectsDataProvider','RelationMemberId=15;RelationType=Primary');
+INSERT INTO "DataSources" VALUES (7,4,'Page','Platformus.Website.Frontend.DataProviders.PageObjectDataProvider',NULL);
 INSERT INTO "Classes" VALUES (1,NULL,'Page','Page','Pages',1);
 INSERT INTO "Classes" VALUES (2,1,'RegularPage','Regular Page','Regular Pages',0);
 INSERT INTO "Classes" VALUES (3,NULL,'Tag','Tag','Tags',0);
@@ -650,16 +770,23 @@ INSERT INTO "DataTypes" VALUES (4,'integer','integerNumber','Integer number',4);
 INSERT INTO "DataTypes" VALUES (5,'decimal','decimalNumber','Decimal number',5);
 INSERT INTO "DataTypes" VALUES (6,'integer','booleanFlag','Boolean flag',6);
 INSERT INTO "DataTypes" VALUES (7,'datetime','date','Date',7);
-INSERT INTO "DataTypes" VALUES (8,'string','image','Image',8);
-INSERT INTO "DataTypes" VALUES (9,'string','sourceCode','Source code',9);
+INSERT INTO "DataTypes" VALUES (8,'datetime','dateTime','DateTime',8);
+INSERT INTO "DataTypes" VALUES (9,'string','image','Image',9);
+INSERT INTO "DataTypes" VALUES (10,'string','sourceCode','Source code',10);
 INSERT INTO "DataTypeParameters" VALUES (1,1,'checkbox','IsRequired','Is required');
 INSERT INTO "DataTypeParameters" VALUES (2,1,'numericTextBox','MaxLength','Max length');
 INSERT INTO "DataTypeParameters" VALUES (3,2,'checkbox','IsRequired','Is required');
 INSERT INTO "DataTypeParameters" VALUES (4,2,'numericTextBox','MaxLength','Max length');
-INSERT INTO "DataTypeParameters" VALUES (5,7,'checkbox','IsRequired','Is required');
-INSERT INTO "DataTypeParameters" VALUES (6,8,'numericTextBox','Width','Width');
-INSERT INTO "DataTypeParameters" VALUES (7,8,'numericTextBox','Height','Height');
-INSERT INTO "DataTypeParameters" VALUES (8,9,'textBox','Mode','Mode');
+INSERT INTO "DataTypeParameters" VALUES (5,4,'checkbox','IsRequired','Is required');
+INSERT INTO "DataTypeParameters" VALUES (6,4,'numericTextBox','MinValue','Min value');
+INSERT INTO "DataTypeParameters" VALUES (7,4,'numericTextBox','MaxValue','Max value');
+INSERT INTO "DataTypeParameters" VALUES (8,5,'checkbox','IsRequired','Is required');
+INSERT INTO "DataTypeParameters" VALUES (9,5,'numericTextBox','MinValue','Min value');
+INSERT INTO "DataTypeParameters" VALUES (10,5,'numericTextBox','MaxValue','Max value');
+INSERT INTO "DataTypeParameters" VALUES (11,7,'checkbox','IsRequired','Is required');
+INSERT INTO "DataTypeParameters" VALUES (12,8,'numericTextBox','Width','Width');
+INSERT INTO "DataTypeParameters" VALUES (13,8,'numericTextBox','Height','Height');
+INSERT INTO "DataTypeParameters" VALUES (14,9,'textBox','Mode','Mode');
 INSERT INTO "Members" VALUES (1,1,NULL,'Url','URL',1,1,0,1,NULL,NULL,NULL,NULL);
 INSERT INTO "Members" VALUES (2,1,NULL,'Content','Content',100,3,1,0,NULL,NULL,NULL,NULL);
 INSERT INTO "Members" VALUES (3,1,1,'Title','Title',1000,1,1,0,NULL,NULL,NULL,NULL);
@@ -708,7 +835,6 @@ INSERT INTO "Objects" VALUES (11,5);
 INSERT INTO "Objects" VALUES (12,5);
 INSERT INTO "Objects" VALUES (13,5);
 INSERT INTO "Objects" VALUES (14,5);
-INSERT INTO "Objects" VALUES (15,4);
 INSERT INTO "Properties" VALUES (1,1,1,NULL,NULL,15,NULL);
 INSERT INTO "Properties" VALUES (2,1,2,NULL,NULL,16,NULL);
 INSERT INTO "Properties" VALUES (3,1,3,NULL,NULL,17,NULL);
@@ -739,7 +865,7 @@ INSERT INTO "Properties" VALUES (27,10,12,NULL,NULL,41,NULL);
 INSERT INTO "Properties" VALUES (28,10,10,NULL,NULL,42,NULL);
 INSERT INTO "Properties" VALUES (29,10,13,NULL,NULL,43,NULL);
 INSERT INTO "Properties" VALUES (30,10,2,NULL,NULL,44,NULL);
-INSERT INTO "Properties" VALUES (31,10,14,NULL,NULL,NULL,'2021-03-26 16:53:03.2521418');
+INSERT INTO "Properties" VALUES (31,10,14,NULL,NULL,NULL,'2021-09-09 19:04:51.2038867');
 INSERT INTO "Properties" VALUES (32,10,3,NULL,NULL,45,NULL);
 INSERT INTO "Properties" VALUES (33,10,4,NULL,NULL,46,NULL);
 INSERT INTO "Properties" VALUES (34,10,5,NULL,NULL,47,NULL);
@@ -748,7 +874,7 @@ INSERT INTO "Properties" VALUES (36,11,12,NULL,NULL,49,NULL);
 INSERT INTO "Properties" VALUES (37,11,10,NULL,NULL,50,NULL);
 INSERT INTO "Properties" VALUES (38,11,13,NULL,NULL,51,NULL);
 INSERT INTO "Properties" VALUES (39,11,2,NULL,NULL,52,NULL);
-INSERT INTO "Properties" VALUES (40,11,14,NULL,NULL,NULL,'2021-03-26 16:53:03.5417078');
+INSERT INTO "Properties" VALUES (40,11,14,NULL,NULL,NULL,'2021-09-09 19:04:51.38441');
 INSERT INTO "Properties" VALUES (41,11,3,NULL,NULL,53,NULL);
 INSERT INTO "Properties" VALUES (42,11,4,NULL,NULL,54,NULL);
 INSERT INTO "Properties" VALUES (43,11,5,NULL,NULL,55,NULL);
@@ -757,7 +883,7 @@ INSERT INTO "Properties" VALUES (45,12,12,NULL,NULL,57,NULL);
 INSERT INTO "Properties" VALUES (46,12,10,NULL,NULL,58,NULL);
 INSERT INTO "Properties" VALUES (47,12,13,NULL,NULL,59,NULL);
 INSERT INTO "Properties" VALUES (48,12,2,NULL,NULL,60,NULL);
-INSERT INTO "Properties" VALUES (49,12,14,NULL,NULL,NULL,'2021-03-26 16:53:03.8012715');
+INSERT INTO "Properties" VALUES (49,12,14,NULL,NULL,NULL,'2021-09-09 19:04:51.5678291');
 INSERT INTO "Properties" VALUES (50,12,3,NULL,NULL,61,NULL);
 INSERT INTO "Properties" VALUES (51,12,4,NULL,NULL,62,NULL);
 INSERT INTO "Properties" VALUES (52,12,5,NULL,NULL,63,NULL);
@@ -766,7 +892,7 @@ INSERT INTO "Properties" VALUES (54,13,12,NULL,NULL,65,NULL);
 INSERT INTO "Properties" VALUES (55,13,10,NULL,NULL,66,NULL);
 INSERT INTO "Properties" VALUES (56,13,13,NULL,NULL,67,NULL);
 INSERT INTO "Properties" VALUES (57,13,2,NULL,NULL,68,NULL);
-INSERT INTO "Properties" VALUES (58,13,14,NULL,NULL,NULL,'2021-03-26 16:53:04.0930558');
+INSERT INTO "Properties" VALUES (58,13,14,NULL,NULL,NULL,'2021-09-09 19:04:51.7547237');
 INSERT INTO "Properties" VALUES (59,13,3,NULL,NULL,69,NULL);
 INSERT INTO "Properties" VALUES (60,13,4,NULL,NULL,70,NULL);
 INSERT INTO "Properties" VALUES (61,13,5,NULL,NULL,71,NULL);
@@ -775,26 +901,16 @@ INSERT INTO "Properties" VALUES (63,14,12,NULL,NULL,73,NULL);
 INSERT INTO "Properties" VALUES (64,14,10,NULL,NULL,74,NULL);
 INSERT INTO "Properties" VALUES (65,14,13,NULL,NULL,75,NULL);
 INSERT INTO "Properties" VALUES (66,14,2,NULL,NULL,76,NULL);
-INSERT INTO "Properties" VALUES (67,14,14,NULL,NULL,NULL,'2021-03-26 16:53:04.3696145');
+INSERT INTO "Properties" VALUES (67,14,14,NULL,NULL,NULL,'2021-09-09 19:04:51.9740874');
 INSERT INTO "Properties" VALUES (68,14,3,NULL,NULL,77,NULL);
 INSERT INTO "Properties" VALUES (69,14,4,NULL,NULL,78,NULL);
 INSERT INTO "Properties" VALUES (70,14,5,NULL,NULL,79,NULL);
-INSERT INTO "Properties" VALUES (71,15,9,NULL,NULL,NULL,'2021-03-26 16:54:10.2532649');
-INSERT INTO "Properties" VALUES (72,15,7,NULL,NULL,80,NULL);
-INSERT INTO "Properties" VALUES (73,15,8,NULL,NULL,81,NULL);
 INSERT INTO "Relations" VALUES (1,11,7,10);
-INSERT INTO "Relations" VALUES (2,11,9,10);
-INSERT INTO "Relations" VALUES (3,11,6,10);
-INSERT INTO "Relations" VALUES (4,11,5,11);
-INSERT INTO "Relations" VALUES (5,11,6,11);
-INSERT INTO "Relations" VALUES (6,11,7,12);
-INSERT INTO "Relations" VALUES (7,11,5,12);
-INSERT INTO "Relations" VALUES (8,11,9,12);
-INSERT INTO "Relations" VALUES (9,11,7,13);
-INSERT INTO "Relations" VALUES (10,11,9,13);
-INSERT INTO "Relations" VALUES (11,11,9,14);
-INSERT INTO "Relations" VALUES (12,11,5,14);
-INSERT INTO "Relations" VALUES (13,15,15,11);
+INSERT INTO "Relations" VALUES (2,11,6,11);
+INSERT INTO "Relations" VALUES (3,11,8,12);
+INSERT INTO "Relations" VALUES (4,11,6,13);
+INSERT INTO "Relations" VALUES (5,11,5,13);
+INSERT INTO "Relations" VALUES (6,11,8,14);
 INSERT INTO "Menus" VALUES (1,'Main',1);
 INSERT INTO "MenuItems" VALUES (1,1,NULL,2,'/',10);
 INSERT INTO "MenuItems" VALUES (2,1,NULL,3,'/about-me',20);
@@ -808,13 +924,10 @@ INSERT INTO "FieldTypes" VALUES (3,'Checkbox','Checkbox',3,NULL);
 INSERT INTO "FieldTypes" VALUES (4,'RadioButtonList','Radio button list',4,NULL);
 INSERT INTO "FieldTypes" VALUES (5,'DropDownList','Drop down list',5,NULL);
 INSERT INTO "FieldTypes" VALUES (6,'FileUpload','File upload',6,NULL);
-INSERT INTO "FieldTypes" VALUES (7,'ReCAPTCHA','ReCAPTCHA',7,'Platformus.Website.Frontend.FormHandlers.ReCaptchaFieldValidator');
+INSERT INTO "FieldTypes" VALUES (7,'ReCAPTCHA','ReCAPTCHA',7,'Platformus.Website.Frontend.FieldValidators.ReCaptchaFieldValidator');
 INSERT INTO "Fields" VALUES (1,1,1,'Name',8,1,NULL,10);
 INSERT INTO "Fields" VALUES (2,1,1,'Email',9,1,NULL,20);
 INSERT INTO "Fields" VALUES (3,1,2,'Message',10,1,NULL,30);
 INSERT INTO "Fields" VALUES (4,2,1,'Name',13,1,NULL,10);
 INSERT INTO "Fields" VALUES (5,2,2,'Comment',14,1,NULL,20);
-INSERT INTO "CompletedForms" VALUES (1,2,'2021-03-26 16:54:09.8785264');
-INSERT INTO "CompletedFields" VALUES (1,1,4,'xx');
-INSERT INTO "CompletedFields" VALUES (2,1,5,'xx');
 COMMIT;
