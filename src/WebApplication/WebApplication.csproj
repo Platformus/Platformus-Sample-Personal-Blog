@@ -7,12 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Platformus.Core.Data.EntityFramework.Sqlite" Version="3.0.0-beta1" />
-    <PackageReference Include="Platformus.Images" Version="3.0.0-beta1" />
-    <PackageReference Include="Platformus.WebApplication" Version="3.0.0-beta1" />
-    <PackageReference Include="Platformus.Website.Backend" Version="3.0.0-beta1" />
-    <PackageReference Include="Platformus.Website.Data.EntityFramework.SqlServer" Version="3.0.0-beta1" />
-    <PackageReference Include="Platformus.Website.Frontend" Version="3.0.0-beta1" />
+    <PackageReference Include="Platformus.Core.Data.EntityFramework.Sqlite" Version="3.0.0" />
+    <PackageReference Include="Platformus.Images" Version="3.0.0" />
+    <PackageReference Include="Platformus.WebApplication" Version="3.0.0" />
+    <PackageReference Include="Platformus.Website.Backend" Version="3.0.0" />
+    <PackageReference Include="Platformus.Website.Data.EntityFramework.SqlServer" Version="3.0.0" />
+    <PackageReference Include="Platformus.Website.Frontend" Version="3.0.0" />
   </ItemGroup>
 
   <Target Name="PrecompileScript" BeforeTargets="BeforeBuild">
